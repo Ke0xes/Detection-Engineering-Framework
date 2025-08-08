@@ -4,7 +4,7 @@
 
 ## 🔍 Overview
 
-The planning phase in **SIEM (Security Information and Event Management)** detection engineering is a crucial step that sets the foundation for the development and implementation of effective use cases. This phase involves defining the why, when, who, and what aspects necessary to commence the development process. By taking a top-down approach, organizations can gain a comprehensive understanding of the big picture and all its components, leading to more informed decision-making and improved outcomes.
+The planning phase in detection engineering is a crucial step that sets the foundation for the development and implementation of effective use cases. This phase involves defining the why, when, who, and what aspects necessary to commence the development process. By taking a top-down approach, organizations can gain a comprehensive understanding of the big picture and all its components, leading to more informed decision-making and improved outcomes.
 
 ### 📈 Benefits of Top-Down Planning
 
@@ -188,7 +188,7 @@ This allows for strategic planning and effective backlog management. It ensures 
 
 ## 🚀 Preparing for Development
 
-The planning phase of SIEM detection engineering involves several crucial considerations to ensure a successful development process.
+The planning phase of detection engineering involves several crucial considerations to ensure a successful development process.
 
 ### 📊 Priority Management
 
