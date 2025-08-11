@@ -3,6 +3,7 @@
 [![Author](https://img.shields.io/badge/Author-Kunal_Hatode-blue)](https://github.com)
 [![GitHub Last Commit](https://img.shields.io/github/last-commit/Ke0xes/Detection-Engineering-Framework)](https://github.com/Ke0xes/Detection-Engineering-Framework/commits/main)
 [![GitHub License](https://img.shields.io/github/license/Ke0xes/Detection-Engineering-Framework)](https://github.com/Ke0xes/Detection-Engineering-Framework/blob/main/LICENSE)
+![Visitors](https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2FKe0xes%2FDetection-Engineering-Framework&countColor=%2337d67a&style=flat)
 [![GitHub Forks](https://img.shields.io/github/forks/Ke0xes/Detection-Engineering-Framework?style=social)](https://github.com/Ke0xes/Detection-Engineering-Framework/network/members)
 [![GitHub Stars](https://img.shields.io/github/stars/Ke0xes/Detection-Engineering-Framework?style=social)](https://github.com/Ke0xes/Detection-Engineering-Framework/stargazers)
 
