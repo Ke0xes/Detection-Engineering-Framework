@@ -5,39 +5,35 @@ This directory contains templates for initiating new detection use cases within 
 ## 📁 Available Templates
 
 ### 🎯 Primary Templates
-- **[use-case-request-template.md](use-case-request-template.md)** - Standard use case request form
+- **[use-case-request-template.md](use-case-request-template.md)** - Standard use case request form (Markdown)
+
+### 🛠️ Codified Forms for Popular Tools
+These files provide ready-to-copy field/section structures for the most common enterprise form tools. Users can lift these and manually create forms in their own environments:
+
+- **salesforce-use-case-request-form.txt** – Field definitions for a Salesforce custom object
+- **servicenow-use-case-request-form.txt** – Field/variable definitions for a ServiceNow Record Producer
+- **microsoft-forms-use-case-request-form.txt** – Section and question structure for Microsoft Forms
+- **google-forms-use-case-request-form.txt** – Section and question structure for Google Forms
+
+Each file contains:
+- Field names and types
+- Section headers
+- Sample values/options
+- Instructions for manual creation/import
+
+No external links or dependencies—just copy the file and use in your tool.
 
 ### 🚀 Planned Templates
 - **expedited-use-case-template.md** - Fast-track template for urgent/zero-day threats *(Coming Soon)*
 - **compliance-use-case-template.md** - Specialized template for regulatory requirements *(Coming Soon)*
 - **threat-intel-use-case-template.md** - Template for threat intelligence-driven use cases *(Coming Soon)*
 
-## 🎪 When to Use These Templates
-
-### 📊 Standard Use Case Request
-- **Purpose**: Comprehensive planning for new detection capabilities
-- **Timeline**: Standard development lifecycle (2-6 weeks)
-- **Complexity**: Medium to high complexity use cases
-- **Stakeholders**: Multiple departments, formal approval process
-
-### ⚡ Expedited Use Case *(Planned)*
-- **Purpose**: Rapid response to active threats or zero-day exploits
-- **Timeline**: Emergency deployment (hours to days)
-- **Complexity**: Simple to medium complexity
-- **Stakeholders**: Security team with streamlined approval
-
-### 📜 Compliance Use Case *(Planned)*
-- **Purpose**: Meeting specific regulatory or audit requirements
-- **Timeline**: Compliance deadline-driven
-- **Complexity**: Variable, often well-defined requirements
-- **Stakeholders**: Compliance, legal, and security teams
-
 ## 📈 Usage Guidelines
 
-1. **Select appropriate template** based on urgency and complexity
-2. **Complete all required sections** - guidance comments help identify mandatory vs. optional fields
-3. **Engage stakeholders early** - use stakeholder section to ensure proper involvement
-4. **Track through lifecycle** - use status tracking section for progress monitoring
+1. Select the appropriate template or codified form for your tool.
+2. Copy the field/section structure into your organizational platform.
+3. Customize as needed for your environment.
+4. Track through lifecycle using the status tracking section.
 
 ## 🔄 Template Lifecycle
 
@@ -57,6 +53,6 @@ graph LR
 
 ---
 
-**Directory Version:** 1.0  
+**Directory Version:** 1.1  
 **Last Updated:** September 2025  
 **Framework Phase:** Planning Phase
