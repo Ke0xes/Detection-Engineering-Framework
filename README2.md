@@ -195,8 +195,8 @@ This framework was developed during my position at Cisco as Cyber Operations Sec
 - 📝 **Attribution** — You must give appropriate credit and indicate if changes were made
 
 ---
-
-<img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt="Creative Commons" width="35" height="35"> <img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt="Attribution" width="35" height="35"> <a href="https://github.com/Ke0xes/Detection-Engineering-Framework">Detection Engineering Framework</a> © 2021 by <a href="https://kunal.hatode.com">Kunal Hatode</a> is licensed under <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International</a>
+<img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt="Creative Commons By" width="25" height="25"><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt="Creative Commons By" width="25" height="25"> <br>
+<a href="https://github.com/Ke0xes/Detection-Engineering-Framework">Detection Engineering Framework</a> © 2021 by <a href="https://kunal.hatode.com">Kunal Hatode</a> is licensed under <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International</a>
 ---
 
 [⬆ Back to Top](#detection-engineering-framework)
