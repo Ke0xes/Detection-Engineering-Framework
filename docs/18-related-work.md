@@ -18,7 +18,7 @@ readers to do that work themselves, and most will not bother.
 > criteria and machine-readable traceability.**
 
 It is a **process and governance standard**. It is not a rule format, not a
-knowledge base of adversary behaviour, not a maturity survey, and not a
+knowledge base of adversary behavior, not a maturity survey, and not a
 detection library.
 
 ---
@@ -34,7 +34,7 @@ in combination, do not.
 threat or compliance driver and downward to specific telemetry, in a
 machine-readable form, answerable in both directions.
 
-Other frameworks describe threat-informed defence. This one makes the audit
+Other frameworks describe threat-informed defense. This one makes the audit
 trail a conformance criterion and ships the schema that carries it. The
 practical consequence is that "which detections did we lose when the EDR
 pipeline failed" and "what are we monitoring because of DORA" are queries, not
@@ -64,7 +64,7 @@ This is explicitly **not** a competitor to Sigma. See below.
 
 | Work | What it is | Overlap | How this framework relates |
 | --- | --- | --- | --- |
-| **MITRE ATT&CK** | Knowledge base of adversary behaviour | Technique taxonomy | **Consumes it.** ATT&CK is the shared vocabulary for `threat.attack`. This framework does not attempt to replicate or replace it |
+| **MITRE ATT&CK** | Knowledge base of adversary behavior | Technique taxonomy | **Consumes it.** ATT&CK is the shared vocabulary for `threat.attack`. This framework does not attempt to replicate or replace it |
 | **MITRE ATLAS** | ATT&CK for AI/ML systems | Technique taxonomy for AI threats | **Consumes it.** See `atlas_techniques` in the schema and [chapter 14](14-modern-attack-surfaces.md) |
 | **MITRE D3FEND** | Countermeasure knowledge graph | Defensive technique taxonomy | **Complementary.** D3FEND classifies countermeasures; this framework governs how you build and maintain them |
 | **Summiting the Pyramid** (MITRE CTID) | Research on analytic robustness | Robustness tiering | **Builds on it.** [Chapter 13](13-detection-robustness.md) adapts the robustness concept and connects it to lifecycle controls: review cadence, coverage weighting and improvement targets |
@@ -74,7 +74,7 @@ This is explicitly **not** a competitor to Sigma. See below.
 | **Detection Engineering Maturity Matrix** | Self-assessment maturity model | Maturity levelling | **Complementary.** The matrix is a broad maturity survey. [Chapter 10](10-conformance.md) is a narrower, requirement-by-requirement conformance model with defined evidence |
 | **Atomic Red Team / CALDERA / Stratus Red Team** | Adversary emulation libraries | Validation | **Consumes them.** `DET-11` requires emulation-based validation; these are the recommended sources. The schema records which test validated which detection |
 | **Vendor detection-as-code guides** (Splunk, Elastic, Google SecOps) | Platform-specific pipeline guidance | CI/CD for detections | **Generalises them.** [Chapter 11](11-detection-as-code.md) is platform-neutral and adds conformance gates that vendor guides do not, because vendor guides do not define conformance |
-| **OCSF / ECS / ASIM** | Telemetry normalization schemas | Data modelling | **Consumes them.** `TEL-7` requires you to pick one; the framework does not care which |
+| **OCSF / ECS / ASIM** | Telemetry normalization schemas | Data modeling | **Consumes them.** `TEL-7` requires you to pick one; the framework does not care which |
 | **NIST CSF 2.0** | Cybersecurity governance framework | Detect and Respond functions | **Implements a slice of it.** CSF says you should detect; this framework says how, and maps back through `compliance_refs` |
 
 ---
@@ -123,7 +123,7 @@ Stating non-goals is part of positioning.
 
 The ideas here are assembled, not invented. The framework's contribution is the
 lifecycle, the conformance model, the schemas and the enforcement, not the
-underlying insights about adversary behaviour or detection quality, which belong
+underlying insights about adversary behavior or detection quality, which belong
 to the community and to the projects named above.
 
 Where this framework disagrees with prior work it says so explicitly. The

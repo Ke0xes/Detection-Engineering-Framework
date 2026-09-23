@@ -20,13 +20,14 @@
 <!-- Check all that apply and provide details -->
 
 **Primary Driver:**
+
 - [ ] **Risk Mitigation** - Describe the specific risk being addressed
 - [ ] **Threat Response** - Identify the threat actors or attack vectors
 - [ ] **Compliance Requirement** - Specify regulation/standard (PCI-DSS, SOX, GDPR, etc.)
 
 **Business Justification:**
 
-```
+```text
 [Explain why this use case is needed from a business perspective]
 [Include potential impact if not implemented]
 [Reference any recent incidents or threat intelligence]
@@ -35,6 +36,7 @@
 ### Organizational Impact
 
 **Affected Business Units:**
+
 - [ ] IT Operations
 - [ ] Finance
 - [ ] HR
@@ -44,7 +46,7 @@
 
 **Business Criticality:**
 
-```
+```text
 [Describe how this detection relates to business-critical systems or processes]
 [Identify potential business disruption if threats go undetected]
 ```
@@ -57,26 +59,27 @@
 
 **Primary Objective:**
 
-```
+```text
 [Clear statement of what this use case should detect or prevent]
 ```
 
 **Success Criteria:**
 
-```
+```text
 [Measurable outcomes that define successful implementation]
 [Include detection accuracy, response time, or coverage metrics]
 ```
 
 **Out of Scope:**
 
-```
+```text
 [Explicitly state what this use case will NOT cover]
 ```
 
 ### Data Sources and Systems
 
 **Required Data Sources:**
+
 - [ ] Windows Event Logs
 - [ ] Linux/Unix Logs
 - [ ] Network Traffic (NetFlow/PCAP)
@@ -91,7 +94,7 @@
 
 **Affected Systems/Assets:**
 
-```
+```text
 [List specific systems, networks, or asset types that should be monitored]
 [Include IP ranges, hostnames, or system classifications]
 ```
@@ -100,21 +103,21 @@
 
 **Attack Techniques (MITRE ATT&CK):**
 
-```
+```text
 [Reference specific MITRE ATT&CK techniques if known]
 [Example: T1566.001 - Spearphishing Attachment]
 ```
 
 **Known Indicators:**
 
-```
+```text
 [List any known IOCs, patterns, or signatures]
 [Include file hashes, domains, IPs, or behavioral patterns]
 ```
 
 **Attack Scenarios:**
 
-```
+```text
 [Describe the attack scenarios this use case should detect]
 [Include attack progression and potential impact]
 ```
@@ -126,12 +129,14 @@
 ### Primary Stakeholders
 
 **Business Owner:**
+
 - **Name:** `[Name and Title]`
 - **Department:** `[Department]`
 - **Contact:** `[Email/Phone]`
 - **Role:** `[Decision authority and responsibilities]`
 
 **Technical Owner:**
+
 - **Name:** `[Name and Title]`
 - **Department:** `[IT/Security Team]`
 - **Contact:** `[Email/Phone]`
@@ -140,10 +145,12 @@
 ### Secondary Stakeholders
 
 **Incident Response Team:**
+
 - **Primary Contact:** `[Name and Contact]`
 - **Escalation Path:** `[Escalation procedures]`
 
 **Compliance/Legal:**
+
 - **Contact:** `[Name and Contact if applicable]`
 - **Requirements:** `[Specific compliance considerations]`
 
@@ -154,6 +161,7 @@
 ### Deployment Requirements
 
 **Environment:**
+
 - [ ] Production
 - [ ] Staging/Test
 - [ ] Development
@@ -161,14 +169,14 @@
 
 **Performance Considerations:**
 
-```
+```text
 [Expected query volume, data retention requirements]
 [Resource impact on SIEM/logging infrastructure]
 ```
 
 **Integration Requirements:**
 
-```
+```text
 [Required integrations with ticketing, SOAR, or other systems]
 [Alert routing and notification requirements]
 ```
@@ -176,11 +184,13 @@
 ### Success Metrics
 
 **Detection Metrics:**
+
 - **Target Detection Rate:** `[Percentage or specific threshold]`
 - **Maximum False Positive Rate:** `[Acceptable percentage]`
 - **Mean Time to Detect (MTTD):** `[Target timeframe]`
 
 **Operational Metrics:**
+
 - **Alert Volume:** `[Expected alerts per day/week]`
 - **Response Time:** `[Target response timeframe]`
 - **Coverage:** `[Percentage of environment covered]`
@@ -192,14 +202,17 @@
 ### Approval Workflow
 
 **Business Approval:**
+
 - **Approved By:** `[Name and Date]`
 - **Signature:** `[Digital signature or approval reference]`
 
 **Technical Approval:**
+
 - **Reviewed By:** `[Security Architect/Engineer Name and Date]`
 - **Technical Feasibility:** `[ ] Approved [ ] Needs Review [ ] Rejected`
 
 **Budget/Resource Approval:**
+
 - **Approved By:** `[Manager/Director Name and Date]`
 - **Resource Allocation:** `[Approved hours/budget]`
 
@@ -220,7 +233,7 @@
 
 **Special Considerations:**
 
-```
+```text
 [Any additional requirements, constraints, or considerations]
 [Dependencies on other projects or systems]
 [Regulatory or legal considerations]
@@ -228,7 +241,7 @@
 
 **Related Use Cases:**
 
-```
+```text
 [Reference any related or dependent use cases]
 [Identify potential conflicts or overlaps]
 ```

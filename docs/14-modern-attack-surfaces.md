@@ -45,7 +45,7 @@ malware executes and no endpoint is compromised.
   or password reset alone does not end access, and this step is the one most
   often omitted.
 - Robustness: identity telemetry is comparatively stable and schema-consistent,
-  so behavioural detections here tend to last longer than endpoint equivalents.
+  so behavioral detections here tend to last longer than endpoint equivalents.
 
 ---
 

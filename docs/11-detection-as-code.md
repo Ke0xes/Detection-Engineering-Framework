@@ -61,7 +61,7 @@ deployment, without manual reconstruction of prior state.
 
 The reference layout, which the tooling assumes:
 
-```
+```text
 detection-repo/
 ├── schema/                      Contracts. Copied unchanged from the framework.
 ├── use-cases/                   Planning artifacts, one file per request
@@ -70,7 +70,7 @@ detection-repo/
 │   ├── sigma/                   Portable logic
 │   ├── kql/                     Platform implementations
 │   └── spl/
-├── fixtures/<DETECTION-ID>/     Telemetry samples asserting behaviour
+├── fixtures/<DETECTION-ID>/     Telemetry samples asserting behavior
 ├── playbooks/                   Response content, versioned with the detections
 ├── tools/                       Validation, test and deployment scripts
 └── .github/workflows/           The gates

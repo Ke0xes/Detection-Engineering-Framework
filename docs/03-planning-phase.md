@@ -23,22 +23,27 @@ flowchart LR
 #### Key Advantages
 
 **Decreased Risk in Decision-Making**
+
 - By starting with a holistic view of the organization's security requirements and objectives, potential risks and challenges can be identified early on
 - This allows for more informed choices regarding the selection of use cases, technologies, and resources required for implementation
 
 **Organization-wide Goals**
+
 - By involving stakeholders from different departments and levels of the organization, a shared understanding of security priorities and objectives can be established
 - This alignment ensures that the development efforts are focused on addressing the most critical security needs and supporting the overall business strategy
 
 **Faster Change Management**
+
 - By considering the impact of new use cases on existing systems, processes, and workflows, organizations can proactively identify potential conflicts or dependencies
 - This enables them to develop strategies to minimize disruption and optimize the integration of new detection capabilities into the existing security infrastructure
 
 **Minimized Time Costs**
+
 - By investing time upfront to define requirements, gather input from stakeholders, and create a clear roadmap, organizations can streamline the development process
 - This reduces the likelihood of delays, rework, or unnecessary iterations during the implementation phase
 
 **Error Minimization**
+
 - By taking a systematic and structured approach, organizations can identify potential pitfalls, dependencies, and challenges early on
 - This allows for better risk mitigation strategies and the implementation of robust quality assurance measures
 
@@ -119,56 +124,67 @@ mindmap
 ### Component Details
 
 #### **Objective**
+>
 > *Clearly defining the technical and organizational objectives of the use case*
 
 Without well-defined objectives, the use case may lack focus and fail to address the organization's specific security needs. It is akin to embarking on a journey without a destination in mind. Without clear objectives, the development team may wander aimlessly, resulting in wasted time and resources, and potentially missing critical security threats.
 
 #### **Drivers**
+>
 > *Identifying the reasons and motivations behind developing the use case*
 
 This helps provide context and ensure alignment with the organization's goals and priorities. Without a clear understanding of the drivers, the use case may not effectively address the organization's security challenges. An analogy could be driving a car without knowing the destination or purpose.
 
 #### **Scope**
+>
 > *Defining the assets (systems, data, applications, people, etc.) that need to be protected*
 
 This is crucial for focusing development efforts and ensuring comprehensive coverage. Without a well-defined scope, the use case may either overlook critical assets or try to protect too many irrelevant elements. Imagine building a fence around a property without defining its boundaries.
 
 #### **Purpose**
+>
 > *Describing the scope and value of the use case*
 
 This helps establish its importance and justification. It provides a clear understanding of why the use case is needed and what benefits it brings to the organization. Without a clear purpose, the development team may struggle to prioritize the use case or communicate its value to stakeholders.
 
 #### **Value**
+>
 > *Assessing the potential impacts of losing the identified assets or interrupting critical processes*
 
 This helps prioritize use cases based on their potential impact. Understanding the value of protecting these assets is crucial for making informed decisions about resource allocation and risk management. Without assessing value, the development team may invest resources in less critical use cases while neglecting higher-priority ones.
 
 #### **Priority**
+>
 > *Determining the urgency and timeframe within which the use case needs to be developed*
 
 This ensures that critical security needs are addressed promptly. It helps prevent delays and ensures that the most pressing risks are mitigated in a timely manner. Without prioritization, the development team may focus on low-impact use cases while neglecting those with higher urgency.
 
 #### **Stakeholders**
+>
 > *Identifying the departments and stakeholders who have an interest in the use case*
 
 This is vital for gathering input, ensuring alignment, and fostering collaboration. Involving relevant stakeholders promotes a sense of ownership and helps capture diverse perspectives. Without stakeholder involvement, the use case may lack input from critical areas, resulting in a solution that fails to meet their needs or gain their support.
 
 #### **Alignment**
+>
 > *Ensuring alignment with every relevant part of the organization*
 
 This helps minimize conflicts, streamline integration, and optimize effectiveness. It allows for the smooth coordination of security operations with other business processes and ensures that the use case does not inadvertently disrupt existing workflows or systems.
 
 #### **Outputs**
+>
 > *Defining the required outputs to measure and monitor the effectiveness of the use case*
 
 This is essential for evaluating its performance and making informed decisions. It helps establish metrics, alerts, reports, or other deliverables that provide insights into the use case's efficacy. Without clear outputs, it becomes challenging to assess the impact and value of the use case.
 
 #### **Resourcing**
+>
 > *Identifying the internal and extended resources required for the development phase*
 
 This ensures that the necessary personnel, tools, and technologies are available to successfully implement the use case. It helps allocate resources effectively, preventing resource shortages or inadequate support. Without proper resourcing, the development team may lack the necessary expertise, tools, or infrastructure.
 
 #### **Backlog**
+>
 > *Maintaining a list of prioritized use cases that need to be developed*
 
 This allows for strategic planning and effective backlog management. It ensures that development efforts align with the organization's priorities and helps avoid ad-hoc decision-making or resource allocation. Without a backlog, the development team may struggle to prioritize and manage the development of multiple use cases.
@@ -295,11 +311,13 @@ decays; a score from twelve months ago is not evidence.
 #### Key Considerations
 
 **Priority Determination**
+
 - Not all use cases have the same level of urgency or importance
 - Some use cases may have impending deadlines, while others are critical to the organization's security posture or address imminent threats
 - Balancing benefit against build and maintenance cost is essential
 
 **Backlog Management**
+
 - Maintain a use case development backlog that is reviewed on a published cadence
 - Begin development with the highest-scoring use cases and progressively move down the list
 - Where Priority Scores tie, order by build cost ascending so that capacity delivers the most detections per sprint
@@ -328,19 +346,22 @@ flowchart LR
 #### Resource Identification
 
 **Internal Resources**
+
 - **SOC team** or dedicated content development team as primary resources
 - Additional personnel from various domains:
- - **IT**: Infrastructure support
- - **Infrastructure**: System maintenance
- - **Security Engineering**: Technical expertise
- - **Networks**: Connectivity and transport
+- **IT**: Infrastructure support
+- **Infrastructure**: System maintenance
+- **Security Engineering**: Technical expertise
+- **Networks**: Connectivity and transport
 
 **External Resources**
+
 - **Managed Security Service Providers (MSSPs)**: Professional services
 - **Contractors**: Specialized skills and temporary support
 - **Online use case marketplaces**: Pre-built solutions and templates
 
 **Formal Alignment**
+
 - Ensure identified resources are willing and formally aligned to participate
 - Establish through **Operational Level Agreements (OLAs)** or **Service Level Agreements (SLAs)**
 - Define expectations, responsibilities, and commitments of all parties involved

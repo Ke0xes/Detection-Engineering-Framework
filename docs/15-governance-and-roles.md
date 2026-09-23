@@ -203,7 +203,7 @@ leadership can act on.
 
 | Anti-pattern | Consequence |
 | --- | --- |
-| Detection engineering reporting into the SOC | Improvement work is always deprioritised for shift coverage |
+| Detection engineering reporting into the SOC | Improvement work is always deprioritized for shift coverage |
 | No content manager | Catalog grows monotonically; debt is invisible |
 | Council as status meeting | Decisions revert to loudest-voice default |
 | Analysts have no formal feedback route | The improvement phase starves |

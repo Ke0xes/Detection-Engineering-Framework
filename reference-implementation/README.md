@@ -10,19 +10,19 @@ relying on anyone remembering to check?*
 
 ## Layout
 
-```
+```text
 reference-implementation/
 ├── use-cases/           Planning artifacts (schema/use-case.schema.json)
 ├── detections/          Detection metadata (schema/detection.schema.json)
 ├── rules/
 │   ├── sigma/           Portable detection logic
 │   └── kql/             Platform-specific implementation
-├── fixtures/            Telemetry samples that assert detection behaviour
+├── fixtures/            Telemetry samples that assert detection behavior
 ├── playbooks/           Response playbooks and runbooks
 └── tools/
     ├── def_validate.py  Schema + framework conformance checking
     ├── def_test.py      Fixture regression harness
-    └── normalise-docs.ps1
+    └── normalize-docs.ps1
 ```
 
 ## The worked example
@@ -36,7 +36,7 @@ chain is visible:
 | Detection metadata and VAL | [`detections/DET-2026-0001.yml`](detections/DET-2026-0001.yml) |
 | Portable logic | [`rules/sigma/DET-2026-0001.yml`](rules/sigma/DET-2026-0001.yml) |
 | Platform implementation | [`rules/kql/DET-2026-0001.kql`](rules/kql/DET-2026-0001.kql) |
-| Behavioural assertions | [`fixtures/DET-2026-0001/`](fixtures/DET-2026-0001) |
+| Behavioral assertions | [`fixtures/DET-2026-0001/`](fixtures/DET-2026-0001) |
 | Response | [`playbooks/PB-0003-oauth-consent-abuse.md`](playbooks/PB-0003-oauth-consent-abuse.md) |
 | Containment procedure | [`playbooks/RB-0007-revoke-service-principal.md`](playbooks/RB-0007-revoke-service-principal.md) |
 
@@ -56,7 +56,7 @@ python reference-implementation/tools/def_test.py
 
 Expected output:
 
-```
+```text
 Validated 2 artifact(s): 0 error(s), 0 warning(s)
 
 PASS  DET-2026-0001  tp-01-privileged-consent-mailread.json  (expected match)

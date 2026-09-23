@@ -49,11 +49,11 @@ This framework provides a structured approach to enhancing an organization's cyb
 
 ### Key Concepts
 
-* **Cybersecurity Use Case:** In the context of cybersecurity, a **use case** refers to a specific scenario or example where security measures are implemented to prevent, detect, or respond to cyber threats. It outlines how a system or process is applied to address a particular cybersecurity challenge. Use cases serve as the foundation, defining the specific threats and scenarios the framework aims to address.
+- **Cybersecurity Use Case:** In the context of cybersecurity, a **use case** refers to a specific scenario or example where security measures are implemented to prevent, detect, or respond to cyber threats. It outlines how a system or process is applied to address a particular cybersecurity challenge. Use cases serve as the foundation, defining the specific threats and scenarios the framework aims to address.
 
-* **Detection Engineering:** **Detection engineering** refers to the process of designing and developing effective methods and techniques to identify, detect and respond to security threats and incidents. It is a specialized and systematic discipline focused on building, implementing, and continuously refining mechanisms to identify malicious activities, anomalies, or indicators of compromise within an organization's systems and networks. It applies an engineering mindset to threat detection, moving beyond simply writing static detection rules.
+- **Detection Engineering:** **Detection engineering** refers to the process of designing and developing effective methods and techniques to identify, detect and respond to security threats and incidents. It is a specialized and systematic discipline focused on building, implementing, and continuously refining mechanisms to identify malicious activities, anomalies, or indicators of compromise within an organization's systems and networks. It applies an engineering mindset to threat detection, moving beyond simply writing static detection rules.
 
-* **Response Playbooks:** **Response playbooks** provide predefined steps and actions to be taken in response to specific security events or incidents. They are crucial for ensuring a consistent, rapid, and effective reaction once a threat is detected.
+- **Response Playbooks:** **Response playbooks** provide predefined steps and actions to be taken in response to specific security events or incidents. They are crucial for ensuring a consistent, rapid, and effective reaction once a threat is detected.
 
 ### The Detection Engineering Framework
 
@@ -126,6 +126,7 @@ The framework includes:
 | **Templates** | Series of templates, processes and conventions that support the framework |
 
 ---
+
 ### Challenges of Creating & Managing Use Cases
 
 ```mermaid
@@ -247,6 +248,7 @@ graph TD
 It's important to understand what the organization business objectives are specifically for a given period of time. As these business objectives influence and shape the technology decisions. The technology decisions in turn become the assets in the shape of IT equipment, People and Data that must be safeguarded every single day because they are bound to have vulnerabilities that possess the risk of being exploited by Threat agents.
 
 **Cyber Elements Relationship:**
+
 - **Threats** exploit **vulnerabilities**, which results in **exposure**
 - **Exposure** is **risk**, and **risk** is mitigated by **safeguards**
 - **Safeguards** protect **assets** that are endangered by **threats**
@@ -419,29 +421,36 @@ Compliance requirements vary by **industry** and **sector**, but typically invol
 ## Types of Compliance Drivers
 
 ### International Cybersecurity Regulations
+>
 > Compliance standards adopted by organizations due to regulations that are **not limited by national boundaries**.
 
 **Examples:**
+
 - **ISO 27001** - Information Security Management
 - **GDPR** - General Data Protection Regulation
 - **Common Criteria** - IT Security Evaluation
 
 ### National Cybersecurity Regulations
+>
 > Compliance standards **imposed or suggested** by the government of the country.
 
 **Examples:**
+
 - **Qatar CSF** - Qatar Cybersecurity Framework
 - **Cyber Essentials** - UK Government Scheme
 - **BSI IT-Grundschutz** - German IT Security Standards
 
 ### Operating Sector Regulations
+>
 > **Industry-specific standards** that organizations must follow to comply with obligations for business operations.
 
 **Examples:**
+
 - **PCI DSS** - Payment Card Industry Data Security Standard
 - **IEC 62443** - Industrial Communication Networks Security
 
 ### Internal Information Management Policies
+>
 > **Organization-specific policies** or set of rules mandated by the internal information security department.
 </details>
 

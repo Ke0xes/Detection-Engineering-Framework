@@ -5,9 +5,11 @@ This directory contains templates for initiating new detection use cases within 
 ## Available Templates
 
 ### Primary Templates
+
 - **[use-case-request-template.md](use-case-request-template.md)** - Standard use case request form (Markdown)
 
 ### Codified Forms for Popular Tools
+
 These files provide ready-to-copy field/section structures for the most common enterprise form tools. Users can lift these and manually create forms in their own environments:
 
 - **salesforce-use-case-request-form.txt** – Field definitions for a Salesforce custom object
@@ -16,6 +18,7 @@ These files provide ready-to-copy field/section structures for the most common e
 - **google-forms-use-case-request-form.txt** – Section and question structure for Google Forms
 
 Each file contains:
+
 - Field names and types
 - Section headers
 - Sample values/options
@@ -24,6 +27,7 @@ Each file contains:
 No external links or dependencies—just copy the file and use in your tool.
 
 ### Planned Templates
+
 - **expedited-use-case-template.md** - Fast-track template for urgent/zero-day threats *(Coming Soon)*
 - **compliance-use-case-template.md** - Specialized template for regulatory requirements *(Coming Soon)*
 - **threat-intel-use-case-template.md** - Template for threat intelligence-driven use cases *(Coming Soon)*

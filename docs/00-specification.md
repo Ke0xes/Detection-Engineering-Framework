@@ -319,7 +319,7 @@ not maintained separately.
 **DEL-6.** The consuming team MUST be given a defined period to review and
 object before activation. The period MUST be recorded.
 
-**DEL-7.** Activation date and the agreed notification behaviour MUST be
+**DEL-7.** Activation date and the agreed notification behavior MUST be
 recorded.
 
 ---

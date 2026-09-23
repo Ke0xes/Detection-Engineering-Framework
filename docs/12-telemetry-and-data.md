@@ -92,7 +92,7 @@ by detection value per unit of cost:
 
 | Tier | Sources | Why |
 | --- | --- | --- |
-| 1 | Identity provider sign-in and audit, EDR process telemetry | Highest yield. Identity is the primary attack surface; process telemetry underpins most behavioural detection |
+| 1 | Identity provider sign-in and audit, EDR process telemetry | Highest yield. Identity is the primary attack surface; process telemetry underpins most behavioral detection |
 | 2 | Cloud control plane audit (CloudTrail, Entra audit, GCP admin), DNS | Where cloud compromise is visible; DNS is cheap and broadly useful |
 | 3 | Email security, proxy/web, authentication for critical applications | Delivery and lateral movement visibility |
 | 4 | Network flow, firewall, VPN | High volume, moderate yield; valuable for correlation rather than primary detection |

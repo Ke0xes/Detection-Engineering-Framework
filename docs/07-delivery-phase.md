@@ -86,8 +86,8 @@ $$
 
 Where:
 
-* $TP$ = **True Positives**: alerts dispositioned by an analyst as genuine.
-* $FP$ = **False Positives**: alerts dispositioned as benign or erroneous.
+- $TP$ = **True Positives**: alerts dispositioned by an analyst as genuine.
+- $FP$ = **False Positives**: alerts dispositioned as benign or erroneous.
 
 Both terms are read directly from case management data. Nothing is estimated.
 
@@ -241,13 +241,13 @@ When establishing a naming convention for use cases and SIEM rules, it's importa
 
 **Use case name:**
 
-```
+```text
 <USE CASE NAME>
 ```
 
 **Rule name:**
 
-```
+```text
 <####>-<USE CASE CATEGORY>-<ATT&CK TACTIC>-<USE CASE NAME> On <INFRASTRUCTURE>
 ```
 
@@ -255,13 +255,13 @@ When establishing a naming convention for use cases and SIEM rules, it's importa
 
 **Use case name:**
 
-```
+```text
 Unauthorized Software Deployment
 ```
 
 **Rule name:**
 
-```
+```text
 0021-Host-Execution-Unauthorized Software Deployment On Windows
 ```
 
@@ -340,27 +340,35 @@ The use of the following tags in the cataloging tool allows the Stakeholders, Co
 | **Decommissioned** | | | | | |
 
 #### Concept
+
 At this stage the Use case is just an undocumented idea or concept that has emerged from Risk, Threat or Compliance drivers. Usually, such use cases may need not be catalogd but it is essential to understand this stage to differentiate a casual stakeholder discussion from a formal business use case requirement.
 
 #### Pre-Alpha
+
 At this stage the Use case requirement has formally been submitted, validated and added to the technical feasibility backlog for the content delivery team to commence its technical development. To claim that use-case is in Pre-alpha stage the Objective, Drivers, Scope, purpose, value, Priority, Stakeholders, Alignment, Outputs and resourcing has been established.
 
 #### Alpha
+
 At this stage a prototype level of code, rule, logic, search string or detection signature has been attained but has not undergone any formal functional or non-functional testing. Such code, rule, logic, search string or detection signatures may exist is production environment, but the usefulness or efficacy may be extremely sub-optimal or unsatisfactory due to high alerts volumes, no detection/alerts at all, or causing performance issues on the detection platform. Such rules also may or may not be utilizing an unapproved universal response playbook. It is highly advised that such code, rule, logic, search string or detection signatures are only tested in pre-production environment so that neither the SOC platform nor SOC analysts are adversely impacted.
 
 #### Beta
+
 At this stage the code, rule, logic, search string or detection signature has been tested and has undergone all formal functional or non-functional testing that produces the exact detection and alerting behavior. Such rules may exist is production environment, but the usefulness may be sub-optimal or unsatisfactory due to still utilizing an unapproved or approved universal response playbook.
 
 #### Release Candidate (RC)
+
 At this stage the use case with its code, rule, logic, search string or detection signature and a response playbook has been formally positioned to be release in to production. Such code, rule, logic, search string or detection signature may exist in the production platform with a specific approved response playbook but the playbook may not have been extensively tested with the SOC analysts or the wider IT / non-IT consortium. SOC analysts may generally be able to cope with such use cases but must take extreme caution with the wider consortium since the interaction based on this specific use case may come across as completely alien initiative.
 
 #### Release to Production (RTP)
+
 At this stage the Plan, Code and its associated Response has been developed and tested appropriately. All use cases, ultimately must aim to reach this level of benchmark.
 
 #### Maintenance
+
 At this stage the code or response is formally going under changes due to request for improvements caused by code defects or in appropriate alert fidelity.
 
 #### Decommissioned
+
 The specific use case or code has been decommissioned due to no longer being required. It is important to still keep a record of such use cases to be able to have traceability for closed or previous security cases.
 
 ### Mapping to Mitre ATT&CK
@@ -441,9 +449,9 @@ graph TD
 Depending on the organization, one or more of these matrices may be relevant to its cyber defense strategy:
 
 - **ATT&CK Enterprise:** ATT&CK Enterprise is the most commonly referenced matrix. It mostly contains techniques that attackers use for the post-exploitation stage portion of an intrusion. The information is broken into the following platforms:
- - Operating systems—Microsoft Windows, macOS and Linux
- - Cloud platforms—Amazon Web Services (AWS), Microsoft Azure and Google Cloud Platform (GCP)
- - Cloud services—Microsoft Office 365, Microsoft Azure Active Directory and generic SaaS platforms
+- Operating systems—Microsoft Windows, macOS and Linux
+- Cloud platforms—Amazon Web Services (AWS), Microsoft Azure and Google Cloud Platform (GCP)
+- Cloud services—Microsoft Office 365, Microsoft Azure Active Directory and generic SaaS platforms
 
 - **ATT&CK Mobile:** The Mobile matrix covers techniques involving access and network based effects that adversaries can use without device access. It encompasses techniques for Android and iOS.
 

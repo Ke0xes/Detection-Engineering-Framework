@@ -34,11 +34,11 @@ security detections.
 | --- | --- | --- |
 | 01 | [Background and Introduction](01-introduction.md) | Foundation |
 | 02 | [Detection Engineering Lifecycle](02-lifecycle.md) | Overview and traceability |
-| 03 | [Planning Phase](03-planning-phase.md) | Drivers, feasibility, anchored prioritisation rubric |
-| 04 | [Development Phase A](04-development-feasibility.md) | Technical feasibility, threat modelling, attack simulation |
+| 03 | [Planning Phase](03-planning-phase.md) | Drivers, feasibility, anchored prioritization rubric |
+| 04 | [Development Phase A](04-development-feasibility.md) | Technical feasibility, threat modeling, attack simulation |
 | 05 | [Development Phase B](05-development-detection-engineering.md) | VAL, rule prototyping, exceptions, enrichment, testing |
 | 06 | [Development Phase C](06-development-response-engineering.md) | Playbooks, runbooks, dashboards, automation |
-| 07 | [Delivery Phase](07-delivery-phase.md) | Handover, activation, cataloguing |
+| 07 | [Delivery Phase](07-delivery-phase.md) | Handover, activation, cataloging |
 | 08 | [Improvement Phase](08-improvement-phase.md) | Triggers, change classes, drift, deprecation |
 
 ### Engineering practice

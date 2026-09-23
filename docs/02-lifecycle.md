@@ -34,6 +34,7 @@ graph LR
 ```
 
 **Benefits:**
+
 - **Top-Down**: Show how business drivers are implemented in operational monitoring
 - **Bottom-Up**: Connect monitoring rules to specific threats and business drivers
 

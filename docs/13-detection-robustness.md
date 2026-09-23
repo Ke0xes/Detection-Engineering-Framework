@@ -24,7 +24,7 @@ Every detection declares one of five tiers (`DET-4`).
 | --- | --- | --- | --- |
 | **Ephemeral** | A specific transient value | Trivial — change one value | Hash, IP address, domain, mutex name |
 | **Indicator** | A named artifact of a specific implementation | Low — rename, recompile, repack | Filename, service name, registry key path, user agent string |
-| **Tool-artifact** | A behaviour characteristic of a specific tool | Moderate — use a different tool | A named tool's default command-line flags or named pipe pattern |
+| **Tool-artifact** | A behavior characteristic of a specific tool | Moderate — use a different tool | A named tool's default command-line flags or named pipe pattern |
 | **Behavior** | The action itself, independent of tooling | High — change technique | Process accessing LSASS memory with read rights; consent grant conferring mail scopes |
 | **Invariant** | A property the technique cannot avoid without ceasing to work | Very high — the technique must be abandoned | Kerberos service ticket requested with RC4 encryption for an SPN-bearing account |
 
@@ -64,7 +64,7 @@ weighted model tells the truth:
 
 Coverage for a technique is the weight of its strongest validated detection,
 not the sum of its detections. Ten ephemeral rules do not add up to one
-behavioural one; they add up to ten things to maintain.
+behavioral one; they add up to ten things to maintain.
 
 ### It drives review cadence
 
@@ -120,7 +120,7 @@ either a blind SOC or an exhausted one.
 
 | Source | Symptom | Mitigation |
 | --- | --- | --- |
-| Hardcoded paths | Fails on a different OS build or install location | Match on behaviour, not location |
+| Hardcoded paths | Fails on a different OS build or install location | Match on behavior, not location |
 | Hardcoded case | Fails on case variation | Normalize case in the logic |
 | Exact-match strings | Fails on any padding or encoding change | Match on structure where possible |
 | Parent-child process assumptions | Fails when the adversary spoofs the parent | Pair with parent spoofing detection |

@@ -54,7 +54,7 @@ python reference-implementation/tools/def_validate.py --strict
 python reference-implementation/tools/def_test.py
 ```
 
-```
+```text
 Validated 2 artifact(s): 0 error(s), 0 warning(s)
 
 PASS  DET-2026-0001  tp-01-privileged-consent-mailread.json  (expected match)

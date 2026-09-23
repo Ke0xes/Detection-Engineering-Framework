@@ -68,8 +68,17 @@ function Convert-MarkdownFile {
     foreach ($line in $lines) {
 
         if ($line -match '^\s*```(\w*)') {
-            if (-not $inFence) { $inFence = $true;  $fenceLang = $Matches[1] }
-            else               { $inFence = $false; $fenceLang = '' }
+            if (-not $inFence) {
+                $inFence = $true
+                $fenceLang = $Matches[1]
+                # markdownlint MD040: an unlabelled fence is treated as plain text.
+                if (-not $fenceLang) {
+                    $out.Add(($line -replace '```\s*$', '```text'))
+                    $fenceLang = 'text'
+                    continue
+                }
+            }
+            else { $inFence = $false; $fenceLang = '' }
             $out.Add($line); continue
         }
 
@@ -81,7 +90,13 @@ function Convert-MarkdownFile {
         $new = [regex]::Replace($line, $emojiRun, '')
 
         if (-not $inFence) {
-            $new = [regex]::Replace($new, '  +', ' ')
+            # Collapse runs of spaces inside the content only. Leading whitespace
+            # is significant: it keeps list continuations and nested items intact.
+            if ($new -match '^(\s*)(.*)$') {
+                $indent = $Matches[1]
+                $body   = [regex]::Replace($Matches[2], '  +', ' ')
+                $new    = $indent + $body
+            }
             $new = [regex]::Replace($new, '^(#{1,6})\s*', '$1 ')
             $new = $new.TrimEnd()
         }
