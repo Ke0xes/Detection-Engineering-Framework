@@ -119,8 +119,8 @@ detection logic is modeling the wrong thing.
 
 **IMP-8.** Every detection MUST carry a `review_cadence_days` and a
 `last_reviewed` date in its metadata (see
-[the detection schema](../schema/detection.schema.json)). A detection past its
-review date is in **detection debt**.
+[the detection schema](https://github.com/Ke0xes/Detection-Engineering-Framework/blob/main/schema/detection.schema.json)).
+A detection past its review date is in **detection debt**.
 
 | Detection severity | Maximum review interval |
 | --- | --- |

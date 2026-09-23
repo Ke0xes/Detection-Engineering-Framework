@@ -1,0 +1,75 @@
+name: Implementation report
+description: Tell us what happened when you adopted part of this framework
+title: "[IMPL] "
+labels: ["implementation-report"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This is the most valuable contribution type for this project. Reports
+        of things that did not work are more useful than reports of things that
+        did. Reorder the roadmap by telling us the truth.
+
+        Please do not include information identifying your organization,
+        internal hostnames, or anything that would assist an attacker.
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: >
+        Team size, rough catalog size, platforms in use, sector if you are
+        comfortable sharing. Keep it non-identifying.
+      placeholder: "4 FTE detection function, ~300 detections, Splunk + CrowdStrike, regulated"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: level
+    attributes:
+      label: Conformance level attempted
+      options:
+        - L1 Foundational
+        - L2 Managed
+        - L3 Optimised
+        - Not formally assessed
+    validations:
+      required: true
+
+  - type: textarea
+    id: what_worked
+    attributes:
+      label: What worked
+      description: Which requirements or artifacts delivered value, and how you know.
+    validations:
+      required: true
+
+  - type: textarea
+    id: what_did_not
+    attributes:
+      label: What did not work
+      description: >
+        Requirements that were unachievable, ambiguous, impossible to evidence,
+        or that produced more overhead than value. Name requirement IDs where
+        you can.
+    validations:
+      required: true
+
+  - type: textarea
+    id: adaptations
+    attributes:
+      label: Adaptations you made
+      description: >
+        Where you deviated from the framework and why. These are often the most
+        useful part of a report.
+
+  - type: textarea
+    id: blockers
+    attributes:
+      label: Biggest adoption blocker
+      description: What stopped you, or would stop someone like you.
+
+  - type: textarea
+    id: suggestions
+    attributes:
+      label: What would have helped

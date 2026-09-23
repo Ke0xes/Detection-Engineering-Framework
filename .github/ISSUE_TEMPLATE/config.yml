@@ -1,0 +1,16 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Question or discussion
+    url: https://github.com/Ke0xes/Detection-Engineering-Framework/discussions
+    about: >-
+      Questions about applying the framework, adoption advice, or anything that
+      is not a defect or a specification change.
+  - name: Security vulnerability
+    url: https://github.com/Ke0xes/Detection-Engineering-Framework/security/advisories/new
+    about: >-
+      Report vulnerabilities in the tooling or CI configuration privately. Do
+      not open a public issue.
+  - name: Detection rule content
+    url: https://github.com/SigmaHQ/sigma
+    about: >-
+      This project is not a rule library. Contribute detection content to Sigma.

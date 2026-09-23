@@ -1,0 +1,19 @@
+{
+  "config": {
+    "default": true,
+
+    "MD013": false,
+    "MD024": { "siblings_only": true },
+    "MD033": { "allowed_elements": ["br", "img", "a", "details", "summary"] },
+    "MD034": false,
+    "MD041": false,
+    "MD046": { "style": "fenced" }
+  },
+  "globs": ["**/*.md"],
+  "ignores": [
+    ".venv/**",
+    "site/**",
+    "node_modules/**",
+    "LICENSE*"
+  ]
+}
