@@ -1,0 +1,128 @@
+schema_version: "3.0"
+id: UC-2026-0001
+title: Detect malicious OAuth application consent granted by privileged users
+status: delivered
+submitted: "2026-01-12"
+
+requester:
+  name: A. Okafor
+  role: Head of Identity Services
+  department: IT Infrastructure
+
+business_owner: Chief Information Security Officer
+
+drivers:
+  types:
+    - threat
+    - risk
+  justification: >
+    Adversary-in-the-middle and consent-phishing campaigns against our sector
+    were reported by the FS-ISAC in December 2025. Two peer organizations
+    confirmed mailbox exfiltration achieved entirely through a consented
+    third-party OAuth application, with no credential compromise and no
+    malware. Our current controls detect anomalous sign-ins but are blind to
+    post-consent delegated access, because the adversary never authenticates
+    as the user again. If a finance or executive identity consents to a
+    malicious application, the adversary obtains persistent mail and file
+    access that survives password reset and MFA re-enrollment. Success is
+    measured by detecting a simulated consent grant within 10 minutes with
+    fewer than five alerts per day across the tenant.
+  risk_refs:
+    - RISK-0114
+    - RISK-0121
+  intel_refs:
+    - "FS-ISAC advisory 2025-1218"
+    - "Internal TI report TIR-2025-088"
+
+scope:
+  objective: >
+    Detect the grant of OAuth delegated permissions to a non-approved
+    application where the consenting or granting identity is privileged or
+    the requested scopes permit mail, file or directory access.
+  in_scope:
+    - Microsoft Entra ID tenant (production)
+    - All privileged directory roles
+    - All members of the Executive and Finance groups
+    - Delegated and application permission grants
+  out_of_scope:
+    - Consent to applications on the tenant pre-approval allowlist
+    - Guest tenants and the development tenant
+    - On-premises Active Directory service principal changes
+    - Detection of the phishing email itself, which is covered by UC-2025-0042
+  business_services:
+    - Corporate email
+    - Finance document repository
+  expected_attack_techniques:
+    - T1528
+    - T1550.001
+    - T1098.003
+  candidate_logsources:
+    - entra-id-audit
+    - entra-id-signin
+
+priority:
+  threat_relevance: 5
+  asset_criticality: 5
+  coverage_gap: 4
+  build_cost: 2
+  maintenance_burden: 2
+  computed_score: 9.5
+  scored_by: Detection Council
+  scored_on: "2026-01-19"
+  path: expedited
+  rationale: >
+    Threat relevance is 5 on the basis of confirmed sector-targeted campaigns
+    within 90 days. Asset criticality is 5 because executive mailboxes and the
+    finance repository are tier 1 in the business impact analysis. Coverage gap
+    is 4 rather than 5 because admin consent workflow is enabled, which is a
+    partial preventive control, but end-user consent remains possible for
+    low-impact scopes and is known to be bypassable through scope chaining.
+    Build cost is low: the telemetry is already ingested.
+
+outcomes:
+  success_criteria:
+    - Detects a simulated malicious consent grant within 10 minutes of the event
+    - Produces fewer than 5 alerts per day at tenant scale
+    - Achieves 30-day precision of at least 0.70 within two months of delivery
+    - Alert contains application ID, consenting user, granted scopes and publisher verification status without requiring analyst pivoting
+  target_precision: 0.70
+  acceptable_alert_volume_per_day: 5
+  required_response_time_minutes: 30
+
+stakeholders:
+  - name: A. Okafor
+    role: Head of Identity Services
+    raci: accountable
+  - name: SOC Tier 2 Lead
+    role: Consumer of the alert
+    raci: consulted
+  - name: Detection Engineering
+    role: Builder
+    raci: responsible
+  - name: Data Protection Officer
+    role: Notified on mailbox access incidents
+    raci: informed
+
+feasibility:
+  telemetry_available: "yes"
+  telemetry_gaps:
+    - Application publisher verification status requires a Graph API enrichment call, not present in the audit log
+  estimated_ingest_cost_annual: 0
+  estimated_effort_days: 4
+  blocking_dependencies:
+    - Service principal with Application.Read.All for the enrichment job
+  assessed_by: Detection Engineering
+  assessed_on: "2026-01-22"
+
+resulting_detections:
+  - DET-2026-0001
+
+decision:
+  outcome: accepted
+  rationale: >
+    Accepted at the 2026-01-19 Detection Council. Highest priority score in the
+    current backlog, existing telemetry, low build cost. Enrichment dependency
+    tracked as a separate task and does not block initial delivery at reduced
+    context.
+  decided_by: Detection Council
+  decided_on: "2026-01-19"

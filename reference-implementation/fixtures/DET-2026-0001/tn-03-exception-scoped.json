@@ -1,0 +1,16 @@
+{
+  "_comment": "True negative asserting the scope of EXC-0001. The named first-party application consented by the named automation account is suppressed. This fixture exists so that a future change to the exception cannot silently widen it without failing a test.",
+  "TimeGenerated": "2026-06-08T02:00:13Z",
+  "Operation": "Consent to application",
+  "Result": "success",
+  "InitiatorUpn": "svc-identity-automation@contoso.com",
+  "InitiatorIsPrivileged": true,
+  "InitiatorDirectoryRoles": ["Application Administrator"],
+  "ApplicationId": "d3590ed6-52b3-4102-aeff-aad2292ab01c",
+  "ApplicationName": "Microsoft Office",
+  "ApplicationIsAllowlisted": false,
+  "ApplicationPublisherVerified": true,
+  "GrantedScopes": "Mail.Read Files.Read.All offline_access",
+  "CorrelationId": "3c7e12aa-6d40-4bb9-8a55-91ff20e6c4d8",
+  "AuditRecordId": "AUD-8890114"
+}

@@ -1,5 +1,7 @@
 # Planning Phase
 
+*[Framework index](index.md) · [Specification](00-specification.md) · [Conformance](10-conformance.md)*
+
 > This phase defines the **why**, **when**, **who** & **what** needs to be in place to commence the development of the use case.
 
 ## Overview
@@ -179,36 +181,128 @@ The planning phase of detection engineering involves several crucial considerati
 
 ### Priority Management
 
-```mermaid
-flowchart TD
-    A[Use Case Requests] --> B[Score Assessment]
-    B --> C[Urgency Score<br/>0-10]
-    B --> D[Importance Score<br/>0-10]
-    C --> E[Sum Scores]
-    D --> E
-    E --> F[Rank by Total Score]
-    F --> G[Highest Priority First]
-    
-    G --> H{Multiple High<br/>Priority Items?}
-    H -->|Yes| I[Order by<br/>Level of Effort]
-    H -->|No| J[Begin Development]
-    I --> J
-    
-```
+> **Normative status.** Requirement identifiers of the form `PLN-n` are testable
+> conformance criteria. See [Conformance Model](10-conformance.md).
+
+Unanchored scoring is not reproducible. Asking two engineers to rate a request
+"0 to 10 for urgency" produces two different backlogs, because nothing defines
+what a 7 means. A conforming program MUST use anchored descriptors so that
+independent scorers converge.
+
+**PLN-1.** Use case requests MUST be scored using a published rubric in which
+every score level has a written descriptor. Bare numeric scales without
+descriptors MUST NOT be used.
+
+#### The scoring model
+
+Requests are scored on five dimensions. The Priority Score is:
+
+$$
+\text{Priority} = \frac{(T \times 3) + (A \times 3) + (G \times 2)}{C + M}
+$$
+
+Benefit sits in the numerator, cost in the denominator. The weights reflect that
+a detection's value is driven primarily by *who is being attacked* and *what it
+protects*, and only secondarily by how large the gap is.
+
+#### Dimension 1: Threat relevance (T), 1-5
+
+How credible is this threat against *this* organization?
+
+| Score | Descriptor |
+| --- | --- |
+| 5 | Observed in our environment, or a confirmed campaign against our organization in the last 90 days |
+| 4 | Confirmed active against our sector, named in a current CISA/NCSC/ISAC advisory |
+| 3 | Actively exploited in the wild generally; no sector-specific reporting |
+| 2 | Published technique with proof-of-concept tooling; no observed exploitation |
+| 1 | Theoretical or research-stage technique |
+
+#### Dimension 2: Asset criticality (A), 1-5
+
+What does this detection protect?
+
+| Score | Descriptor |
+| --- | --- |
+| 5 | Crown jewel: loss causes material financial, safety or regulatory harm; named in the BIA as tier 1 |
+| 4 | Business-critical system or privileged identity infrastructure |
+| 3 | Production system supporting a business process with a documented workaround |
+| 2 | Supporting or internal system; degradation tolerable for days |
+| 1 | Development, test or sandbox environment |
+
+#### Dimension 3: Coverage gap (G), 1-5
+
+How exposed are we today?
+
+| Score | Descriptor |
+| --- | --- |
+| 5 | No detection and no compensating preventive control |
+| 4 | No detection; a preventive control exists but is known to be bypassable |
+| 3 | Partial detection with known blind spots, or detection exists at a lower confidence tier |
+| 2 | Detection exists but is brittle (see [Detection Robustness](13-detection-robustness.md)) |
+| 1 | Robust detection already in place; this request is an enhancement |
+
+#### Dimension 4: Build cost (C), 1-5
+
+| Score | Descriptor |
+| --- | --- |
+| 1 | Existing telemetry, existing pattern, under one engineer-day |
+| 2 | Existing telemetry, new logic, under one engineer-week |
+| 3 | Requires enrichment, correlation across sources, or a new baseline |
+| 4 | Requires onboarding a new log source already available in the estate |
+| 5 | Requires new instrumentation, agent deployment, or vendor change |
+
+#### Dimension 5: Maintenance burden (M), 1-5
+
+| Score | Descriptor |
+| --- | --- |
+| 1 | Deterministic logic, stable telemetry, no expected tuning |
+| 2 | Occasional exception maintenance expected |
+| 3 | Threshold or baseline requires periodic recalibration |
+| 4 | High environmental sensitivity; expected to break on infrastructure change |
+| 5 | Requires continuous curation (for example, indicator lists or user-behavior baselines) |
+
+#### Worked example
+
+| Request | T | A | G | C | M | Priority | Rank |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Detect OAuth consent phishing against executive tenants | 5 | 5 | 4 | 2 | 2 | `(15+15+8)/4` = **9.50** | 1 |
+| Detect Kerberoasting | 3 | 4 | 3 | 2 | 1 | `(9+12+6)/3` = **9.00** | 2 |
+| Detect credential dumping via LSASS access | 4 | 5 | 2 | 3 | 3 | `(12+15+4)/6` = **5.17** | 3 |
+| Detect anomalous data egress volume | 3 | 4 | 5 | 4 | 5 | `(9+12+10)/9` = **3.44** | 4 |
+
+The fourth request has the largest coverage gap but the worst cost profile; the
+rubric correctly ranks it last without anyone needing to argue the point. That
+is the purpose of an anchored rubric: it moves the debate from *what score do we
+give this* to *do we agree with the descriptor*, which is a far more tractable
+conversation.
+
+#### Rules of use
+
+**PLN-2.** Scores MUST be recorded in the use case request record, not derived
+ad hoc at backlog grooming, so that prioritization decisions remain auditable.
+
+**PLN-3.** A request scoring `T = 5` MUST be routed to the expedited path
+defined in the [Adoption Guide](16-adoption-guide.md) rather than queued by
+Priority Score. Active compromise does not wait for the backlog.
+
+**PLN-4.** Compliance-driven requests carry a hard deadline and MUST be
+scheduled against that deadline. They are tracked on the same backlog for
+capacity purposes but are not subject to Priority Score ordering.
+
+**PLN-5.** The backlog MUST be re-scored at least quarterly. Threat relevance
+decays; a score from twelve months ago is not evidence.
 
 #### Key Considerations
 
 **Priority Determination**
 - Not all use cases have the same level of urgency or importance
 - Some use cases may have impending deadlines, while others are critical to the organization's security posture or address imminent threats
-- Balancing urgency and importance is essential
+- Balancing benefit against build and maintenance cost is essential
 
 **Backlog Management**
-- Maintain a use case development backlog that should be regularly reviewed
-- Each use case should be assigned scores for urgency and importance on a scale of 0 to 10
-- By summing up these scores, you can rank the use case requests and identify the ones with the highest priority
+- Maintain a use case development backlog that is reviewed on a published cadence
 - Begin development with the highest-scoring use cases and progressively move down the list
-- In cases where there are multiple urgent and important requests, order them based on the level of effort required
+- Where Priority Scores tie, order by build cost ascending so that capacity delivers the most detections per sprint
 
 ### Resource Planning
 

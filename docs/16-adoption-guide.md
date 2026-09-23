@@ -1,4 +1,6 @@
-# Overcoming the Real-World Challenges of the Detection Engineering Framework
+# Adoption Guide: From Theory to Practice
+
+*[Framework index](index.md) · [Specification](00-specification.md) · [Conformance](10-conformance.md)*
 
 > **TLDR**: The Detection Engineering Framework provides excellent structure, but real-world implementation requires careful adaptation to avoid rigidity, resource constraints, and operational blind spots.
 

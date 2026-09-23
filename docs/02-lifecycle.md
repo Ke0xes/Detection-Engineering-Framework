@@ -1,5 +1,7 @@
 # Detection Engineering Lifecycle
 
+*[Framework index](index.md) · [Specification](00-specification.md) · [Conformance](10-conformance.md)*
+
 ---
 
 This detection engineering framework allows for strategic and effective decision making in a phased manner when dealing with planning, developing, delivering and improving new use cases for the SOC.

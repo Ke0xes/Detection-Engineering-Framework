@@ -1,0 +1,16 @@
+{
+  "_comment": "True negative: unprivileged standard user. In scope of the tenant but not of this detection, which deliberately targets privileged identities to hold volume down.",
+  "TimeGenerated": "2026-06-11T13:48:55Z",
+  "Operation": "Consent to application",
+  "Result": "success",
+  "InitiatorUpn": "t.nguyen@contoso.com",
+  "InitiatorIsPrivileged": false,
+  "InitiatorDirectoryRoles": [],
+  "ApplicationId": "af4c0e21-9911-4ba3-9d44-6c1e0b9a3d77",
+  "ApplicationName": "Focus Timer",
+  "ApplicationIsAllowlisted": false,
+  "ApplicationPublisherVerified": false,
+  "GrantedScopes": "Mail.Read User.Read",
+  "CorrelationId": "e91c4a0f-2bb7-4e18-93cd-5f7a0c2d8b41",
+  "AuditRecordId": "AUD-8891820"
+}

@@ -1,0 +1,16 @@
+{
+  "_comment": "True positive: administrator grants Directory.Read.All to a newly registered service principal.",
+  "TimeGenerated": "2026-06-11T16:02:47Z",
+  "Operation": "Add app role assignment grant to user",
+  "Result": "success",
+  "InitiatorUpn": "admin.rk@contoso.com",
+  "InitiatorIsPrivileged": true,
+  "InitiatorDirectoryRoles": ["Application Administrator"],
+  "ApplicationId": "c7a90b13-55ee-4f02-8d31-77b4e9a20cd6",
+  "ApplicationName": "DataBridge Connector",
+  "ApplicationIsAllowlisted": false,
+  "ApplicationPublisherVerified": false,
+  "GrantedScopes": "Directory.Read.All Sites.Read.All",
+  "CorrelationId": "1d77ffa3-8c22-4b90-a4e6-02b5cc7d1e34",
+  "AuditRecordId": "AUD-8891455"
+}

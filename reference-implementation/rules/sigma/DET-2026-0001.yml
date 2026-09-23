@@ -1,0 +1,46 @@
+title: OAuth application consent granted to unverified publisher by privileged identity
+id: 4e1f2a90-7c61-4c2e-9a33-2b7c5d8e1f01
+status: stable
+description: >
+  Detects consent or permission-grant operations in Entra ID where the granted
+  scopes permit mail, file or directory access and the initiating identity is
+  privileged, excluding applications on the tenant approval allowlist.
+references:
+  - https://attack.mitre.org/techniques/T1528/
+author: Detection Engineering
+date: 2026/01/26
+modified: 2026/06/14
+tags:
+  - attack.credential_access
+  - attack.t1528
+  - attack.persistence
+  - attack.t1098.003
+  - def.detection_id.DET-2026-0001
+logsource:
+  product: microsoft-entra-id
+  service: auditlogs
+detection:
+  selection_operation:
+    Operation:
+      - 'Consent to application'
+      - 'Add delegated permission grant'
+      - 'Add app role assignment grant to user'
+  selection_sensitive_scope:
+    GrantedScopes|contains:
+      - 'Mail.Read'
+      - 'Mail.Send'
+      - 'Files.Read'
+      - 'Directory.Read'
+      - 'Sites.Read'
+  selection_privileged_initiator:
+    InitiatorIsPrivileged: true
+  filter_allowlisted_app:
+    ApplicationIsAllowlisted: true
+  filter_exception_exc0001:
+    ApplicationId: 'd3590ed6-52b3-4102-aeff-aad2292ab01c'
+    InitiatorUpn: 'svc-identity-automation@contoso.com'
+  condition: selection_operation and selection_sensitive_scope and selection_privileged_initiator and not (filter_allowlisted_app or filter_exception_exc0001)
+falsepositives:
+  - Business application onboarded before the approval allowlist was updated
+  - Microsoft first-party applications acquiring new scopes after a service update
+level: high

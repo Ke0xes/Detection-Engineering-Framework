@@ -1,5 +1,7 @@
 # Delivery Phase
 
+*[Framework index](index.md) · [Specification](00-specification.md) · [Conformance](10-conformance.md)*
+
 ## SOC Handover
 
 Use case handover is a process of transition, and should only be initiated once the development phase is completed or approaching completion.
@@ -71,46 +73,33 @@ graph LR
 
 For each use case, the number of alerts resulting from the security monitoring systems should be reported on. These numbers are indicators of which use cases are triggered often and which are triggered rarely. Combined with the information on false-positives, this information is input into the threat management process. The number of alerts should be expressed as an absolute value per use case. Not every alert will also lead to an incident response. Therefore, the number of incidents should also be reported on. Just like with alerts, the number of incidents should be expressed as an absolute value per use case.
 
-#### False-positive Ratio
+#### Detection Precision
 
-The false-positive provides an indication of the quality of the security monitoring system. False-positives occur when a security alert is triggered, while there's no actual security incident. While false-positives are fact-of-life in any SOC, high numbers of false-positives should be avoided at any cost.
-
-False positives can be expressed as the ratio between the total number of alerts and the number of alerts relating to incidents.
-
-**Equation 1: Formula for measuring False-positive Ratio**
-
-Example formula for calculating the False Positive Rate is:
+Precision indicates the quality of a detection as experienced by the analysts
+who consume it. It answers the only question that drives a tuning decision: of
+the alerts this detection produced, what proportion were worth an analyst's
+time?
 
 $$
-FPR = \frac{FP}{FP + TN}
+\text{Precision} = \frac{TP}{TP + FP}
 $$
 
 Where:
-* $FP$ = **False Positives**: The number of benign events that were incorrectly identified as malicious.
-* $TN$ = **True Negatives**: The number of benign events that were correctly identified as benign.
 
-### Example of FPR Calculation
+* $TP$ = **True Positives**: alerts dispositioned by an analyst as genuine.
+* $FP$ = **False Positives**: alerts dispositioned as benign or erroneous.
 
-Let's consider a security detection rule designed to identify suspicious login attempts. Over a period, this rule processes 10,000 legitimate (benign) login attempts.
+Both terms are read directly from case management data. Nothing is estimated.
 
-* Out of these 10,000 legitimate attempts, the rule incorrectly flags **50** as suspicious. These are our **False Positives (FP)**.
-* The remaining **9,950** legitimate attempts were correctly identified as benign. These are our **True Negatives (TN)**.
+> **Do not report the classical false positive rate.** $FPR = FP / (FP + TN)$
+> requires a count of true negatives, which is unmeasurable and unbounded in an
+> event stream. Reporting it produces a flatteringly small number that is
+> unrelated to analyst experience. The full argument, worked examples, action
+> thresholds and the complete required metric set are defined in
+> [Detection Metrics](09-metrics.md).
 
-Using the formula:
-
-$$
-FPR = \frac{50}{50 + 9950}
-$$
-
-$$
-FPR = \frac{50}{10000}
-$$
-
-$$
-FPR = 0.005
-$$
-
-Expressed as a percentage, the False Positive Rate is **0.5%**. This means that for every 1,000 legitimate login attempts, approximately 5 will be incorrectly flagged as suspicious by this rule.
+Alert volume and the alert-to-incident ratio remain valid program-level
+measures and are defined alongside Precision in that chapter.
 
 #### Number of False-negatives
 
@@ -142,9 +131,9 @@ Here are a few key reasons why monitoring false negatives is important:
 
 - **Continuous Improvement**: False negatives provide valuable feedback for ongoing improvement of the monitoring system. By analyzing the reasons behind false negatives, organizations can identify patterns, trends, or recurring issues that need to be addressed. This iterative approach allows for continuous enhancement of the monitoring infrastructure, detection algorithms, and incident response processes.
 
-Information on false-negative, similar to the false-positive ratio, provides insight into the quality of the operational security monitoring rules. False-negatives occur when an actual incident has taken place that is within scope of one of the use cases, but was not detected by any operational monitoring detection mechanisms. This could be due to improper tuning of correlation rules, incorrect configuration of the correlation rules or simply because no detection mechanisms exists as the attack vector was either unforeseen or not implemented yet.
+Information on false-negatives, similar to precision, provides insight into the quality of the operational security monitoring rules. False-negatives occur when an actual incident has taken place that is within scope of one of the use cases, but was not detected by any operational monitoring detection mechanisms. This could be due to improper tuning of correlation rules, incorrect configuration of the correlation rules or simply because no detection mechanisms exists as the attack vector was either unforeseen or not implemented yet.
 
-False negatives should be reported as a quantity of missed security incidents. Note that false-negatives may occur continuously without being noticed.
+False negatives MUST be reported as an enumerated list of identified detection gaps, each with an owner and a remediation date, and MUST NOT be reported as a bare count. A count implies the total is known; by definition it is not. The three legitimate sources of false-negative evidence are adversary emulation results, incident retrospectives and purple team exercises. See [Detection Metrics](09-metrics.md) for the full treatment.
 
 ## Use Case Cataloging
 

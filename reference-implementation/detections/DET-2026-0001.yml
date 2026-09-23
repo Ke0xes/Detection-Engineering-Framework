@@ -1,0 +1,229 @@
+schema_version: "3.0"
+id: DET-2026-0001
+version: 1.2.0
+title: OAuth application consent granted to unverified publisher by privileged identity
+description: >
+  Fires when delegated or application permissions are granted to an Entra ID
+  service principal that is not on the tenant approval allowlist, where the
+  granted scopes permit mail, file or directory read, and either the consenting
+  identity holds a privileged directory role or belongs to a high-value group.
+  A fire means an identity with meaningful access has authorized a third party
+  to act on its behalf. The adversary does not need the password again, does not
+  trigger sign-in risk, and retains access through password reset and MFA
+  re-enrollment. Treat as potential active compromise until the application is
+  positively identified as legitimate and business-approved.
+status: production
+created: "2026-01-26"
+last_modified: "2026-09-15"
+author: Detection Engineering
+owner: Detection Engineering
+
+traceability:
+  use_case_ref: UC-2026-0001
+  driver_type:
+    - threat
+    - risk
+  risk_refs:
+    - RISK-0114
+    - RISK-0121
+  compliance_refs:
+    - framework: NIST CSF 2.0
+      control: DE.CM-01
+    - framework: ISO 27001:2022
+      control: A.8.16
+  business_service:
+    - Corporate email
+    - Finance document repository
+
+classification:
+  severity: high
+  confidence: medium
+  robustness_tier: behavior
+  alert_disposition: alert
+  tags:
+    - identity
+    - oauth
+    - persistence
+    - saas
+
+threat:
+  attack:
+    version: "17.1"
+    tactics:
+      - TA0006
+      - TA0003
+    techniques:
+      - T1528
+      - T1550.001
+      - T1098.003
+  threat_actors:
+    - Storm-0324-like consent phishing operators
+  intel_refs:
+    - "https://attack.mitre.org/techniques/T1528/"
+  kill_chain_phase:
+    - installation
+    - actions-on-objectives
+
+logsources:
+  - name: entra-id-audit
+    product: microsoft-entra-id
+    service: auditlogs
+    category: identity-management
+    required: true
+    normalization: asim
+    expected_interval_minutes: 15
+    data_quality:
+      completeness: 5
+      timeliness: 4
+      field_coverage: 4
+      assessed_on: "2026-01-22"
+  - name: entra-id-signin
+    product: microsoft-entra-id
+    service: signinlogs
+    category: authentication
+    required: false
+    normalization: asim
+    expected_interval_minutes: 15
+
+val:
+  hypothesis: >
+    If an adversary obtains consent for a malicious OAuth application, then the
+    directory will record a permission grant to a service principal that is not
+    on the approval allowlist, carrying scopes that permit data access.
+  blocks:
+    - id: B1
+      description: A consent or permission grant operation occurred
+      condition: operation in (Consent to application, Add delegated permission grant, Add app role assignment grant to user)
+      correlation_fields:
+        - ServicePrincipalId
+        - InitiatedByUser
+      logsource_refs:
+        - entra-id-audit
+    - id: B2
+      description: Granted scopes permit access to mail, files or the directory
+      condition: scope matches (Mail.Read*, Mail.Send, Files.Read*, Directory.Read*, offline_access)
+      logsource_refs:
+        - entra-id-audit
+    - id: B3
+      description: The consenting or granting identity is privileged or high value
+      condition: initiator in privileged_roles or initiator in high_value_groups
+      logsource_refs:
+        - entra-id-audit
+    - id: B4
+      description: The service principal is on the tenant approval allowlist
+      condition: ServicePrincipalId in approved_applications
+      logsource_refs:
+        - entra-id-audit
+  expression: B1 AND B2 AND B3 AND NOT B4
+  time_window_minutes: 5
+
+platform_implementations:
+  - platform: sigma
+    language: sigma
+    path: reference-implementation/rules/sigma/DET-2026-0001.yml
+    deployed: false
+  - platform: microsoft-sentinel
+    language: kql
+    path: reference-implementation/rules/kql/DET-2026-0001.kql
+    schedule: "*/10 * * * *"
+    lookback_minutes: 20
+    deployed: true
+    deployed_on: "2026-02-03"
+
+false_positives:
+  - description: >
+      A genuine business application is onboarded and an administrator consents
+      before the approval allowlist is updated.
+    triage_guidance: >
+      Check the change ticket referenced in the application notes field. If a
+      change record exists and names this application ID, close as
+      true-positive-benign and raise a request to update the allowlist.
+  - description: >
+      Microsoft first-party applications appearing with new scopes after a
+      service update.
+    triage_guidance: >
+      Verify the publisher is Microsoft Services and the application ID appears
+      in the published Microsoft first-party application list. These are
+      excluded by rule, so a fire here indicates the exclusion list is stale.
+
+exceptions:
+  - id: EXC-0001
+    scope: >
+      Application ID d3590ed6-52b3-4102-aeff-aad2292ab01c (Microsoft Office)
+      consent events initiated by the identity-automation service account only.
+    justification: >
+      The identity automation service account re-consents this first-party
+      application during scheduled tenant configuration drift remediation,
+      producing one predictable event per week. Scoped to this single
+      application and single initiator.
+    owner: Identity Services
+    created: "2026-03-02"
+    expires: "2026-12-31"
+    approved_by: Detection Council
+
+enrichments:
+  - source: identity-directory
+    fields:
+      - initiator_directory_roles
+      - initiator_group_membership
+      - initiator_manager
+    required: true
+  - source: asset-inventory
+    fields:
+      - application_publisher_verified
+      - application_first_seen
+    required: false
+
+validation:
+  fixtures:
+    - path: reference-implementation/fixtures/DET-2026-0001/tp-01-privileged-consent-mailread.json
+      expect: match
+      description: Privileged user consents to unverified app requesting Mail.Read
+    - path: reference-implementation/fixtures/DET-2026-0001/tp-02-admin-grant-directoryread.json
+      expect: match
+      description: Admin grants Directory.Read.All to a new service principal
+    - path: reference-implementation/fixtures/DET-2026-0001/tn-01-allowlisted-app.json
+      expect: no-match
+      description: Consent to an allowlisted application must not fire
+    - path: reference-implementation/fixtures/DET-2026-0001/tn-02-unprivileged-user.json
+      expect: no-match
+      description: Standard user consenting to a low-impact scope must not fire
+    - path: reference-implementation/fixtures/DET-2026-0001/tn-03-exception-scoped.json
+      expect: no-match
+      description: EXC-0001 suppresses only the named application and initiator
+  emulation:
+    - framework: stratus-red-team
+      test_id: entra-id.persistence.consent-grant
+      last_run: "2026-09-15"
+      result: pass
+    - framework: atomic-red-team
+      test_id: T1528-1
+      last_run: "2026-09-15"
+      result: pass
+  last_validated: "2026-09-15"
+  validation_result: pass
+
+response:
+  playbook_ref: reference-implementation/playbooks/PB-0003-oauth-consent-abuse.md
+  runbook_ref: reference-implementation/playbooks/RB-0007-revoke-service-principal.md
+  automation_ref: soar/oauth-consent-triage
+  triage_priority_minutes: 30
+  escalation_path: SOC Tier 2 -> Identity Services on-call -> CSIRT lead
+  containment_authorised: true
+
+metrics:
+  precision_30d: 0.78
+  alert_volume_30d: 23
+  escalation_rate_30d: 0.13
+  median_triage_minutes: 14
+  last_fired: "2026-09-17"
+  computed_on: "2026-09-18"
+
+lifecycle:
+  review_cadence_days: 90
+  last_reviewed: "2026-09-15"
+  next_review_due: "2026-12-14"
+
+references:
+  - "https://attack.mitre.org/techniques/T1528/"
+  - "https://learn.microsoft.com/entra/identity/enterprise-apps/manage-consent-requests"

@@ -1,0 +1,16 @@
+{
+  "_comment": "True negative: the application is on the tenant approval allowlist, so consent is expected.",
+  "TimeGenerated": "2026-06-11T11:31:09Z",
+  "Operation": "Consent to application",
+  "Result": "success",
+  "InitiatorUpn": "j.mbeki@contoso.com",
+  "InitiatorIsPrivileged": true,
+  "InitiatorDirectoryRoles": ["Global Reader"],
+  "ApplicationId": "00000003-0000-0ff1-ce00-000000000000",
+  "ApplicationName": "Contoso Approved Reporting Suite",
+  "ApplicationIsAllowlisted": true,
+  "ApplicationPublisherVerified": true,
+  "GrantedScopes": "Mail.Read Files.Read.All",
+  "CorrelationId": "6aa2f91b-77c4-4ea1-8d20-33bb19c4e5f7",
+  "AuditRecordId": "AUD-8891677"
+}

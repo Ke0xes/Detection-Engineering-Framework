@@ -1,4 +1,6 @@
-# Detection Engineering Framework: Advanced Best Practices
+# Advanced Best Practices
+
+*[Framework index](index.md) · [Specification](00-specification.md) · [Conformance](10-conformance.md)*
 
 *These advanced strategies address the real challenges you'll face in production environments*
 

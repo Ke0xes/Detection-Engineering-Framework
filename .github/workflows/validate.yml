@@ -1,0 +1,111 @@
+name: Validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  detections:
+    name: Detection artifacts
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: reference-implementation/tools/requirements.txt
+
+      - name: Install tooling
+        run: pip install -r reference-implementation/tools/requirements.txt
+
+      # Gate 1: does every artifact conform to the schema and to the
+      # framework's normative requirements?
+      - name: Validate metadata and conformance
+        run: python reference-implementation/tools/def_validate.py --strict
+
+      # Gate 2: does the detection logic still do what it claims?
+      # This is the regression gate required by IMP-13.
+      - name: Run detection fixtures
+        run: python reference-implementation/tools/def_test.py
+
+  schema:
+    name: Schema self-check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install tooling
+        run: pip install jsonschema
+
+      - name: Check schemas are themselves valid JSON Schema
+        run: |
+          python - <<'PY'
+          import json, pathlib, sys
+          from jsonschema import Draft202012Validator
+          failed = False
+          for path in sorted(pathlib.Path("schema").glob("*.json")):
+              try:
+                  Draft202012Validator.check_schema(json.loads(path.read_text()))
+                  print(f"OK    {path}")
+              except Exception as exc:
+                  print(f"FAIL  {path}: {exc}")
+                  failed = True
+          sys.exit(1 if failed else 0)
+          PY
+
+  docs:
+    name: Documentation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Lint Markdown
+        uses: DavidAnson/markdownlint-cli2-action@v19
+        with:
+          globs: |
+            docs/**/*.md
+            *.md
+            reference-implementation/**/*.md
+            templates/**/*.md
+
+      - name: Check links
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --no-progress
+            --accept 200,206,429
+            --exclude-path .venv
+            --exclude '^https://github.com/Ke0xes/Detection-Engineering-Framework/(commits|stargazers|network)'
+            --exclude 'api.visitorbadge.io'
+            --exclude 'linkedin.com'
+            './**/*.md'
+          fail: true
+
+  build-site:
+    name: Build docs site
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install MkDocs
+        run: pip install -r requirements-docs.txt
+
+      # Strict mode fails on broken internal references and orphaned pages,
+      # which is the cheapest available guard against documentation rot.
+      - name: Build
+        run: mkdocs build --strict
