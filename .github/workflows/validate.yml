@@ -89,6 +89,7 @@ jobs:
             --no-progress
             --accept 200,206,429
             --exclude-path .venv
+            --exclude '^https://github.com/Ke0xes/Detection-Engineering-Framework/(blob|tree)/main/'
             --exclude '^https://github.com/Ke0xes/Detection-Engineering-Framework/(commits|stargazers|network)'
             --exclude 'api.visitorbadge.io'
             --exclude 'linkedin.com'
