@@ -1,6 +1,18 @@
 # Detection Engineering Framework Specification
 
-*[Framework index](README.md) · [Conformance](conformance-model.md)*
+<!-- journey:where -->
+*Reference › The specification*
+<!-- /journey:where -->
+
+The guide explains the framework and the reasoning behind it. This
+specification states the same practices as testable requirements, each with a
+stable identifier, so that a program can be assessed against them and a
+conformance claim can be checked. It is reference material, intended to be
+consulted rather than read from start to finish.
+
+Some requirements are stated in full in the guide chapter they belong to and
+summarized here; each section below says where. The conformance level of every
+requirement is listed in section 14.
 
 | | |
 | --- | --- |
@@ -39,16 +51,16 @@ identifier is never reused.
 
 | Prefix | Domain | Defined in |
 | --- | --- | --- |
-| `GOV` | Governance, roles and accountability | This document, [15](governance-and-roles.md) |
-| `PLN` | Planning and prioritization | [03](planning-phase.md) |
-| `TEL` | Telemetry and data | [12](telemetry-and-data.md) |
+| `GOV` | Governance, roles and accountability | This document, [Governance and roles](governance-and-roles.md) |
+| `PLN` | Planning and prioritization | [The planning phase](planning-phase.md) |
+| `TEL` | Telemetry and data | [Telemetry and data](telemetry-and-data.md) |
 | `FEA` | Technical feasibility | This document |
-| `DET` | Detection engineering | This document, [13](detection-robustness.md) |
+| `DET` | Detection engineering | This document, [Detection robustness](detection-robustness.md) |
 | `RSP` | Response engineering | This document |
-| `DAC` | Detection as code | [11](detection-as-code.md) |
+| `DAC` | Detection as code | [Detection as code](detection-as-code.md) |
 | `DEL` | Delivery | This document |
-| `IMP` | Improvement | [08](improvement-phase.md) |
-| `MET` | Metrics | [09](detection-metrics.md) |
+| `IMP` | Improvement | [The improvement phase](improvement-phase.md) |
+| `MET` | Metrics | [Detection metrics](detection-metrics.md) |
 
 ### 1.3 Conformance
 
@@ -75,7 +87,7 @@ level and version is meaningless and MUST NOT be made.
 | **Alert** | A signal that is placed in an analyst queue for disposition. |
 | **Detection debt** | The state of a detection that has passed its review date. |
 | **Detection drift** | Degradation in a detection's efficacy caused by change in telemetry, environment or adversary tradecraft, without any change to the detection itself. |
-| **Robustness tier** | A detection's resistance to adversary evasion, per [13](detection-robustness.md). |
+| **Robustness tier** | A detection's resistance to adversary evasion, as described in [Detection robustness](detection-robustness.md). |
 | **Exception** | A scoped, time-bound suppression applied to a detection. |
 | **Detection council** | The cross-functional body accountable for detection strategy, prioritization and deprecation decisions. |
 
@@ -422,4 +434,18 @@ remain interpretable.
 
 ---
 
-*Next: [Background and Introduction](Background-and-Introduction.md) · [Conformance Model](conformance-model.md)*
+## What comes next
+
+[Related work](related-work.md) describes how the framework relates to MITRE
+ATT&CK, Sigma, DeTT&CT and other established work, what it draws from each,
+and what it deliberately leaves to them.
+
+<!-- journey:next -->
+<div class="journey-footer" markdown>
+
+---
+
+**Previous:** [Use case request forms](tools-and-templates/templates/use-case-requests/README.md) · **Next:** [Related work](related-work.md)
+
+</div>
+<!-- /journey:next -->

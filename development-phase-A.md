@@ -1,12 +1,33 @@
-# Development Phase A: Technical Feasibility
+# The Technical Feasibility Phase
 
-*[Framework index](README.md) · [Specification](specification.md) · [Conformance](conformance-model.md)*
+<!-- journey:where -->
+*Walk the lifecycle › Development A: Technical feasibility*
+<!-- /journey:where -->
 
-> This phase builds the technical detection capabilities with parsing/testing criteria to detect the malicious behavior based on the data collected and associated response.
+Development is the longest phase of the lifecycle and has three stages.
+Technical feasibility, covered here, comes first. It establishes whether the
+organization can observe the activity a detection is meant to find: which
+assets are involved, what telemetry they produce, whether that telemetry reaches
+the detection platform, and what it looks like when the attack actually takes
+place. The detection engineering stage then designs and tests the logic, and
+the response engineering stage builds what happens when the detection fires.
 
-This phase builds the technical detection capabilities with parsing/testing criteria to detect the malicious behavior based on the data collected and associated response. Widely known as building the code, detection rule, detection analytics, detection engineering, search criteria in detection tools or signature-based behavior detection in any other concerned security controls.
+Skipping feasibility is the most common reason a detection passes review and
+then fails in production. Logic written against assumed field names or assumed
+log coverage cannot be tested until it is already live.
 
-The intent of the development phase is to develop the logic that is required to identify & detect the adversarial behaviors and to trigger an accurate communication & response with the help of communication systems, automation platform and/or emergency notification system; in the form of an alert with the help of Dashboard alerts that has high confidence in its integrity and accuracy to minimize the false positive rate. The primary objective of the development phase is to establish the logic required for accurate identification and detection, as well as to initiate appropriate communication and response mechanisms, such as alerts through dashboards, automation platforms, or emergency notification systems.
+> **Running example.** Feasibility for the consent phishing detection
+> confirmed that the identity provider's audit logs were already collected and
+> contained the consent events. It also found a gap: whether an application's
+> publisher is verified is not recorded in those logs and requires a separate
+> lookup. The council accepted delivery with that context missing, and tracked
+> the lookup as separate work. See
+> [stage 3 of the example](worked-example.md#stage-3-technical-feasibility).
+
+The sections below cover the structure of the development phase, technical
+analysis of the threat, attack simulation to observe real telemetry, and the
+preparation of data sources: identifying, configuring, shipping, onboarding,
+validating and parsing them.
 
 ## Development Phase Structure
 
@@ -174,6 +195,47 @@ Each log has a repeating data format which includes data fields and values. Howe
 
 A log parser is a software component that can take a specific log format and convert it to structured data. If manual data parsing is necessary, then data parsing should be conducted. Data parsing plays a crucial role in extracting relevant information from the collected data and transforming it into a structured format suitable for analysis. As different systems and applications generate logs with varying formats, data parsing involves applying parsing rules, regular expressions, or scripts to extract specific fields and standardize the data. This standardized data enables efficient correlation, analysis, and detection during the attack simulation, ensuring accurate identification and response to simulated attacks.
 
-### Final Consideration if Development Prerequisites are Fulfilled
+### Readiness for Detection Engineering
 
-After all necessary prerequisites are fulfilled, the Detection Engineering Framework is ready to go into the development stage 2 which is the code engineering and testing.
+When the required data sources are identified, configured, onboarded, validated and parsed, the prerequisites for writing detection logic are in place.
+
+---
+
+## In brief
+
+- Feasibility confirms that the activity a detection targets can actually be
+  observed, before any logic is written.
+- Technical analysis examines the threat's capability, intent and opportunity,
+  its likely vectors, and the assets it would reach.
+- Attack simulation generates the real telemetry the attack produces, so the
+  detection is built against evidence rather than assumption.
+- Each required data source is confirmed as configured, delivered, validated
+  and parsed into usable fields.
+
+## Requirements in this chapter
+
+The requirements for this stage, `FEA-1` to `FEA-5`, are in the
+[specification](specification.md#5-development-phase-a-technical-feasibility).
+They cover confirming telemetry before development, recording its properties
+and cost, and making the findings available at detection approval.
+
+## What comes next
+
+Two deep dives expand on this stage.
+[Telemetry and data](telemetry-and-data.md) describes how to assess data
+quality and the cost of collection, and
+[modern attack surfaces](modern-attack-surfaces.md) describes how feasibility
+changes for identity, cloud, SaaS and other environments where the endpoint is
+not the point of compromise. Readers following the core path can continue to
+[the detection engineering phase](development-phase-B.md), where the telemetry
+confirmed here is turned into detection logic.
+
+<!-- journey:next -->
+<div class="journey-footer" markdown>
+
+---
+
+**Previous:** [Going deeper: Governance and roles](governance-and-roles.md) · **Next:** [Going deeper: Telemetry and data](telemetry-and-data.md)
+
+</div>
+<!-- /journey:next -->

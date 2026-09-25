@@ -1,18 +1,28 @@
 # Improvement Phase
 
-*[Framework index](README.md) · [Specification](specification.md) · [Conformance](conformance-model.md)*
+<!-- journey:where -->
+*Walk the lifecycle › Improvement*
+<!-- /journey:where -->
 
-> **Normative status.** This chapter is normative. Requirement identifiers of the
-> form `IMP-n` are testable conformance criteria.
-
-The improvement phase governs every change to a detection after it enters
+The improvement phase covers every change made to a detection after it reaches
 production, up to and including its retirement. It is the phase most programs
-neglect, and neglect here is what turns a detection catalog into a liability:
-rules nobody trusts, firing for reasons nobody remembers, that no analyst reads.
+neglect, and that neglect is what turns a detection catalog into a liability:
+rules nobody trusts, firing for reasons nobody remembers, read by no one.
 
-"Gather feedback and tune regularly" is not a process. This chapter defines the
-mechanisms that make improvement happen whether or not anyone feels like doing
-it.
+Improvement rarely happens through goodwill alone. Analysts are busy, engineers
+are pulled towards new requests, and a detection that still appears healthy in
+the console may have stopped working months earlier. The framework therefore
+defines explicit mechanisms: fixed triggers that open improvement work, a
+classification of changes by risk, scheduled reviews, automated checks for
+drift, and a deliberate procedure for retirement.
+
+> **Running example.** Analysts closing alerts from the consent phishing
+> detection recorded a recurring harmless cause: an internal automation account
+> re-approving a Microsoft application each week. That feedback opened an
+> improvement item. It was classified as an exception, the lowest-risk kind of
+> change, and scoped to that one account and application with an expiry date.
+> Because the detection now carried an exception, its review interval shortened
+> to 90 days. See [stage 7 of the example](worked-example.md#stage-7-improvement).
 
 ---
 
@@ -309,4 +319,39 @@ the change lands in production.
 
 ---
 
-*Next: [Detection Metrics](detection-metrics.md) · Previous: [Delivery Phase](delivery-phase.md)*
+## In brief
+
+- Improvement work opens through five defined triggers: analyst feedback,
+  automated health alerts, failed validation, incident reviews, and scheduled
+  review.
+- Analysts cannot close an alert without recording a disposition, and adverse
+  dispositions open improvement items automatically.
+- Changes are classified by risk, from a scoped exception to a full rebuild,
+  and each class has its own testing and approval.
+- Exceptions carry an owner and an expiry. Too many exceptions on one detection
+  signals that its logic needs rebuilding.
+- Detections are reviewed on a schedule set by severity, checked automatically
+  for drift, and retired through a recorded procedure that keeps their history.
+
+## Requirements in this chapter
+
+The requirements `IMP-1` to `IMP-20` appear in the sections above. The
+[specification](specification.md#14-conformance-summary) shows the conformance
+level of each.
+
+## What comes next
+
+Most improvement decisions rest on measurement: whether a detection's alerts
+are worth an analyst's time, whether it is still alive, and what it costs to
+run. [Detection metrics](detection-metrics.md) defines the measures the
+framework uses and explains why some commonly reported figures are left out.
+
+<!-- journey:next -->
+<div class="journey-footer" markdown>
+
+---
+
+**Previous:** [The delivery phase](delivery-phase.md) · **Next:** [Going deeper: Detection metrics](detection-metrics.md)
+
+</div>
+<!-- /journey:next -->

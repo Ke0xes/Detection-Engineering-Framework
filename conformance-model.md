@@ -1,12 +1,24 @@
-# Conformance Model
+# Assessing a Program
 
-*[Framework index](README.md) · [Specification](specification.md)*
+<!-- journey:where -->
+*Put it into practice › Assessing a program*
+<!-- /journey:where -->
 
-> **Normative status.** This chapter is normative.
+A program that adopts the framework will want to know how far it has come, and
+stakeholders such as auditors, regulators and leadership may ask the same
+question. This chapter describes the conformance model used to answer it: three
+cumulative levels, the evidence each requirement needs, and the rules for what
+a program may claim.
 
-A framework nobody can measure themselves against is a book. This chapter
-defines what it means to conform, how conformance is assessed, and what may
-legitimately be claimed.
+The levels are designed so that the first is achievable by a small team with no
+tooling budget. Level 1 asks whether a program knows what detections it has and
+why. Level 2 asks whether they are engineered and governed. Level 3 asks whether
+the program measures, validates and corrects itself.
+
+> **Running example.** The consent phishing detection's record in the reference
+> implementation passes every automated check the framework defines.
+> Conformance, however, is assessed for a program as a whole: a single
+> well-documented detection does not make a conforming program.
 
 ---
 
@@ -217,4 +229,37 @@ must be redone.
 
 ---
 
-*Next: [Detection as Code](detection-as-code.md) · Previous: [Detection Metrics](detection-metrics.md)*
+## In brief
+
+- There are three cumulative levels: L1 Foundational, L2 Managed and L3
+  Optimised. A level is reached only when every requirement at that level and
+  below is met.
+- Every requirement scored as met needs identifiable evidence, and anything
+  scored as not applicable needs a written justification.
+- A valid claim states the level, the specification version, the assessment
+  date and the scope.
+- Trend matters as much as level. A program improving at L2 may be healthier
+  than one declining at L3.
+
+## Requirements in this chapter
+
+The rules for claims and assessment, `CNF-1` to `CNF-8`, appear in the sections
+above. The requirements being assessed are listed by level in the
+[specification](specification.md#14-conformance-summary).
+
+## What comes next
+
+Assessment is easier with the right starting material.
+[Tools and templates](tools-and-templates/README.md) lists the intake forms,
+schemas, reference implementation and self-assessment instrument that
+accompany the framework.
+
+<!-- journey:next -->
+<div class="journey-footer" markdown>
+
+---
+
+**Previous:** [Advanced practices](best-practices.md) · **Next:** [Tools and templates](tools-and-templates/README.md)
+
+</div>
+<!-- /journey:next -->

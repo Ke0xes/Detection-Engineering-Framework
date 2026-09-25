@@ -7,6 +7,43 @@ conformance claim names a version; tagged versions are immutable.
 
 ---
 
+## [Unreleased]
+
+Editorial restructuring of the guide into a single reading journey. No
+normative requirement has changed.
+
+### Changed
+
+- **Reading order.** The guide is organized in four parts: *Understand the
+  framework*, *Walk the lifecycle*, *Put it into practice* and *Reference*.
+  Chapters that go deeper into one lifecycle stage now sit under that stage
+  rather than in a separate section.
+- **The worked example** moves from the end of the guide to the fourth chapter,
+  titled *A detection's journey*, and serves as the running example that the
+  phase chapters return to.
+- **Home page** rewritten to introduce the framework, the problem it addresses
+  and how it works before presenting the reference implementation.
+- **Chapter openings and closings.** Every chapter now opens by placing itself
+  in the lifecycle and closes with an *In brief* summary, the requirements it
+  covers, and a bridge to the next chapter. Requirement lists previously at the
+  top of the telemetry and detection-as-code chapters move to their end.
+- **Chapter numbers** are no longer used. Cross-references name the chapter,
+  and reading order is defined solely by the site navigation.
+- **Position markers** under each chapter title and previous/next links at its
+  end are generated from the navigation by `reading_order.py`, and CI fails if
+  they drift.
+- **Voice.** The guide is written in the neutral third person. Style rules are
+  recorded in `CONTRIBUTING.md`.
+
+### Fixed
+
+- The adoption guide and advanced practices chapters still recommended the
+  false positive rate as a target. Both now use Precision, consistent with
+  `MET-1`.
+- Two headings in the advanced practices chapter were at the wrong level.
+
+---
+
 ## [2.1.0] — 2026-09-23
 
 The framework moves from a prose guide to a specification with enforceable

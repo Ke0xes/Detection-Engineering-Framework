@@ -1,8 +1,23 @@
-# Planning Phase
+# The Planning Phase
 
-*[Framework index](README.md) · [Specification](specification.md) · [Conformance](conformance-model.md)*
+<!-- journey:where -->
+*Walk the lifecycle › Planning*
+<!-- /journey:where -->
 
-> This phase defines the **why**, **when**, **who** & **what** needs to be in place to commence the development of the use case.
+A detection program always receives more requests than it can build. Planning
+decides which requests become detections, in what order, and with what
+resources. It establishes why a detection is needed, when it is needed by, who
+has an interest in it, and what must be in place before development can begin.
+
+> **Running example.** Planning for the consent phishing detection produced
+> request `UC-2026-0001`. It recorded the threat and risk drivers, the assets in
+> scope and those deliberately excluded, and measurable success criteria. Scored
+> with the rubric described below, it ranked first in the backlog. See
+> [stages 1 and 2 of the example](worked-example.md#stage-1-business-driver).
+
+The sections below cover the benefits of planning from the top down, the
+elements a use case request must make concrete, the contextual feasibility
+analysis, and how requests are prioritized and resourced.
 
 ## Overview
 
@@ -400,3 +415,42 @@ flowchart TD
     class H,J decisionBox
     class D,K,O endpointBox
 ```
+
+---
+
+## In brief
+
+- Every detection starts as a recorded use case request that states its
+  business driver, scope, non-goals and measurable success criteria.
+- A contextual feasibility analysis establishes objective, value, stakeholders
+  and resourcing before any technical work begins.
+- Requests are ranked with an anchored rubric. Each score level has a written
+  descriptor, so independent scorers reach the same result.
+- Confirmed active threats take an expedited path, and compliance requests are
+  scheduled against their deadlines rather than ranked.
+
+## Requirements in this chapter
+
+`PLN-1` to `PLN-5` are set out above. `PLN-6` to `PLN-8`, covering non-goals,
+success criteria and the feasibility gate, are in the
+[specification](specification.md#4-planning-phase), which also lists the
+conformance level of each.
+
+## What comes next
+
+Planning relies on clear ownership: someone must score requests, resolve
+disputes and approve what is built. [Governance and roles](governance-and-roles.md)
+describes the functions and decision-making body behind these steps. Readers
+following the core path can continue directly to
+[the technical feasibility phase](development-phase-A.md), where an accepted
+request is tested against the telemetry actually available.
+
+<!-- journey:next -->
+<div class="journey-footer" markdown>
+
+---
+
+**Previous:** [A detection's journey](worked-example.md) · **Next:** [Going deeper: Governance and roles](governance-and-roles.md)
+
+</div>
+<!-- /journey:next -->

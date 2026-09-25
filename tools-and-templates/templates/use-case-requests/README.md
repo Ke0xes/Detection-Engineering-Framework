@@ -1,5 +1,9 @@
 # Use Case Request Templates
 
+<!-- journey:where -->
+*Put it into practice › Use case request forms*
+<!-- /journey:where -->
+
 This directory contains templates for initiating new detection use cases within the Detection Engineering Framework.
 
 ## Available Templates
@@ -55,3 +59,13 @@ graph LR
 **Directory Version:** 1.1
 **Last Updated:** September 2025
 **Framework Phase:** Planning Phase
+
+<!-- journey:next -->
+<div class="journey-footer" markdown>
+
+---
+
+**Previous:** [Tools and templates](../../README.md) · **Next:** [The specification](../../../specification.md)
+
+</div>
+<!-- /journey:next -->

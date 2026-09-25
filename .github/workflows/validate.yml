@@ -35,6 +35,10 @@ jobs:
       - name: Run detection fixtures
         run: python reference-implementation/tools/def_test.py
 
+      # Gate 3: do chapter position markers still match the site navigation?
+      - name: Check reading order
+        run: python reference-implementation/tools/reading_order.py --check
+
   schema:
     name: Schema self-check
     runs-on: ubuntu-latest

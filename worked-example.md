@@ -1,21 +1,46 @@
-# Worked Example: End to End
+# A Detection's Journey
 
-*[Framework index](README.md) · [Specification](specification.md) · [Conformance](conformance-model.md)*
+<!-- journey:where -->
+*Understand the framework › A detection's journey*
+<!-- /journey:where -->
 
-This chapter carries a single use case through every phase of the framework, so
-that the abstractions have somewhere to land. Every artifact referenced here
-exists in
-[`reference-implementation/`](https://github.com/Ke0xes/Detection-Engineering-Framework/tree/main/reference-implementation)
-and passes the validation gates.
+This chapter follows one detection from the request that started it to its
+first review in production. The chapters that follow explain each phase in
+depth and return to this example at the relevant point, so it serves as a map of
+the ground ahead. A first reading does not need to follow every technical
+detail; each stage names the chapter that covers it fully.
 
-**The scenario:** detecting malicious OAuth application consent in a Microsoft
-Entra ID tenant. It was chosen because it is an identity attack with no malware,
-no endpoint compromise and no anomalous sign-in — which is where most detection
-programs are weakest.
+## The scenario
+
+An organization's identity team is concerned about consent phishing. In this
+attack a user is persuaded to grant a malicious third-party application
+permission to read their mailbox or files. No malware runs, no password is
+stolen and no unusual sign-in takes place, so most detection programs have no
+visibility of it. Once consent is granted, the attacker's access survives a
+password reset and re-enrollment in multi-factor authentication.
+
+The detection built in response is identified as `DET-2026-0001`. The example
+follows it through all four phases of the lifecycle. Every record and file
+mentioned exists in the
+[reference implementation](https://github.com/Ke0xes/Detection-Engineering-Framework/tree/main/reference-implementation)
+and passes the framework's validation checks.
+
+| Stage | Phase | Explained in depth in |
+| --- | --- | --- |
+| 1 and 2 | Planning | [The planning phase](planning-phase.md) |
+| 3 | Development A | [The technical feasibility phase](development-phase-A.md) |
+| 4 | Development B | [The detection engineering phase](development-phase-B.md) |
+| 5 | Development C | [The response engineering phase](development-phase-C.md) |
+| 6 | Delivery | [The delivery phase](delivery-phase.md) |
+| 7 | Improvement | [The improvement phase](improvement-phase.md) |
+| 8 | All phases | [Detection as code](detection-as-code.md) |
+
+Codes such as `PLN-6` or `DET-9` identify requirements in the
+[specification](specification.md). They can be passed over on a first reading.
 
 ---
 
-## Stage 1 — Business driver
+## Stage 1: Business driver
 
 The Head of Identity Services submits a request after an FS-ISAC advisory
 describes consent-phishing campaigns against the sector, and two peer
@@ -39,9 +64,10 @@ Recording that boundary is what prevents a scope argument at handover.
 
 ---
 
-## Stage 2 — Prioritization
+## Stage 2: Prioritization
 
-Scored against the anchored rubric in [chapter 3](planning-phase.md):
+Scored against the anchored rubric described in
+[the planning phase](planning-phase.md#priority-management):
 
 | Dimension | Score | Anchor that applied |
 | --- | --- | --- |
@@ -68,7 +94,7 @@ warning.
 
 ---
 
-## Stage 3 — Technical feasibility
+## Stage 3: Technical feasibility
 
 `FEA-1` requires telemetry confirmation before logic is written.
 
@@ -87,7 +113,7 @@ surprise during triage six months later.
 
 ---
 
-## Stage 4 — Detection engineering
+## Stage 4: Detection engineering
 
 ### The hypothesis
 
@@ -120,8 +146,8 @@ is a decision rather than an omission.
 
 ### Robustness
 
-Declared `behavior`. Apply the honesty test from
-[chapter 13](detection-robustness.md):
+Declared `behavior`. Applying the test described in
+[Detection robustness](detection-robustness.md#the-honesty-problem):
 
 > What is the smallest change an adversary could make that stops this firing
 > while the technique still works?
@@ -157,7 +183,7 @@ proving. Without it, exception creep is invisible in a diff.
 
 ---
 
-## Stage 5 — Response engineering
+## Stage 5: Response engineering
 
 `RSP-1` blocks production without a playbook.
 
@@ -181,7 +207,7 @@ explicitly.
 
 ---
 
-## Stage 6 — Delivery
+## Stage 6: Delivery
 
 `DEL-2` requires an alert volume forecast before activation. Running the logic
 against 90 days of historical data predicted 0.8 alerts per day, within the 5
@@ -197,7 +223,7 @@ recorded in the playbook header.
 
 ---
 
-## Stage 7 — Improvement
+## Stage 7: Improvement
 
 The detection has been through one improvement cycle.
 
@@ -232,18 +258,18 @@ fixture.
 
 ---
 
-## Stage 8 — What the gates actually catch
+## Stage 8: Automated checks
 
-This is the part that is hard to convey in prose, so try it.
-
-Clone the repository and run:
+Most of the rules applied in stages 1 to 7 are checked automatically. With the
+repository cloned, two commands run the checks:
 
 ```bash
 python reference-implementation/tools/def_validate.py --strict
 python reference-implementation/tools/def_test.py
 ```
 
-Both pass. Now break something:
+Both pass on the unmodified repository. Each change below breaks one rule, and
+the checks report which:
 
 | Change | Result |
 | --- | --- |
@@ -256,15 +282,16 @@ Both pass. Now break something:
 | Delete `tn-02` and widen the rule to all users | `def_test` fails on the remaining negative fixtures |
 | Change the rubric scores without updating `computed_score` | `PLN-1` fails: score does not match the rubric |
 
-**That is the difference between a framework and a document.** Each of those
-failures is a governance requirement that would otherwise depend on somebody
-remembering, during a busy quarter, to check.
+Each of these failures corresponds to a governance rule that would otherwise
+rely on someone remembering to check it during a busy quarter.
+[Detection as code](detection-as-code.md) explains how the checks are wired
+into a detection repository.
 
 ---
 
-## What this example does not show
+## Limits of the example
 
-Honesty about the limits:
+The example is deliberately narrow:
 
 - **Only one use case.** A real catalog has hundreds, and the interesting
   problems are catalog-scale: deduplication, coverage overlap, and capacity.
@@ -277,4 +304,33 @@ Honesty about the limits:
 
 ---
 
-*Previous: [Related Work](related-work.md) · [Framework index](README.md)*
+## In brief
+
+- A detection begins as a recorded request tied to a business risk, with
+  explicit scope and measurable success criteria.
+- The request is prioritized with a written rubric, and the telemetry it
+  depends on is confirmed before any logic is written.
+- The detection's intent is recorded independently of any platform, implemented
+  in one or more query languages, and tested against data it must and must not
+  match.
+- It reaches production only with a rehearsed response plan, an alert volume
+  forecast and a staged rollout.
+- In production it is measured, tuned through controlled changes, and reviewed
+  on a fixed schedule.
+
+## What comes next
+
+The next part of the guide walks through the lifecycle one phase at a time. It
+begins with planning: how a request such as the consent phishing one is
+captured, assessed for value and feasibility, and ranked against everything
+else competing for the same engineering time.
+
+<!-- journey:next -->
+<div class="journey-footer" markdown>
+
+---
+
+**Previous:** [The lifecycle at a glance](Detection-Engineering-Lifecycle.md) · **Next:** [The planning phase](planning-phase.md)
+
+</div>
+<!-- /journey:next -->

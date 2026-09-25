@@ -1,6 +1,26 @@
-# Delivery Phase
+# The Delivery Phase
 
-*[Framework index](README.md) · [Specification](specification.md) · [Conformance](conformance-model.md)*
+<!-- journey:where -->
+*Walk the lifecycle › Delivery*
+<!-- /journey:where -->
+
+Delivery moves a detection from the engineering team that built it to the
+security monitoring team that will operate it. It is the point at which a
+detection starts producing work for other people, so it is also the point at
+which poor preparation becomes visible: an unforecast flood of alerts, an alert
+that lacks the context to act on, or a rule that quietly overloads the
+platform.
+
+> **Running example.** Before activation, the consent phishing detection was run
+> against 90 days of historical data, which forecast fewer than one alert a day.
+> It was enabled for one business unit for two weeks before the whole
+> organization. During the SOC's review period, analysts asked for the granted
+> permissions to appear in the alert itself, and the change was made before
+> activation. See [stage 6 of the example](worked-example.md#stage-6-delivery).
+
+The sections below cover the handover to the SOC, activating the rule and
+monitoring its early behavior, the metrics reported from the start, cataloging
+the detection, and response automation.
 
 ## SOC Handover
 
@@ -531,3 +551,38 @@ graph TD
 > Automation, fed by the data and alerts collected from orchestration, ingests and analyzes data and creates repeated, automated actions to replace manual processes. Tasks previously performed by analysts, such as vulnerability scanning, log analysis, ticket checking and auditing capabilities, can be standardized and automatically executed by automation platforms. Using artificial intelligence (AI) and machine learning to decipher and adapt insights from analysts and automate future responses. Alternately, automation can elevate threats if human intervention is needed.
 
 > Predefined playbooks are essential to the success of Response Automation. Prebuilt or customized playbooks are predefined automated actions. Multiple playbooks can be connected to complete complex actions. For example, if a malicious Uniform Resource Locator (URL) is found in an employee email and identified during a scan, a playbook can be adopted that blocks the email, alerts the employee of the potential phishing attempt and blocklists the Internet Protocol (IP) address of the sender. Automation functionality can tools can also trigger follow-up investigative actions by security teams if necessary. In terms of the phishing example, follow-up could include searching other employee inboxes for similar emails and blocking them and their IP addresses, if found.
+
+---
+
+## In brief
+
+- Handover gives the operating team everything captured during planning and
+  development, time to review it, and an agreed activation date.
+- An alert volume forecast, produced from historical data, comes before
+  activation, and rollout is staged.
+- From activation, each detection reports alert volume and Precision, the share
+  of its alerts that analysts confirm as genuine.
+- Every detection enters a catalog generated from its version-controlled
+  record, with a consistent name and category and an ATT&CK mapping.
+
+## Requirements in this chapter
+
+The requirements for this phase, `DEL-1` to `DEL-7`, are in the
+[specification](specification.md#9-delivery-phase).
+
+## What comes next
+
+Once a detection is live, the work shifts from building to maintaining.
+[The improvement phase](improvement-phase.md) describes how feedback, scheduled
+review and automated checks keep a detection accurate, and how it is retired
+when it no longer earns its place.
+
+<!-- journey:next -->
+<div class="journey-footer" markdown>
+
+---
+
+**Previous:** [The response engineering phase](development-phase-C.md) · **Next:** [The improvement phase](improvement-phase.md)
+
+</div>
+<!-- /journey:next -->

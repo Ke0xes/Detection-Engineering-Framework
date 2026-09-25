@@ -1,6 +1,29 @@
-# Development Phase B: Detection Code Engineering
+# The Detection Engineering Phase
 
-*[Framework index](README.md) · [Specification](specification.md) · [Conformance](conformance-model.md)*
+<!-- journey:where -->
+*Walk the lifecycle › Development B: Detection engineering*
+<!-- /journey:where -->
+
+This is the second of the three development stages. With the telemetry
+confirmed, the detection logic can be designed. The framework separates what a
+detection is looking for from how a particular platform expresses it. The
+intent is written first as Vendor Agnostic Logic (VAL): a set of named
+observable conditions, called blocks, and the relationship between them. Only
+then is it implemented in a platform's query language, refined with exceptions
+and enrichment, and tested.
+
+> **Running example.** The consent phishing detection is expressed as four
+> blocks: a consent operation occurred, the scopes granted permit data access,
+> the person granting it is privileged, and the application is not on the
+> approved list. It is implemented in both Sigma and KQL and tested against five
+> samples of data it must and must not match. See
+> [stage 4 of the example](worked-example.md#stage-4-detection-engineering).
+
+The sections below cover building the VAL from observed attack blocks,
+prototyping a platform rule from it, handling exceptions, enriching events with
+context, the limits of rule-based logic for machine learning detections, and
+the functional, emulation, non-functional and acceptance testing a detection
+passes before release.
 
 ## Development Code Engineering and Testing
 
@@ -260,3 +283,44 @@ During acceptance testing, stakeholders and end-users collaborate to review the 
 If any defects or deviations are identified during testing, they are logged, tracked, and reported to the development team for resolution. The participation of end-users or stakeholders is crucial as they provide feedback and verify that the rule meets their expectations. Their involvement helps validate the rule's effectiveness in detecting and responding to security events. Based on the test results, feedback from end-users, and alignment with the acceptance criteria, a decision is made regarding the acceptance of the rule. If the rule meets the specified requirements and performs as expected, it is approved for deployment and production use.
 
 Acceptance testing ensures that the Detection rule meets the intended objectives, satisfies user requirements, and operates effectively within the target environment. It validates that the rule is ready for deployment and builds confidence among stakeholders that it will deliver the desired security monitoring and incident response capabilities. Acceptance testing plays a crucial role in the successful implementation of SIEM rules by ensuring their quality, functionality, and alignment with user expectations. It helps identify and address any issues or deviations, leading to improved rule effectiveness and end-user satisfaction.
+
+---
+
+## In brief
+
+- Detection intent is recorded as Vendor Agnostic Logic before it is written in
+  any platform's query language. Every implementation must satisfy the same VAL.
+- Exceptions refine a detection for known benign activity. They are expressed
+  in the logic under version control, never applied quietly in a console.
+- Enrichment adds the context an analyst needs to act without further
+  searching.
+- Before release a detection is tested against data it must match and data it
+  must not match, against emulated attacks, and for its performance at
+  production scale.
+
+## Requirements in this chapter
+
+The requirements for this stage, `DET-1` to `DET-12`, are in the
+[specification](specification.md#6-development-phase-b-detection-engineering).
+They cover the hypothesis and VAL, quality attributes, exceptions and testing.
+
+## What comes next
+
+Two deep dives expand on this stage.
+[Detection robustness](detection-robustness.md) explains how to judge how hard
+a detection is for an attacker to evade, and
+[detection as code](detection-as-code.md) explains how detections are
+version-controlled, reviewed, tested and deployed automatically. Readers
+following the core path can continue to
+[the response engineering phase](development-phase-C.md), which builds what
+happens once a detection fires.
+
+<!-- journey:next -->
+<div class="journey-footer" markdown>
+
+---
+
+**Previous:** [Going deeper: Modern attack surfaces](modern-attack-surfaces.md) · **Next:** [Going deeper: Detection robustness](detection-robustness.md)
+
+</div>
+<!-- /journey:next -->

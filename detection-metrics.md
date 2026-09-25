@@ -1,18 +1,25 @@
 # Detection Metrics
 
-*[Framework index](README.md) · [Specification](specification.md) · [Conformance](conformance-model.md)*
+<!-- journey:where -->
+*Walk the lifecycle › Improvement › Going deeper*
+<!-- /journey:where -->
 
-> **Normative status.** This chapter is normative. Requirement identifiers of the
-> form `MET-n` are testable conformance criteria. See
-> [Conformance Model](conformance-model.md).
+The improvement phase depends on evidence: which detections are noisy, which
+have gone silent, what is not covered, and what the program costs to run. Many
+programs report alert counts and a percentage described as a false positive
+rate, but neither figure tells an engineer what to fix or a manager where to
+invest.
 
-## Why this chapter exists
+This deep dive defines the measures the framework uses, how each is
+calculated, and the thresholds at which it should prompt action. It begins with
+the false positive rate, because the reasons it misleads explain the choice of
+its replacement.
 
-Detection engineering has a measurement problem. Most programs report alert
-counts and a percentage they call a "false positive rate," and neither number
-supports a decision. This chapter defines the minimum metric set a conforming
-program MUST produce, the definitions those metrics MUST use, and the action
-thresholds that make them operationally meaningful.
+> **Running example.** Over 30 days the consent phishing detection produced 23
+> alerts, of which analysts confirmed 78% as genuine. That figure, its
+> Precision, is above the level the framework sets for a mature program. The
+> detection last fired the day before it was measured, and its most recent
+> validation test passed.
 
 ---
 
@@ -212,4 +219,39 @@ posture" indices MUST NOT be presented as conformance evidence.
 
 ---
 
-*Next: [Conformance Model](conformance-model.md) · Previous: [Improvement Phase](improvement-phase.md)*
+## In brief
+
+- Precision, the share of a detection's alerts that analysts confirm as genuine,
+  is the primary quality measure. It is read directly from case records.
+- The classical false positive rate is not used, because it depends on a count
+  of true negatives that cannot be measured in a stream of events.
+- Coverage is weighted by how robust and how recently validated each detection
+  is, rather than counted by rule.
+- Detection silence and log source liveness are monitored automatically,
+  because a detection that cannot fire looks the same as one that found
+  nothing.
+- Missed detections are reported as a named list of gaps with owners, not as a
+  number.
+
+## Requirements in this chapter
+
+The requirements `MET-1` to `MET-6` appear in the sections above. The
+[specification](specification.md#14-conformance-summary) shows the conformance
+level of each.
+
+## What comes next
+
+This completes the walk through the lifecycle. The next part of the guide turns
+to applying the framework in a real organization, beginning with
+[adopting the framework](from-theory-to-practice.md): the obstacles teams meet
+in practice, and how to start small and grow.
+
+<!-- journey:next -->
+<div class="journey-footer" markdown>
+
+---
+
+**Previous:** [The improvement phase](improvement-phase.md) · **Next:** [Adopting the framework](from-theory-to-practice.md)
+
+</div>
+<!-- /journey:next -->

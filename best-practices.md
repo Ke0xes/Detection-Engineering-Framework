@@ -1,8 +1,20 @@
-# Advanced Best Practices
+# Advanced Practices
 
-*[Framework index](README.md) · [Specification](specification.md) · [Conformance](conformance-model.md)*
+<!-- journey:where -->
+*Put it into practice › Advanced practices*
+<!-- /journey:where -->
 
-*These advanced strategies address the real challenges you'll face in production environments*
+The lifecycle chapters describe what each phase requires. This chapter collects
+practices for programs that already operate the lifecycle and want to make it
+more resilient and better aligned with the business. Most are organizational
+rather than technical, because that is where mature programs tend to meet their
+limits.
+
+The ten practices below range from governance, through detection debt,
+redundancy, performance baselines, staged rollouts, runbooks, testing
+infrastructure and business feedback, to career paths and change management.
+The chapter ends with the technical and organizational conditions for
+implementing them.
 
 ## 1. Establish Cross-Functional Detection Councils Early
 
@@ -52,13 +64,13 @@ Create mechanisms to capture business impact data for detections, not just techn
 
 Business context transforms detection engineering from a purely technical exercise into a business-aligned capability. When detection engineers understand how their work prevents financial losses, regulatory penalties, or operational disruptions, they can make better prioritization decisions and communicate more effectively with business stakeholders. This feedback also helps justify continued investment in detection capabilities by demonstrating tangible business value.
 
-### 9. Establish Detection Engineering Career Progression Pathways
+## 9. Establish Detection Engineering Career Progression Pathways
 
 Define clear skill development paths and career progression opportunities specifically for detection engineers. This specialized role requires unique combinations of security knowledge, data analysis skills, and technical implementation capabilities. Without clear growth paths, you'll struggle to retain skilled detection engineers and build mature capabilities over time.
 
 Detection engineering represents a specialized career path that combines elements of security analysis, software development, and data science. Traditional career progression models often don't account for this unique skill combination, leading to confusion about advancement opportunities. Clear career pathways help attract talent, retain expertise, and build the institutional knowledge necessary for long-term program success.
 
-### 10. Build Organizational Change Management for Detection Engineering
+## 10. Build Organizational Change Management for Detection Engineering
 
 Detection engineering initiatives often fail due to organizational resistance rather than technical challenges. Develop change management strategies that address cultural shifts needed for detection-as-code adoption, process changes, and new tooling. Include communication plans, training programs, and stakeholder engagement strategies. Focus particularly on helping traditional security analysts adapt to more engineering-focused approaches.
 
@@ -88,16 +100,37 @@ Available technical skills and training needs analysis helps organizations under
 
 Detection coverage percentage across the MITRE ATT&CK framework provides a standardized way to measure defensive comprehensiveness. This metric helps identify gaps in detection capabilities and track improvement over time. Mean time to deploy new detections measures the efficiency of detection engineering processes and helps identify bottlenecks in the development pipeline.
 
-False positive rate trends over time indicate the quality and maturity of detection logic. Improving false positive rates demonstrate the value of detection engineering investments and reduce the operational burden on SOC analysts. Detection effectiveness during red team exercises validates detection capabilities under realistic attack conditions.
+Precision trends over time indicate the quality and maturity of detection logic. Rising precision demonstrates the value of detection engineering investments and reduces the operational burden on SOC analysts. Detection effectiveness during red team exercises validates detection capabilities under realistic attack conditions.
 
 Engineer productivity and job satisfaction metrics ensure that detection engineering processes support rather than burden the people implementing them. High productivity and satisfaction correlate with better retention, higher quality output, and more effective program outcomes.
 
 ---
 
-## Your Path Forward
+## In brief
 
-This Detection Engineering Framework provides you with a solid foundation for building mature detection capabilities, but your success ultimately depends on thoughtful implementation that addresses both technical and organizational challenges. Remember, detection engineering is as much about people and processes as it is about technology.
+- Mature programs are limited more by organization than by technique:
+  governance, capacity for maintenance, and the flow of feedback.
+- Detection debt is managed deliberately, with protected engineering capacity.
+- Critical attack paths are covered by more than one detection, on more than
+  one data source.
+- Performance is baselined and reported against agreed service levels, and
+  detections are released in stages.
+- The role of detection engineer needs its own career path if skilled people
+  are to stay.
 
-The journey to detection engineering excellence begins with understanding that this represents a fundamental shift in how security operations work. You're not just implementing new tools or writing new rules - you're adopting engineering discipline and applying it to security operations. This requires cultural change, skill development, and organizational commitment.
+## What comes next
 
-Start small, build momentum, and continuously iterate based on real-world feedback. Focus on demonstrating value early and often, as this builds the organizational support necessary for long-term success. Your journey to detection engineering excellence begins with the first step, and you now have the roadmap to guide you there.
+The practices in this chapter and the lifecycle requirements before it can be
+assessed. [Assessing a program](conformance-model.md) describes the three
+conformance levels, what evidence each requirement needs, and what a program
+can legitimately claim.
+
+<!-- journey:next -->
+<div class="journey-footer" markdown>
+
+---
+
+**Previous:** [Adopting the framework](from-theory-to-practice.md) · **Next:** [Assessing a program](conformance-model.md)
+
+</div>
+<!-- /journey:next -->

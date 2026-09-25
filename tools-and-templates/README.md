@@ -1,8 +1,18 @@
-# Templates
+# Tools and Templates
 
-Fill-in artifacts for implementing the framework. Licensed Apache-2.0, like the
-rest of the repository, so they can be copied into your own repositories and
-internal systems without licence friction.
+<!-- journey:where -->
+*Put it into practice › Tools and templates*
+<!-- /journey:where -->
+
+The framework is accompanied by artifacts that help put it into practice: intake
+forms for use case requests, machine-readable schemas for detection and use
+case records, a reference implementation with validation and tests, and a
+self-assessment instrument. This page describes what each is for and where to
+find it.
+
+All of them are licensed Apache-2.0, like the rest of the repository, so they
+can be copied into other repositories and internal systems without licence
+friction.
 
 ## What is here
 
@@ -69,3 +79,20 @@ New templates are welcome where a machine-readable artifact would not serve
 better. Before contributing, check whether the thing you want to template
 should instead be an extension to the schema. See
 [CONTRIBUTING.md](../CONTRIBUTING.md).
+
+## What comes next
+
+The remaining chapters are reference material.
+[The specification](../specification.md) states every requirement in the
+framework in testable form, and [related work](../related-work.md) compares
+the framework with other established work in the field.
+
+<!-- journey:next -->
+<div class="journey-footer" markdown>
+
+---
+
+**Previous:** [Assessing a program](../conformance-model.md) · **Next:** [Use case request forms](templates/use-case-requests/README.md)
+
+</div>
+<!-- /journey:next -->

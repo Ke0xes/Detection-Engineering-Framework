@@ -1,16 +1,27 @@
-# Detection Engineering Lifecycle
+# The Detection Engineering Lifecycle
 
-*[Framework index](README.md) · [Specification](specification.md) · [Conformance](conformance-model.md)*
+<!-- journey:where -->
+*Understand the framework › The lifecycle at a glance*
+<!-- /journey:where -->
 
----
+The framework organizes detection work into four phases: planning,
+development, delivery and improvement. Improvement feeds back into planning, so
+the phases form a cycle rather than a one-way sequence. A detection passes
+through the cycle once to reach production, and then returns to it repeatedly
+for as long as it remains in service.
 
-This detection engineering framework allows for strategic and effective decision making in a phased manner when dealing with planning, developing, delivering and improving new use cases for the SOC.
+This chapter gives an overview of the whole cycle and the steps within each
+phase. Each phase has its own chapter later in the guide. The chapter after
+this one shows the cycle applied to a single detection from start to finish.
 
-Each of these phases is separately addressed hereafter. Before we look at the phases, it is important to note that in this framework itself, two-way traceability is important. Thus, it must be possible to connect elements at the operational layer to elements at the tactical and ultimately strategical layers and vice versa. This allows the SOC to show how business drivers are implemented in operational monitoring (top-down) and which monitoring rules relate to which specific threats and business drivers (bottom-up).
+One principle connects all four phases: two-way traceability. It must be
+possible to connect elements at the operational layer, such as individual
+detection rules, to the tactical and strategic layers above them, and to trace
+in the other direction as well. This allows a SOC to show how business drivers
+are implemented in operational monitoring (top-down) and which threats and
+business drivers each monitoring rule serves (bottom-up).
 
 ## Two-Way Traceability
-
-> **Key Principle**: The key principle that connects each phase is Two-way traceability throughout the framework lifecycle.
 
 ```mermaid
 graph LR
@@ -243,8 +254,30 @@ Knowledge management processes ensure that insights gained from individual detec
 
 ---
 
-***Framework Philosophy**: "Every detection capability should be purposefully designed, rigorously tested, and operationally sustainable."*
+## In brief
+
+- The lifecycle has four phases: planning, development, delivery and
+  improvement. Improvement feeds back into planning.
+- Development is split into three stages: technical feasibility, detection
+  engineering and response engineering.
+- Two-way traceability connects every detection to the business drivers above
+  it and the telemetry below it.
+- Every phase produces recorded outputs, so that the reasoning behind a
+  detection survives the people who built it.
+
+## What comes next
+
+An overview of phases can remain abstract until it is applied to something
+concrete. The next chapter follows a single detection, for consent phishing
+against a cloud identity provider, through every phase of the cycle. The same
+detection serves as the running example for the rest of the guide.
+
+<!-- journey:next -->
+<div class="journey-footer" markdown>
 
 ---
 
-> **Pro Tip**: The Detection Engineering Framework emphasizes the importance of **end-to-end traceability** from business drivers to operational outcomes, ensuring that every detection investment delivers measurable business value.
+**Previous:** [Why a framework is needed](Background-and-Introduction.md) · **Next:** [A detection's journey](worked-example.md)
+
+</div>
+<!-- /journey:next -->

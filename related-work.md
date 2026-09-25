@@ -1,13 +1,17 @@
 # Related Work and Differentiation
 
-*[Framework index](README.md) · [Specification](specification.md)*
+<!-- journey:where -->
+*Reference › Related work*
+<!-- /journey:where -->
 
-Detection engineering is not an empty field. This chapter states plainly what
-else exists, what this framework takes from it, and what it contributes that
-the others do not.
+Detection engineering draws on a substantial body of existing work, including
+adversary knowledge bases, rule formats, data-quality models and maturity
+assessments. Readers evaluating the framework, particularly those who already
+use some of that work, need to know how it fits.
 
-A framework that does not position itself against the alternatives is asking
-readers to do that work themselves, and most will not bother.
+This chapter describes what the framework is for, what it draws from other work,
+where it adds something those sources do not, and what it deliberately leaves
+to them.
 
 ---
 
@@ -65,15 +69,15 @@ This is explicitly **not** a competitor to Sigma. See below.
 | Work | What it is | Overlap | How this framework relates |
 | --- | --- | --- | --- |
 | **MITRE ATT&CK** | Knowledge base of adversary behavior | Technique taxonomy | **Consumes it.** ATT&CK is the shared vocabulary for `threat.attack`. This framework does not attempt to replicate or replace it |
-| **MITRE ATLAS** | ATT&CK for AI/ML systems | Technique taxonomy for AI threats | **Consumes it.** See `atlas_techniques` in the schema and [chapter 14](modern-attack-surfaces.md) |
+| **MITRE ATLAS** | ATT&CK for AI/ML systems | Technique taxonomy for AI threats | **Consumes it.** See `atlas_techniques` in the schema and [modern attack surfaces](modern-attack-surfaces.md) |
 | **MITRE D3FEND** | Countermeasure knowledge graph | Defensive technique taxonomy | **Complementary.** D3FEND classifies countermeasures; this framework governs how you build and maintain them |
-| **Summiting the Pyramid** (MITRE CTID) | Research on analytic robustness | Robustness tiering | **Builds on it.** [Chapter 13](detection-robustness.md) adapts the robustness concept and connects it to lifecycle controls: review cadence, coverage weighting and improvement targets |
+| **Summiting the Pyramid** (MITRE CTID) | Research on analytic robustness | Robustness tiering | **Builds on it.** [Detection robustness](detection-robustness.md) adapts the robustness concept and connects it to lifecycle controls: review cadence, coverage weighting and improvement targets |
 | **Sigma** | Portable detection rule format | Rule expression, log source taxonomy | **Consumes it.** Sigma is the recommended format for `platform_implementations`. The reference implementation uses Sigma. VAL sits *above* Sigma as the correlation and intent layer, not beside it |
-| **DeTT&CT** | Data source and detection quality scoring | Data quality, coverage scoring | **Strongly aligned.** DeTT&CT's data quality dimensions informed [chapter 12](telemetry-and-data.md). Use DeTT&CT for the scoring; use this framework for the lifecycle around it |
+| **DeTT&CT** | Data source and detection quality scoring | Data quality, coverage scoring | **Strongly aligned.** DeTT&CT's data quality dimensions informed [telemetry and data](telemetry-and-data.md). Use DeTT&CT for the scoring; use this framework for the lifecycle around it |
 | **Palantir ADS Framework** | Alerting and detection strategy document template | Detection documentation | **Extends it.** ADS is an excellent per-detection template. This framework makes it machine-readable, adds the governance lifecycle around it, and enforces it in CI |
-| **Detection Engineering Maturity Matrix** | Self-assessment maturity model | Maturity levelling | **Complementary.** The matrix is a broad maturity survey. [Chapter 10](conformance-model.md) is a narrower, requirement-by-requirement conformance model with defined evidence |
+| **Detection Engineering Maturity Matrix** | Self-assessment maturity model | Maturity levelling | **Complementary.** The matrix is a broad maturity survey. The [conformance model](conformance-model.md) is a narrower, requirement-by-requirement conformance model with defined evidence |
 | **Atomic Red Team / CALDERA / Stratus Red Team** | Adversary emulation libraries | Validation | **Consumes them.** `DET-11` requires emulation-based validation; these are the recommended sources. The schema records which test validated which detection |
-| **Vendor detection-as-code guides** (Splunk, Elastic, Google SecOps) | Platform-specific pipeline guidance | CI/CD for detections | **Generalises them.** [Chapter 11](detection-as-code.md) is platform-neutral and adds conformance gates that vendor guides do not, because vendor guides do not define conformance |
+| **Vendor detection-as-code guides** (Splunk, Elastic, Google SecOps) | Platform-specific pipeline guidance | CI/CD for detections | **Generalises them.** [Detection as code](detection-as-code.md) is platform-neutral and adds conformance gates that vendor guides do not, because vendor guides do not define conformance |
 | **OCSF / ECS / ASIM** | Telemetry normalization schemas | Data modeling | **Consumes them.** `TEL-7` requires you to pick one; the framework does not care which |
 | **NIST CSF 2.0** | Cybersecurity governance framework | Detect and Respond functions | **Implements a slice of it.** CSF says you should detect; this framework says how, and maps back through `compliance_refs` |
 
@@ -127,10 +131,16 @@ underlying insights about adversary behavior or detection quality, which belong
 to the community and to the projects named above.
 
 Where this framework disagrees with prior work it says so explicitly. The
-clearest example is [chapter 9](detection-metrics.md), which argues that the classical
+clearest example is [detection metrics](detection-metrics.md), which argues that the classical
 false positive rate is unusable in detection engineering despite its widespread
 citation.
 
+<!-- journey:next -->
+<div class="journey-footer" markdown>
+
 ---
 
-*Next: [Worked Example](worked-example.md) · Previous: [Advanced Best Practices](best-practices.md)*
+**Previous:** [The specification](specification.md) · **Back to the start:** [Welcome](README.md)
+
+</div>
+<!-- /journey:next -->

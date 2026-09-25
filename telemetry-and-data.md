@@ -1,43 +1,26 @@
 # Telemetry and Data
 
-*[Framework index](README.md) · [Specification](specification.md) · [Conformance](conformance-model.md)*
+<!-- journey:where -->
+*Walk the lifecycle › Development A: Technical feasibility › Going deeper*
+<!-- /journey:where -->
 
-> **Normative status.** This chapter is normative. Requirement identifiers of the
-> form `TEL-n` are testable conformance criteria.
+The technical feasibility phase asks whether the telemetry a detection needs is
+available. This chapter looks more closely at the telemetry itself: how good
+it is, how it is structured, and what it costs. A detection can be no better
+than the data beneath it, and many failures that appear to be logic errors turn
+out to be data problems: a missing field, a changed format, or a source that
+quietly stopped sending.
 
-Detection engineering is applied data engineering. A detection can be no better
-than the telemetry beneath it, and most detection failures that are diagnosed as
-logic problems are data problems wearing a disguise.
+> **Running example.** The consent phishing detection depends on one required
+> source, the identity provider's audit log, and one optional source, its
+> sign-in log. Its record declares how often each source is expected to send
+> events, so that a gap raises an alert rather than silently blinding the
+> detection.
 
-This chapter covers what a conforming program must know about its data, how to
-score data quality, and why ingest economics belong in a detection framework.
-
----
-
-## Requirements
-
-**TEL-1.** Every detection MUST declare the log sources it depends on and
-whether each is required or optional.
-
-**TEL-2.** Every required log source MUST declare an expected arrival interval,
-so that liveness can be monitored (`MET-4`).
-
-**TEL-3.** A conforming program MUST maintain a log source inventory recording,
-per source: owner, normalization scheme, retention, arrival interval, and known
-field-coverage gaps.
-
-**TEL-4.** Log source data quality MUST be scored and reassessed at least
-annually, using the dimensions defined below.
-
-**TEL-5.** Loss or degradation of a required log source MUST raise an
-operational alert and MUST identify the detections affected.
-
-**TEL-6.** Telemetry cost MUST be attributable to the detections that require
-it, at least at log-source granularity.
-
-**TEL-7.** A conforming program at L3 MUST normalize telemetry to a documented
-schema and MUST express detection logic against the normalized schema wherever
-the source supports it.
+The sections below cover the dimensions used to score data quality, the choice
+of a normalization schema, the order in which log sources are usually worth
+onboarding, how to reason about the cost of collection, and why telemetry
+should be treated as a recorded dependency of every detection.
 
 ---
 
@@ -158,4 +141,56 @@ fund the metadata discipline the framework requires.
 
 ---
 
-*Next: [Detection Robustness](detection-robustness.md) · Previous: [Detection as Code](detection-as-code.md)*
+## In brief
+
+- Many apparent logic failures are data failures. Telemetry quality is scored
+  on completeness, timeliness, field coverage, consistency and integrity.
+- Detection logic should be written against a documented normalization schema,
+  after confirming that the fields it needs survive the mapping.
+- Collection has a lasting cost. That cost is recorded at the feasibility stage
+  and weighed against the risk the detection reduces.
+- Each detection declares the sources it depends on, so the impact of a source
+  outage can be listed immediately.
+
+## Requirements in this chapter
+
+**TEL-1.** Every detection MUST declare the log sources it depends on and
+whether each is required or optional.
+
+**TEL-2.** Every required log source MUST declare an expected arrival interval,
+so that liveness can be monitored (`MET-4`).
+
+**TEL-3.** A conforming program MUST maintain a log source inventory recording,
+per source: owner, normalization scheme, retention, arrival interval, and known
+field-coverage gaps.
+
+**TEL-4.** Log source data quality MUST be scored and reassessed at least
+annually, using the dimensions defined above.
+
+**TEL-5.** Loss or degradation of a required log source MUST raise an
+operational alert and MUST identify the detections affected.
+
+**TEL-6.** Telemetry cost MUST be attributable to the detections that require
+it, at least at log-source granularity.
+
+**TEL-7.** A conforming program at L3 MUST normalize telemetry to a documented
+schema and MUST express detection logic against the normalized schema wherever
+the source supports it.
+
+## What comes next
+
+Telemetry differs sharply between environments. The next deep dive,
+[modern attack surfaces](modern-attack-surfaces.md), describes what changes
+when the framework is applied to identity, cloud, SaaS, containers, pipelines,
+operational technology and AI systems. Readers following the core path can
+continue to [the detection engineering phase](development-phase-B.md).
+
+<!-- journey:next -->
+<div class="journey-footer" markdown>
+
+---
+
+**Previous:** [The technical feasibility phase](development-phase-A.md) · **Next:** [Going deeper: Modern attack surfaces](modern-attack-surfaces.md)
+
+</div>
+<!-- /journey:next -->

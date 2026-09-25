@@ -97,7 +97,7 @@ and capacity modeling against a backlog. This deserves its own chapter.
 
 ### AI/ML chapter maturity
 
-[Chapter 14](modern-attack-surfaces.md) treats AI systems briefly and
+[Modern attack surfaces](modern-attack-surfaces.md) treats AI systems briefly and
 will date faster than anything else in the framework. As ATLAS matures and
 agent telemetry standards emerge, this should become a full chapter.
 

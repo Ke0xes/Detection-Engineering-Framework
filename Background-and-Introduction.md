@@ -1,14 +1,22 @@
-# Background and Introduction
+# Why a Framework Is Needed
 
-*[Framework index](README.md) · [Specification](specification.md) · [Conformance](conformance-model.md)*
+<!-- journey:where -->
+*Understand the framework › Why a framework is needed*
+<!-- /journey:where -->
+
+Most detection catalogs grow one rule at a time. A rule is added after an
+incident, another to satisfy an auditor, a batch arrives with a vendor content
+pack. Each makes sense when it is written. Over a few years the catalog becomes
+large, uneven and difficult to reason about: nobody can say with confidence
+what it covers, why a given rule exists, or what would be lost if it were
+removed.
+
+This chapter sets out why a structured approach is needed. It defines the terms
+used throughout the guide, describes the principles the framework is built on,
+and introduces the three kinds of driver from which every detection originates:
+risk, threat and compliance.
 
 ## Introduction
-
-### Preface
-
-In today's ever-evolving digital landscape, organizations face a multitude of sophisticated and persistent cyber threats that can compromise their sensitive data, disrupt operations, and damage their reputation. To effectively combat these threats, a robust **Detection Engineering Framework** is essential.
-
-This comprehensive guide aims to provide security professionals, incident responders, and IT teams with a holistic understanding of the key principles, strategies, and best practices involved in building and maintaining an effective detection engineering response program.
 
 ### Audience
 
@@ -22,7 +30,7 @@ This document is intended for:
 | **Detection Engineers** | Technical development and implementation |
 | **Security Professionals** | Overall security operations |
 
-We hope that this guide will serve as a valuable reference and practical companion for security professionals, incident responders, and IT teams as they navigate the challenging landscape of security monitoring and incident response.
+The guide is written primarily for detection engineers and SOC leads, who carry out most of the work it describes. Security managers will find the conclusions of each chapter summarized at its end.
 
 ### Scope
 
@@ -455,3 +463,33 @@ Compliance requirements vary by **industry** and **sector**, but typically invol
 </details>
 
 ---
+
+## In brief
+
+- A use case is a monitoring scenario for detecting a threat, managing a risk or
+  meeting a compliance obligation, together with the response it guides. It has
+  strategic, tactical and operational layers.
+- Every detection originates from at least one of three drivers: risk, threat
+  or compliance. The framework requires that link to be recorded.
+- Without a framework, catalogs fragment. Coverage splits across vendor content
+  packs, naming is inconsistent, and nothing connects a rule to the reason it
+  exists.
+- The framework's principles are that detection work should be driven by the
+  business, aligned to risk appetite, systematic, and able to show the state of
+  coverage at any time.
+
+## What comes next
+
+With the drivers established, the next chapter presents the lifecycle that
+turns a driver into a working detection: its four phases, the steps within
+them, and the principle of two-way traceability that connects them.
+
+<!-- journey:next -->
+<div class="journey-footer" markdown>
+
+---
+
+**Previous:** [Welcome](README.md) · **Next:** [The lifecycle at a glance](Detection-Engineering-Lifecycle.md)
+
+</div>
+<!-- /journey:next -->

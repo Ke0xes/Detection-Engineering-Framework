@@ -1,14 +1,21 @@
-# Adoption Guide: From Theory to Practice
+# Adopting the Framework
 
-*[Framework index](README.md) · [Specification](specification.md) · [Conformance](conformance-model.md)*
+<!-- journey:where -->
+*Put it into practice › Adopting the framework*
+<!-- /journey:where -->
 
-> **TLDR**: The Detection Engineering Framework provides excellent structure, but real-world implementation requires careful adaptation to avoid rigidity, resource constraints, and operational blind spots.
+The lifecycle chapters describe the framework as it works in a well-resourced
+program. Most organizations do not start there. Teams are small, data is
+incomplete, tooling budgets are limited, and active threats do not wait for a
+planning cycle to finish. A framework adopted without regard to these
+conditions can slow a team down rather than help it.
 
-The Detection Engineering Framework provides a commendable and structured blueprint for maturing a security organization's detection capabilities. It champions a shift from ad-hoc alerting to a repeatable, engineering-driven lifecycle, incorporating industry best practices like "Detection-as-Code" and threat-informed defense.
-
-However, any theoretical framework must withstand the friction of reality. When implemented without critical foresight, this framework can inadvertently introduce rigidity, create dependencies on non-existent resources, and fail to address the complex human and technical dynamics of a security organization.
-
-Here are some of my own candid analysis of the framework's potential flaws and offers concrete, actionable strategies to mitigate them. The goal is not to discredit the framework, but to arm implementers with the awareness needed to adapt it successfully to their unique environment.
+This chapter examines four ways adoption commonly goes wrong and how to avoid
+each: treating the process as rigid, assuming a level of maturity the
+organization does not yet have, leaving the improvement phase undefined, and
+relying on manual testing. For each it describes the problem, its consequence,
+and practical mitigations, including an expedited path for active threats and a
+staged, crawl-walk-run approach to building capability.
 
 ---
 
@@ -257,21 +264,41 @@ Create a dashboard that shows the status of every production detection based on 
 
 ---
 
-## Adapt, Don't Just Adopt
-
-> **Key Insight**: The framework's true value is realized not by rigid adoption, but by using it as a guide for organizational improvement.
-
-The Detection Engineering Framework is an excellent *idealized model*. Its true value is realized not by rigid adoption, but by using it as a guide for a conversation about your organization's specific needs, capabilities, and constraints.
-
-The most successful teams will be those who are brutally honest about their own maturity, who are pragmatic in their implementation, and who relentlessly focus on the operational reality of the SOC analyst. By anticipating the challenges outlined above and actively implementing mitigation strategies, an organization can transform this framework from a theoretical blueprint into a powerful, living engine for world-class security detection.
-
----
-
-### Quick Reference
+## Quick Reference
 
 | Challenge | Solution | Success Metric |
 |-------------|-------------|------------------|
 | Analysis Paralysis | Two-Tiered Pipeline | Emergency deployments <24hrs |
 | Resource Constraints | Crawl-Walk-Run Approach | Incremental capability growth |
-| Poor Feedback Loops | Formalized Mechanisms | FPR <25%, MTTT <7 days |
+| Poor Feedback Loops | Formalized Mechanisms | Precision above 0.50, MTTT <7 days |
 | Detection Drift | Automated Validation | >85% Purple Team success rate |
+
+---
+
+## In brief
+
+- The framework is a model to adapt, not a procedure to follow step by step.
+  The right starting point depends on the team's size, data and tooling.
+- Active threats take an expedited path. A minimum viable detection is
+  deployed quickly and brought to full conformance within 30 days.
+- Capability grows in stages: consistent records first, then automated
+  validation, then automated deployment.
+- Improvement needs explicit mechanisms, and validation needs to be automated
+  and continuous rather than a one-off test at release.
+
+## What comes next
+
+The next chapter, [advanced practices](best-practices.md), collects practices
+for programs that are already operating the lifecycle and want to strengthen
+it, from detection councils and debt management to staged rollouts and
+feedback loops.
+
+<!-- journey:next -->
+<div class="journey-footer" markdown>
+
+---
+
+**Previous:** [Going deeper: Detection metrics](detection-metrics.md) · **Next:** [Advanced practices](best-practices.md)
+
+</div>
+<!-- /journey:next -->

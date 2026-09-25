@@ -59,7 +59,7 @@ references:
   - type: generic
     title: Summiting the Pyramid
     url: "https://center-for-threat-informed-defense.github.io/summiting-the-pyramid/"
-    notes: Analytic robustness research that chapter 13 builds upon.
+    notes: Analytic robustness research that the detection robustness chapter builds upon.
 
 identifiers:
   - type: url

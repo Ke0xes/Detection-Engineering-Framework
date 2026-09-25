@@ -47,22 +47,76 @@ pip install -r reference-implementation/tools/requirements.txt -r requirements-d
 
 python reference-implementation/tools/def_validate.py --strict
 python reference-implementation/tools/def_test.py
+python reference-implementation/tools/reading_order.py --check
 mkdocs build --strict
 ```
 
 ### Documentation changes
 
-House style, which exists because the project is trying to be a standard rather
-than a blog:
+The guide is read as a journey, from why the framework exists, through each
+lifecycle phase, to putting it into practice. Changes to the documentation
+should keep that journey intact.
+
+#### Audience and voice
+
+- **Primary readers are detection engineers and SOC leads.** Security leaders
+  read the home page and the *In brief* summary at the end of each chapter, so
+  those must stand on their own.
+- **Neutral third person.** Write "a team", "the analyst" or "the program", not
+  "you" or "we". Imperatives are acceptable in procedures and runbooks.
+- **Explain before prescribing.** State the problem and the reasoning before the
+  rule. A requirement should never be the first thing a reader meets in a
+  chapter.
+- **Calm and explanatory.** Avoid closing flourishes and one-line punchlines
+  ("It runs.", "That is the difference..."), rhetorical contrasts with an
+  imagined critic, and chapters that talk about themselves ("Why this chapter
+  exists").
+- **Prose carries reasoning; tables carry comparisons.** Use a table only when
+  several items are compared on the same attributes.
+- **Name chapters, never number them.** Write "see
+  [detection robustness](detection-robustness.md)", not "see chapter 13".
+
+#### Chapter structure
+
+Every chapter on the reading path follows the same pattern:
+
+1. **Title**, then the generated position line. Do not edit it by hand.
+2. **Orientation.** One or two paragraphs placing the chapter in the lifecycle
+   and describing the problem it addresses.
+3. **Running example.** In lifecycle chapters, a short quoted block describing
+   what happened to the consent phishing detection at this stage, linking to
+   the matching stage of [A detection's journey](worked-example.md).
+4. **What follows.** A sentence listing the sections below.
+5. **The body.**
+6. **In brief.** Three to five bullets that a reader can act on without
+   reading the body.
+7. **Requirements in this chapter.** Where the chapter has normative content,
+   the requirement identifiers it covers, with a link to the specification.
+8. **What comes next.** A short bridge to the next chapter on the reading path.
+   Deep-dive chapters also offer a route back to the core path.
+9. The generated previous and next links. Do not edit them by hand.
+
+#### Reading order
+
+The `nav` section of `mkdocs.yml` is the single source of reading order. To add,
+remove or move a chapter, change the navigation, then run:
+
+```bash
+python reference-implementation/tools/reading_order.py
+```
+
+This regenerates the position line and the previous and next links in every
+chapter. CI fails if they are out of date.
+
+#### House style
 
 - **No emoji.** Anywhere. Not in headings, not in tables, not in diagrams.
 - **No decorative diagrams.** A Mermaid diagram must convey branching, sequence
   or ownership. A diagram that restates the bullet list above it should be
   deleted.
-- **No hardcoded colours in Mermaid.** Diagrams must honour the reader's theme.
+- **No hardcoded colors in Mermaid.** Diagrams must honor the reader's theme.
 - **en-US spelling.** The normalization script enforces the common cases.
-- **Terse.** If a paragraph restates the heading, cut it. The specification is
-  terse by design; explanatory chapters may breathe, but not repeat.
+- **No repetition.** If a paragraph restates its heading, cut it.
 - **RFC 2119 keywords only in normative text**, and only in capitals.
 
 ### Specification changes

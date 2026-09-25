@@ -1,10 +1,30 @@
-# Development Phase C: Response Engineering
+# The Response Engineering Phase
 
-*[Framework index](README.md) · [Specification](specification.md) · [Conformance](conformance-model.md)*
+<!-- journey:where -->
+*Walk the lifecycle › Development C: Response engineering*
+<!-- /journey:where -->
+
+This is the last of the three development stages. A detection that fires with
+no agreed response creates work rather than security: the analyst who receives
+the alert must decide, under time pressure, what it means and what to do. The
+framework therefore treats the response as part of the detection. A detection
+is not ready for production until the playbook it triggers has been written,
+tested and rehearsed with the team that will use it.
+
+> **Running example.** The consent phishing detection triggers playbook
+> `PB-0003`. Two decisions in it were made in advance rather than during an
+> incident: the SOC may revoke an application's access without waiting for
+> approval, and access tokens must be revoked separately, because removing
+> consent alone does not end the attacker's access. See
+> [stage 5 of the example](worked-example.md#stage-5-response-engineering).
+
+The sections below cover the difference between playbooks and runbooks, how
+each is designed, how dashboards support investigation, how playbooks are
+tested, and the roles involved.
 
 SOC teams are typically inundated with security alerts and incidents on a regular basis, at volumes so large that available personnel are overwhelmed. This results all too often in situations where many alerts are ignored and many incidents aren't investigated, leaving the organization vulnerable to attacks that go unnoticed. Many, if not most, of these alerts and incidents conform to recurring patterns that can be addressed by specific and defined sets of remediation actions.
 
-Security is inherently complicated with many disparate data sources and types of security logs and events. If your organization is a big, distributed enterprise, you have a huge amount of network complexity like overlapping RFC 1918 addresses, offices in dozens of countries, business units doing their own thing, and IPsec tunnels, among other things. At the same time, surely, you're collecting IDS events, AV logs, NetFlow, client http requests, server syslog, authentication logs, and many other valuable data sources.
+Security is inherently complicated, with many disparate data sources and types of security logs and events. A large, distributed enterprise may have overlapping RFC 1918 address ranges, offices in dozens of countries, business units running their own infrastructure, and many IPsec tunnels, while collecting IDS events, antivirus logs, NetFlow, web requests, server syslog, authentication logs and other sources.
 
 ```mermaid
 graph TD
@@ -34,7 +54,7 @@ graph TD
     
 ```
 
-Beyond just your data sources, you also have intelligence sources from the broader security community as well as in-house developed security knowledge and other indicators of hacking and compromise. With such a broad landscape of security data sources and knowledge, the natural tendency is towards complex monitoring systems. Of course, complexity is the enemy of reliability and maintainability, so something must be done to combat the inexorable drift.
+Beyond these data sources, most organizations also draw on intelligence from the broader security community, in-house security knowledge and other indicators of compromise. With such a broad landscape of security data sources and knowledge, the natural tendency is towards complex monitoring systems. Of course, complexity is the enemy of reliability and maintainability, so something must be done to combat the inexorable drift.
 
 In the case of an ongoing attack, data breach or compromise, things are coming to a head. The monitoring and incident response team must do deep and accurate investigation, analysis and minor decisions. Provide the collected information and derived facts to the C-Level management, to enable them doing the major decisions.
 
@@ -537,3 +557,39 @@ graph TD
     K --> L
     
 ```
+
+---
+
+## In brief
+
+- A detection is incomplete until the response it triggers has been designed,
+  tested and rehearsed.
+- Playbooks set out the strategy for a type of incident: triggers, the decision
+  to declare an incident, containment, recovery and follow-up. Runbooks give the
+  step-by-step technical procedures within it.
+- Containment actions the SOC may take without further approval are agreed in
+  advance and written into the playbook.
+- Playbooks are tested functionally and non-functionally, and accepted by the
+  team that will use them, before the detection goes live.
+
+## Requirements in this chapter
+
+The requirements for this stage, `RSP-1` to `RSP-6`, are in the
+[specification](specification.md#7-development-phase-c-response-engineering).
+
+## What comes next
+
+With the logic built and the response prepared, the detection is ready to be
+handed to the team that will operate it. [The delivery phase](delivery-phase.md)
+covers the handover, activation in production, and entry in the detection
+catalog.
+
+<!-- journey:next -->
+<div class="journey-footer" markdown>
+
+---
+
+**Previous:** [Going deeper: Detection as code](detection-as-code.md) · **Next:** [The delivery phase](delivery-phase.md)
+
+</div>
+<!-- /journey:next -->
