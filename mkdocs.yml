@@ -57,6 +57,8 @@ theme:
         name: Switch to dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
+      primary: custom
+      accent: custom
       toggle:
         icon: material/weather-sunny
         name: Switch to light mode
@@ -132,6 +134,7 @@ extra_javascript:
 
 extra_css:
   - https://unpkg.com/katex@0/dist/katex.min.css
+  - assets/stylesheets/extra.css
 
 # Chapters deliberately link to schemas, fixtures and tooling that are not part
 # of the rendered site. Repository-wide link integrity is enforced separately
