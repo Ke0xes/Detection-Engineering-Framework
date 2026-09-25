@@ -5,13 +5,35 @@ site_url: https://ke0xes.github.io/Detection-Engineering-Framework/
 
 repo_url: https://github.com/Ke0xes/Detection-Engineering-Framework
 repo_name: Ke0xes/Detection-Engineering-Framework
-edit_uri: edit/main/docs/
+edit_uri: edit/main/
 
 copyright: >
   Prose CC BY 4.0 &middot; Schemas and code Apache-2.0 &middot;
   Detection Engineering Framework v3.0.0
 
-docs_dir: docs
+# Chapters live at the repository root so that every URL published before v3.0
+# still resolves. mkdocs-same-dir permits docs_dir and site_dir to coexist.
+docs_dir: .
+site_dir: site
+
+plugins:
+  - same-dir
+  - search
+
+# Everything that is not a framework chapter or a project document.
+exclude_docs: |
+  .venv/
+  site/
+  node_modules/
+  .github/
+  assessment/
+  schema/
+  reference-implementation/
+  tools-and-templates/
+  LICENSE
+  LICENSE-CODE
+  CITATION.cff
+  requirements-docs.txt
 
 theme:
   name: material
@@ -41,31 +63,39 @@ theme:
         name: Switch to light mode
 
 nav:
-  - Home: index.md
+  - Home: README.md
   - Normative core:
-      - Specification: 00-specification.md
-      - Conformance Model: 10-conformance.md
+      - Specification: specification.md
+      - Conformance Model: conformance-model.md
   - Lifecycle:
-      - Background and Introduction: 01-introduction.md
-      - Detection Engineering Lifecycle: 02-lifecycle.md
-      - Planning Phase: 03-planning-phase.md
-      - Development A - Technical Feasibility: 04-development-feasibility.md
-      - Development B - Detection Engineering: 05-development-detection-engineering.md
-      - Development C - Response Engineering: 06-development-response-engineering.md
-      - Delivery Phase: 07-delivery-phase.md
-      - Improvement Phase: 08-improvement-phase.md
+      - Background and Introduction: Background-and-Introduction.md
+      - Detection Engineering Lifecycle: Detection-Engineering-Lifecycle.md
+      - Planning Phase: planning-phase.md
+      - Development A - Technical Feasibility: development-phase-A.md
+      - Development B - Detection Engineering: development-phase-B.md
+      - Development C - Response Engineering: development-phase-C.md
+      - Delivery Phase: delivery-phase.md
+      - Improvement Phase: improvement-phase.md
   - Engineering practice:
-      - Detection Metrics: 09-metrics.md
-      - Detection as Code: 11-detection-as-code.md
-      - Telemetry and Data: 12-telemetry-and-data.md
-      - Detection Robustness: 13-detection-robustness.md
-      - Modern Attack Surfaces: 14-modern-attack-surfaces.md
-      - Governance and Roles: 15-governance-and-roles.md
+      - Detection Metrics: detection-metrics.md
+      - Detection as Code: detection-as-code.md
+      - Telemetry and Data: telemetry-and-data.md
+      - Detection Robustness: detection-robustness.md
+      - Modern Attack Surfaces: modern-attack-surfaces.md
+      - Governance and Roles: governance-and-roles.md
   - Applying it:
-      - Adoption Guide: 16-adoption-guide.md
-      - Advanced Best Practices: 17-best-practices.md
-      - Related Work: 18-related-work.md
-      - Worked Example: 19-worked-example.md
+      - Adoption Guide: from-theory-to-practice.md
+      - Advanced Best Practices: best-practices.md
+      - Related Work: related-work.md
+      - Worked Example: worked-example.md
+  - Project:
+      - Contributing: CONTRIBUTING.md
+      - Governance: GOVERNANCE.md
+      - Roadmap: ROADMAP.md
+      - Changelog: CHANGELOG.md
+      - Licensing: LICENSING.md
+      - Code of Conduct: CODE_OF_CONDUCT.md
+      - Security Policy: SECURITY.md
 
 markdown_extensions:
   - abbr
@@ -94,18 +124,18 @@ markdown_extensions:
       generic: true
 
 extra_javascript:
-  - javascripts/katex.js
+  - assets/katex-init.js
   - https://unpkg.com/katex@0/dist/katex.min.js
   - https://unpkg.com/katex@0/dist/contrib/auto-render.min.js
 
 extra_css:
   - https://unpkg.com/katex@0/dist/katex.min.css
 
-plugins:
-  - search
-
+# Chapters deliberately link to schemas, fixtures and tooling that are not part
+# of the rendered site. Repository-wide link integrity is enforced separately
+# by reference-implementation/tools/check_links.py.
 validation:
   omitted_files: warn
   absolute_links: warn
-  unrecognized_links: warn
+  unrecognized_links: ignore
   anchors: warn

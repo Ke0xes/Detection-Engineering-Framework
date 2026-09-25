@@ -40,7 +40,7 @@ mkdocs build --strict
 - [ ] A conformance level (L1/L2/L3) is assigned
 - [ ] At least one form of acceptable evidence is defined
 - [ ] The requirement is added to `assessment/self-assessment.csv` in this PR
-- [ ] The conformance summary table in `docs/00-specification.md` is updated
+- [ ] The conformance summary table in `specification.md` is updated
 - [ ] `CHANGELOG.md` names the affected requirement identifiers
 - [ ] Version impact stated below
 

@@ -4,7 +4,8 @@ on:
   push:
     branches: [main]
     paths:
-      - "docs/**"
+      - "*.md"
+      - "assets/**"
       - "mkdocs.yml"
       - "requirements-docs.txt"
       - ".github/workflows/publish-docs.yml"
@@ -22,6 +23,9 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      # mkdocs-same-dir prints an unrelated promotional banner without this.
+      DISABLE_MKDOCS_2_WARNING: "true"
     steps:
       - uses: actions/checkout@v4
         with:

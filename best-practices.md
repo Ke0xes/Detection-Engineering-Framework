@@ -1,6 +1,6 @@
 # Advanced Best Practices
 
-*[Framework index](index.md) · [Specification](00-specification.md) · [Conformance](10-conformance.md)*
+*[Framework index](README.md) · [Specification](specification.md) · [Conformance](conformance-model.md)*
 
 *These advanced strategies address the real challenges you'll face in production environments*
 

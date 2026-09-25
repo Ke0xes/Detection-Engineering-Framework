@@ -41,7 +41,7 @@ chain is visible:
 | Containment procedure | [`playbooks/RB-0007-revoke-service-principal.md`](playbooks/RB-0007-revoke-service-principal.md) |
 
 The narrative walkthrough, explaining *why* each decision was made, is in
-[docs/19-worked-example.md](../docs/19-worked-example.md).
+[worked-example.md](../worked-example.md).
 
 ## Running it
 

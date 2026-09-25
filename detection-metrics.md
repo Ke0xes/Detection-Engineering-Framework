@@ -1,10 +1,10 @@
 # Detection Metrics
 
-*[Framework index](index.md) · [Specification](00-specification.md) · [Conformance](10-conformance.md)*
+*[Framework index](README.md) · [Specification](specification.md) · [Conformance](conformance-model.md)*
 
 > **Normative status.** This chapter is normative. Requirement identifiers of the
 > form `MET-n` are testable conformance criteria. See
-> [Conformance Model](10-conformance.md).
+> [Conformance Model](conformance-model.md).
 
 ## Why this chapter exists
 
@@ -101,7 +101,7 @@ threshold MUST be entered into the tuning backlog within one review cycle.
 | Metric | Definition | Action threshold |
 | --- | --- | --- |
 | **Technique coverage** | Distinct ATT&CK techniques with `>=1` active detection / techniques in the organization's prioritized threat profile | Reported quarterly; gaps feed the planning backlog |
-| **Confidence-weighted coverage** | Coverage weighted by validated detection quality, not rule count | Preferred over raw count; see [Detection Robustness](13-detection-robustness.md) |
+| **Confidence-weighted coverage** | Coverage weighted by validated detection quality, not rule count | Preferred over raw count; see [Detection Robustness](detection-robustness.md) |
 | **Data source coverage** | Log sources onboarded / log sources required by the threat profile | Gap `> 20%` blocks L2 conformance |
 
 Raw technique counts are a vanity metric. Ten brittle rules mapped to T1059 do
@@ -141,7 +141,7 @@ nothing; only instrumentation separates the two.
 | **Detection debt ratio** | Detections past review date / total active detections | Capacity planning; target `< 15%` |
 | **Backlog age** | Median age of open use case requests | Demand vs. capacity signal |
 | **Deprecation rate** | Detections retired per quarter | A rate of zero indicates the catalog is not being maintained |
-| **Telemetry cost per detection** | Ingest + storage cost attributable to required sources | See [Telemetry and Data](12-telemetry-and-data.md) |
+| **Telemetry cost per detection** | Ingest + storage cost attributable to required sources | See [Telemetry and Data](telemetry-and-data.md) |
 
 ---
 
@@ -212,4 +212,4 @@ posture" indices MUST NOT be presented as conformance evidence.
 
 ---
 
-*Next: [Conformance Model](10-conformance.md) · Previous: [Improvement Phase](08-improvement-phase.md)*
+*Next: [Conformance Model](conformance-model.md) · Previous: [Improvement Phase](improvement-phase.md)*

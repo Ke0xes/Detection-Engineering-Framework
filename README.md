@@ -1,7 +1,7 @@
 # Detection Engineering Framework
 
-[![Specification](https://img.shields.io/badge/specification-v3.0.0-0d419d)](docs/00-specification.md)
-[![Conformance](https://img.shields.io/badge/conformance-L1%20%7C%20L2%20%7C%20L3-1f6feb)](docs/10-conformance.md)
+[![Specification](https://img.shields.io/badge/specification-v3.0.0-0d419d)](specification.md)
+[![Conformance](https://img.shields.io/badge/conformance-L1%20%7C%20L2%20%7C%20L3-1f6feb)](conformance-model.md)
 [![Validate](https://github.com/Ke0xes/Detection-Engineering-Framework/actions/workflows/validate.yml/badge.svg)](https://github.com/Ke0xes/Detection-Engineering-Framework/actions/workflows/validate.yml)
 [![Docs CC BY 4.0](https://img.shields.io/badge/docs-CC%20BY%204.0-lightgrey)](LICENSE)
 [![Code Apache 2.0](https://img.shields.io/badge/code-Apache%202.0-lightgrey)](LICENSE-CODE)
@@ -39,7 +39,7 @@ relationship between them. One VAL, many platform implementations, one fixture
 set. This complements Sigma; it does not compete with it.
 
 Full positioning against ATT&CK, Sigma, DeTT&CT, Palantir ADS, Summiting the
-Pyramid and others: **[Related Work](docs/18-related-work.md)**.
+Pyramid and others: **[Related Work](related-work.md)**.
 
 ---
 
@@ -84,57 +84,61 @@ That is the difference between a framework and a document.
 
 | If you are... | Go to |
 | --- | --- |
-| Deciding whether to adopt this | [Related Work and Differentiation](docs/18-related-work.md) |
-| Wanting to see it work end to end | [Worked Example](docs/19-worked-example.md) |
-| Looking for the rules you must follow | [Specification](docs/00-specification.md) |
-| Assessing your program | [Conformance Model](docs/10-conformance.md) · [Assessment instrument](assessment/) |
-| New to detection engineering | [Background and Introduction](docs/01-introduction.md) |
-| Building the pipeline | [Detection as Code](docs/11-detection-as-code.md) |
-| A small team with no budget | [Adoption Guide](docs/16-adoption-guide.md) |
+| Deciding whether to adopt this | [Related Work and Differentiation](related-work.md) |
+| Wanting to see it work end to end | [Worked Example](worked-example.md) |
+| Looking for the rules you must follow | [Specification](specification.md) |
+| Assessing your program | [Conformance Model](conformance-model.md) · [Assessment instrument](assessment/) |
+| New to detection engineering | [Background and Introduction](Background-and-Introduction.md) |
+| Building the pipeline | [Detection as Code](detection-as-code.md) |
+| A small team with no budget | [Adoption Guide](from-theory-to-practice.md) |
 
 ---
 
 ## The framework
 
+> Chapter numbers are a stable reading index used for cross-references in the
+> text. Filenames are unchanged from earlier versions so that existing links
+> keep working.
+
 ### Normative core
 
-| | Chapter |
+| # | Chapter |
 | --- | --- |
-| 00 | [Specification](docs/00-specification.md) — every requirement, RFC 2119 language |
-| 10 | [Conformance Model](docs/10-conformance.md) — L1/L2/L3, evidence, what may be claimed |
+| 00 | [Specification](specification.md) — every requirement, RFC 2119 language |
+| 10 | [Conformance Model](conformance-model.md) — L1/L2/L3, evidence, what may be claimed |
 
 ### Lifecycle
 
-| | Chapter |
+| # | Chapter |
 | --- | --- |
-| 01 | [Background and Introduction](docs/01-introduction.md) |
-| 02 | [Detection Engineering Lifecycle](docs/02-lifecycle.md) |
-| 03 | [Planning Phase](docs/03-planning-phase.md) — drivers, feasibility, anchored prioritisation rubric |
-| 04 | [Development A — Technical Feasibility](docs/04-development-feasibility.md) |
-| 05 | [Development B — Detection Engineering](docs/05-development-detection-engineering.md) |
-| 06 | [Development C — Response Engineering](docs/06-development-response-engineering.md) |
-| 07 | [Delivery Phase](docs/07-delivery-phase.md) |
-| 08 | [Improvement Phase](docs/08-improvement-phase.md) — triggers, change classes, drift, deprecation |
+| 01 | [Background and Introduction](Background-and-Introduction.md) |
+| 02 | [Detection Engineering Lifecycle](Detection-Engineering-Lifecycle.md) |
+| 03 | [Planning Phase](planning-phase.md) — drivers, feasibility, anchored prioritization rubric |
+| 04 | [Development A — Technical Feasibility](development-phase-A.md) |
+| 05 | [Development B — Detection Engineering](development-phase-B.md) |
+| 06 | [Development C — Response Engineering](development-phase-C.md) |
+| 07 | [Delivery Phase](delivery-phase.md) |
+| 08 | [Improvement Phase](improvement-phase.md) — triggers, change classes, drift, deprecation |
 
 ### Engineering practice
 
-| | Chapter |
+| # | Chapter |
 | --- | --- |
-| 09 | [Detection Metrics](docs/09-metrics.md) — precision over FPR, health monitoring |
-| 11 | [Detection as Code](docs/11-detection-as-code.md) — repository layout, CI gates, deployment |
-| 12 | [Telemetry and Data](docs/12-telemetry-and-data.md) — data quality, normalization, ingest economics |
-| 13 | [Detection Robustness](docs/13-detection-robustness.md) — the robustness ladder, coverage weighting |
-| 14 | [Modern Attack Surfaces](docs/14-modern-attack-surfaces.md) — identity, cloud, SaaS, containers, CI/CD, OT, AI |
-| 15 | [Governance and Roles](docs/15-governance-and-roles.md) — RACI, intake, capacity, SLAs |
+| 09 | [Detection Metrics](detection-metrics.md) — precision over FPR, health monitoring |
+| 11 | [Detection as Code](detection-as-code.md) — repository layout, CI gates, deployment |
+| 12 | [Telemetry and Data](telemetry-and-data.md) — data quality, normalization, ingest economics |
+| 13 | [Detection Robustness](detection-robustness.md) — the robustness ladder, coverage weighting |
+| 14 | [Modern Attack Surfaces](modern-attack-surfaces.md) — identity, cloud, SaaS, containers, CI/CD, OT, AI |
+| 15 | [Governance and Roles](governance-and-roles.md) — RACI, intake, capacity, SLAs |
 
 ### Applying it
 
-| | Chapter |
+| # | Chapter |
 | --- | --- |
-| 16 | [Adoption Guide](docs/16-adoption-guide.md) |
-| 17 | [Advanced Best Practices](docs/17-best-practices.md) |
-| 18 | [Related Work](docs/18-related-work.md) |
-| 19 | [Worked Example](docs/19-worked-example.md) |
+| 16 | [Adoption Guide](from-theory-to-practice.md) |
+| 17 | [Advanced Best Practices](best-practices.md) |
+| 18 | [Related Work](related-work.md) |
+| 19 | [Worked Example](worked-example.md) |
 
 ---
 
@@ -146,7 +150,7 @@ That is the difference between a framework and a document.
 | [`schema/use-case.schema.json`](schema/use-case.schema.json) | The planning artifact contract |
 | [`reference-implementation/`](reference-implementation/) | A complete worked detection, validation tooling and tests |
 | [`assessment/`](assessment/) | Conformance instrument and scorer |
-| [`templates/`](templates/) | Use case request template and codified intake forms |
+| [`tools-and-templates/`](tools-and-templates/) | Use case request template and codified intake forms |
 
 ---
 
@@ -178,7 +182,7 @@ generating 400 false alerts a day against 50 million events reports an FPR of
 
 The framework now requires **Precision** ($TP/(TP+FP)$), which is read directly
 from case management data and reflects what analysts actually experience. See
-[Detection Metrics](docs/09-metrics.md).
+[Detection Metrics](detection-metrics.md).
 
 Other frameworks still publish the old formula. This one does not, and says why.
 
@@ -200,7 +204,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md), [ROADMAP.md](ROADMAP.md) and
 > limitation for something aiming to be a standard, and the path away from it —
 > additional maintainers from other organizations, then a neutral home — is
 > documented in [GOVERNANCE.md](GOVERNANCE.md). Maintainers from outside the
-> lead maintainer's employer are explicitly prioritised.
+> lead maintainer's employer are explicitly prioritized.
 
 ---
 
@@ -217,7 +221,7 @@ Details and attribution requirements: [LICENSING.md](LICENSING.md).
 
 ## Citing
 
-Machine-readable metadata: [CITATION.cff](CITATION.cff).
+Machine-readable metadata: [CITATION.cff](https://github.com/Ke0xes/Detection-Engineering-Framework/blob/main/CITATION.cff).
 
 > Hatode, K. et al. *Detection Engineering Framework*, version 3.0.0, 2026.
 > https://github.com/Ke0xes/Detection-Engineering-Framework
@@ -236,5 +240,5 @@ With thanks to:
 The ideas here are assembled from the work of the wider security community.
 The framework's contribution is the lifecycle, the conformance model, the
 schemas and the enforcement — not the underlying insights about adversary
-behaviour, which belong to MITRE, to SigmaHQ, and to the practitioners who
+behavior, which belong to MITRE, to SigmaHQ, and to the practitioners who
 publish their methods.

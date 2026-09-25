@@ -58,7 +58,7 @@ than a blog:
   or ownership. A diagram that restates the bullet list above it should be
   deleted.
 - **No hardcoded colours in Mermaid.** Diagrams must honour the reader's theme.
-- **en-US spelling.** The normalisation script enforces the common cases.
+- **en-US spelling.** The normalization script enforces the common cases.
 - **Terse.** If a paragraph restates the heading, cut it. The specification is
   terse by design; explanatory chapters may breathe, but not repeat.
 - **RFC 2119 keywords only in normative text**, and only in capitals.
@@ -92,7 +92,7 @@ Changing normative text is a bigger deal than changing prose.
   more; the tooling must stay trivial to adopt.
 - Comment only what the code cannot show. No commentary explaining the change
   to the reviewer — that belongs in the pull request description.
-- If you change validation behaviour, demonstrate it: show the check failing
+- If you change validation behavior, demonstrate it: show the check failing
   on a deliberately broken artifact.
 
 ## Review
@@ -113,8 +113,9 @@ or not at all.
 ## Attribution
 
 Contributors are listed in the repository's contributor graph. Substantial
-contributions are additionally acknowledged in [CITATION.cff](CITATION.cff) and
-in the README on request.
+contributions are additionally acknowledged in
+[CITATION.cff](https://github.com/Ke0xes/Detection-Engineering-Framework/blob/main/CITATION.cff)
+and in the README on request.
 
 ## Conduct
 

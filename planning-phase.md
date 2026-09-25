@@ -1,6 +1,6 @@
 # Planning Phase
 
-*[Framework index](index.md) · [Specification](00-specification.md) · [Conformance](10-conformance.md)*
+*[Framework index](README.md) · [Specification](specification.md) · [Conformance](conformance-model.md)*
 
 > This phase defines the **why**, **when**, **who** & **what** needs to be in place to commence the development of the use case.
 
@@ -198,7 +198,7 @@ The planning phase of detection engineering involves several crucial considerati
 ### Priority Management
 
 > **Normative status.** Requirement identifiers of the form `PLN-n` are testable
-> conformance criteria. See [Conformance Model](10-conformance.md).
+> conformance criteria. See [Conformance Model](conformance-model.md).
 
 Unanchored scoring is not reproducible. Asking two engineers to rate a request
 "0 to 10 for urgency" produces two different backlogs, because nothing defines
@@ -254,7 +254,7 @@ How exposed are we today?
 | 5 | No detection and no compensating preventive control |
 | 4 | No detection; a preventive control exists but is known to be bypassable |
 | 3 | Partial detection with known blind spots, or detection exists at a lower confidence tier |
-| 2 | Detection exists but is brittle (see [Detection Robustness](13-detection-robustness.md)) |
+| 2 | Detection exists but is brittle (see [Detection Robustness](detection-robustness.md)) |
 | 1 | Robust detection already in place; this request is an enhancement |
 
 #### Dimension 4: Build cost (C), 1-5
@@ -298,7 +298,7 @@ conversation.
 ad hoc at backlog grooming, so that prioritization decisions remain auditable.
 
 **PLN-3.** A request scoring `T = 5` MUST be routed to the expedited path
-defined in the [Adoption Guide](16-adoption-guide.md) rather than queued by
+defined in the [Adoption Guide](from-theory-to-practice.md) rather than queued by
 Priority Score. Active compromise does not wait for the backlog.
 
 **PLN-4.** Compliance-driven requests carry a hard deadline and MUST be

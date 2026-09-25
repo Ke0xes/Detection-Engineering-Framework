@@ -56,7 +56,7 @@ recorded publicly.
 ## Versioning
 
 The specification follows semantic versioning. See
-[`docs/00-specification.md`](docs/00-specification.md) section 15.
+[`specification.md`](specification.md) section 15.
 
 | Change | Increment |
 | --- | --- |
@@ -76,7 +76,7 @@ Maintainers are invited after sustained contribution. The criteria:
 - Willingness to say no to good ideas that make the framework harder to adopt
 
 **Maintainers from organizations other than the lead maintainer's employer are
-explicitly prioritised.** Vendor neutrality is not credible without it.
+explicitly prioritized.** Vendor neutrality is not credible without it.
 
 ## The path to neutral governance
 

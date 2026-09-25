@@ -14,10 +14,10 @@ conformance criteria and executable artifacts.
 
 ### Added — normative
 
-- **Specification** (`docs/00-specification.md`) with RFC 2119 language and
+- **Specification** (`specification.md`) with RFC 2119 language and
   stable requirement identifiers across ten domains: `GOV`, `PLN`, `TEL`,
   `FEA`, `DET`, `RSP`, `DAC`, `DEL`, `IMP`, `MET`.
-- **Conformance model** (`docs/10-conformance.md`) defining L1 Foundational,
+- **Conformance model** (`conformance-model.md`) defining L1 Foundational,
   L2 Managed and L3 Optimised, with assessment rules, evidence types and rules
   governing what may be claimed (`CNF-1` to `CNF-8`).
 - **Assessment instrument** (`assessment/`): a 95-requirement CSV and a scorer
@@ -36,7 +36,7 @@ conformance criteria and executable artifacts.
 
 - A complete worked detection (`DET-2026-0001`, OAuth consent abuse) carried
   from business driver to production metrics, with Sigma and KQL
-  implementations, five behavioural fixtures, a response playbook and a
+  implementations, five behavioral fixtures, a response playbook and a
   containment runbook.
 - `def_validate.py` — JSON Schema validation plus framework conformance checks
   that a schema cannot express (traceability resolution, expired exceptions,
@@ -47,23 +47,23 @@ conformance criteria and executable artifacts.
 
 ### Added — chapters
 
-- `09-metrics.md` — the required metric set, health monitoring, and the
+- `detection-metrics.md` — the required metric set, health monitoring, and the
   argument against the classical false positive rate.
-- `11-detection-as-code.md` — repository layout, CI gates, review checklist,
+- `detection-as-code.md` — repository layout, CI gates, review checklist,
   staged deployment, drift reconciliation.
-- `12-telemetry-and-data.md` — data quality dimensions, normalization, log
+- `telemetry-and-data.md` — data quality dimensions, normalization, log
   source maturity tiers, ingest economics.
-- `13-detection-robustness.md` — the five-tier robustness ladder, coverage
+- `detection-robustness.md` — the five-tier robustness ladder, coverage
   weighting, brittleness sources.
-- `14-modern-attack-surfaces.md` — identity, cloud control plane, SaaS,
+- `modern-attack-surfaces.md` — identity, cloud control plane, SaaS,
   containers, CI/CD, OT and AI/ML systems. Introduces MITRE ATLAS mapping.
-- `15-governance-and-roles.md` — roles, a full lifecycle RACI, intake workflow,
+- `governance-and-roles.md` — roles, a full lifecycle RACI, intake workflow,
   capacity model and service levels.
-- `18-related-work.md` — explicit positioning against ATT&CK, ATLAS, D3FEND,
+- `related-work.md` — explicit positioning against ATT&CK, ATLAS, D3FEND,
   Summiting the Pyramid, Sigma, DeTT&CT, Palantir ADS, maturity matrices and
   vendor detection-as-code guides. States three differentiators and six
   non-goals.
-- `19-worked-example.md` — the end-to-end narrative.
+- `worked-example.md` — the end-to-end narrative.
 
 ### Changed — corrections
 
@@ -90,28 +90,38 @@ conformance criteria and executable artifacts.
   "Detection Engineering Framework" had corrupted roughly eight sentences in
   the technical feasibility chapter. Repaired.
 - **Typography and style.** All emoji removed. Hardcoded Mermaid fill colours
-  removed so diagrams honour the reader's theme. Spelling normalised to en-US.
+  removed so diagrams honour the reader's theme. Spelling normalized to en-US.
   Heading hierarchy corrected. Several typos fixed (`th phases`, `taddition`,
-  `Feasibilty`, `Improvment`, `develped`, `Exception's Handling`).
+  `Feasibility`, `Improvement`, `developed`, `Exception Handling`).
 
 ### Changed — structure
 
-Documentation moved into a numbered `docs/` tree. Old paths will 404; the
-mapping is:
+**No published URL has changed.** Every chapter that existed in 2.0 keeps its
+exact filename and its position at the repository root, so existing links,
+bookmarks and search engine results continue to resolve.
 
-| 2.0 path | 3.0 path |
+New chapters were added alongside them using the same naming style:
+
+| New chapter | File |
 | --- | --- |
-| `Background-and-Introduction.md` | `docs/01-introduction.md` |
-| `Detection-Engineering-Lifecycle.md` | `docs/02-lifecycle.md` |
-| `planning-phase.md` | `docs/03-planning-phase.md` |
-| `development-phase-A.md` | `docs/04-development-feasibility.md` |
-| `development-phase-B.md` | `docs/05-development-detection-engineering.md` |
-| `development-phase-C.md` | `docs/06-development-response-engineering.md` |
-| `delivery-phase.md` | `docs/07-delivery-phase.md` |
-| `improvement-phase.md` | `docs/08-improvement-phase.md` |
-| `from-theory-to-practice.md` | `docs/16-adoption-guide.md` |
-| `best-practices.md` | `docs/17-best-practices.md` |
-| `tools-and-templates/` | `templates/` |
+| Specification | `specification.md` |
+| Conformance Model | `conformance-model.md` |
+| Detection Metrics | `detection-metrics.md` |
+| Detection as Code | `detection-as-code.md` |
+| Telemetry and Data | `telemetry-and-data.md` |
+| Detection Robustness | `detection-robustness.md` |
+| Modern Attack Surfaces | `modern-attack-surfaces.md` |
+| Governance and Roles | `governance-and-roles.md` |
+| Related Work | `related-work.md` |
+| Worked Example | `worked-example.md` |
+
+Chapter numbers used in cross-references (for example "chapter 13") are a
+logical reading index published in the README. They are deliberately not
+encoded in filenames, because renaming a published document to add a number
+would break every link pointing at it.
+
+New directories added: `schema/`, `reference-implementation/`, `assessment/`,
+`assets/`. The existing `tools-and-templates/` tree is unchanged.
 
 ### Changed — licensing
 

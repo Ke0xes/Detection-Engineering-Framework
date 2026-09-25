@@ -1,6 +1,6 @@
 # Delivery Phase
 
-*[Framework index](index.md) · [Specification](00-specification.md) · [Conformance](10-conformance.md)*
+*[Framework index](README.md) · [Specification](specification.md) · [Conformance](conformance-model.md)*
 
 ## SOC Handover
 
@@ -96,7 +96,7 @@ Both terms are read directly from case management data. Nothing is estimated.
 > event stream. Reporting it produces a flatteringly small number that is
 > unrelated to analyst experience. The full argument, worked examples, action
 > thresholds and the complete required metric set are defined in
-> [Detection Metrics](09-metrics.md).
+> [Detection Metrics](detection-metrics.md).
 
 Alert volume and the alert-to-incident ratio remain valid program-level
 measures and are defined alongside Precision in that chapter.
@@ -133,7 +133,7 @@ Here are a few key reasons why monitoring false negatives is important:
 
 Information on false-negatives, similar to precision, provides insight into the quality of the operational security monitoring rules. False-negatives occur when an actual incident has taken place that is within scope of one of the use cases, but was not detected by any operational monitoring detection mechanisms. This could be due to improper tuning of correlation rules, incorrect configuration of the correlation rules or simply because no detection mechanisms exists as the attack vector was either unforeseen or not implemented yet.
 
-False negatives MUST be reported as an enumerated list of identified detection gaps, each with an owner and a remediation date, and MUST NOT be reported as a bare count. A count implies the total is known; by definition it is not. The three legitimate sources of false-negative evidence are adversary emulation results, incident retrospectives and purple team exercises. See [Detection Metrics](09-metrics.md) for the full treatment.
+False negatives MUST be reported as an enumerated list of identified detection gaps, each with an owner and a remediation date, and MUST NOT be reported as a bare count. A count implies the total is known; by definition it is not. The three legitimate sources of false-negative evidence are adversary emulation results, incident retrospectives and purple team exercises. See [Detection Metrics](detection-metrics.md) for the full treatment.
 
 ## Use Case Cataloging
 

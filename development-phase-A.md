@@ -1,6 +1,6 @@
 # Development Phase A: Technical Feasibility
 
-*[Framework index](index.md) · [Specification](00-specification.md) · [Conformance](10-conformance.md)*
+*[Framework index](README.md) · [Specification](specification.md) · [Conformance](conformance-model.md)*
 
 > This phase builds the technical detection capabilities with parsing/testing criteria to detect the malicious behavior based on the data collected and associated response.
 

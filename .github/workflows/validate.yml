@@ -74,12 +74,15 @@ jobs:
         uses: DavidAnson/markdownlint-cli2-action@v19
         with:
           globs: |
-            docs/**/*.md
             *.md
             reference-implementation/**/*.md
-            templates/**/*.md
+            tools-and-templates/**/*.md
+            assessment/**/*.md
 
-      - name: Check links
+      - name: Check repository link integrity
+        run: python reference-implementation/tools/check_links.py
+
+      - name: Check external links
         uses: lycheeverse/lychee-action@v2
         with:
           args: >-
@@ -95,6 +98,9 @@ jobs:
   build-site:
     name: Build docs site
     runs-on: ubuntu-latest
+    env:
+      # mkdocs-same-dir prints an unrelated promotional banner without this.
+      DISABLE_MKDOCS_2_WARNING: "true"
     steps:
       - uses: actions/checkout@v4
 

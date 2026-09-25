@@ -1,6 +1,6 @@
 # Detection as Code
 
-*[Framework index](index.md) · [Specification](00-specification.md) · [Conformance](10-conformance.md)*
+*[Framework index](README.md) · [Specification](specification.md) · [Conformance](conformance-model.md)*
 
 > **Normative status.** This chapter is normative. Requirement identifiers of the
 > form `DAC-n` are testable conformance criteria.
@@ -216,4 +216,4 @@ A team that reaches "walk" has most of the benefit. The pipeline is the last
 
 ---
 
-*Next: [Telemetry and Data](12-telemetry-and-data.md) · Previous: [Conformance Model](10-conformance.md)*
+*Next: [Telemetry and Data](telemetry-and-data.md) · Previous: [Conformance Model](conformance-model.md)*

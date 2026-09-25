@@ -8,11 +8,11 @@ friction.
 
 | Path | Phase | Purpose |
 | --- | --- | --- |
-| [`use-case-requests/use-case-request-template.md`](use-case-requests/use-case-request-template.md) | Planning | Human-readable use case request |
-| [`use-case-requests/servicenow-use-case-request-form.txt`](use-case-requests/servicenow-use-case-request-form.txt) | Planning | ServiceNow catalog item definition |
-| [`use-case-requests/salesforce-use-case-request-form.txt`](use-case-requests/salesforce-use-case-request-form.txt) | Planning | Salesforce form definition |
-| [`use-case-requests/microsoft-forms-use-case-request-form.txt`](use-case-requests/microsoft-forms-use-case-request-form.txt) | Planning | Microsoft Forms question set |
-| [`use-case-requests/google-forms-use-case-request-form.txt`](use-case-requests/google-forms-use-case-request-form.txt) | Planning | Google Forms question set |
+| [`use-case-request-template.md`](templates/use-case-requests/use-case-request-template.md) | Planning | Human-readable use case request |
+| [`servicenow-use-case-request-form.txt`](templates/use-case-requests/servicenow-use-case-request-form.txt) | Planning | ServiceNow catalog item definition |
+| [`salesforce-use-case-request-form.txt`](templates/use-case-requests/salesforce-use-case-request-form.txt) | Planning | Salesforce form definition |
+| [`microsoft-forms-use-case-request-form.txt`](templates/use-case-requests/microsoft-forms-use-case-request-form.txt) | Planning | Microsoft Forms question set |
+| [`google-forms-use-case-request-form.txt`](templates/use-case-requests/google-forms-use-case-request-form.txt) | Planning | Google Forms question set |
 
 ## The templates you probably want instead
 
@@ -28,7 +28,7 @@ can.
 | Rule testing | [`fixtures/DET-2026-0001/`](../reference-implementation/fixtures/DET-2026-0001) and [`def_test.py`](../reference-implementation/tools/def_test.py) |
 | Response playbook | [`PB-0003-oauth-consent-abuse.md`](../reference-implementation/playbooks/PB-0003-oauth-consent-abuse.md) |
 | Runbook | [`RB-0007-revoke-service-principal.md`](../reference-implementation/playbooks/RB-0007-revoke-service-principal.md) |
-| Metrics and tracking | [`docs/09-metrics.md`](../docs/09-metrics.md) — definitions and thresholds, not a spreadsheet |
+| Metrics and tracking | [`detection-metrics.md`](../detection-metrics.md) — definitions and thresholds, not a spreadsheet |
 | Maturity assessment | [`assessment/`](../assessment/) |
 
 This is deliberate. A Markdown template that duplicates a schema will fall out
@@ -56,7 +56,7 @@ The fields most often omitted, and most often regretted:
 ## Prioritisation
 
 The request form should capture the five rubric dimensions from
-[the planning phase](../docs/03-planning-phase.md): threat relevance, asset
+[the planning phase](../planning-phase.md): threat relevance, asset
 criticality, coverage gap, build cost and maintenance burden.
 
 **Requesters should not score their own requests.** They supply the evidence;

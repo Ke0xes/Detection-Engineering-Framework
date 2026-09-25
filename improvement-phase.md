@@ -1,6 +1,6 @@
 # Improvement Phase
 
-*[Framework index](index.md) · [Specification](00-specification.md) · [Conformance](10-conformance.md)*
+*[Framework index](README.md) · [Specification](specification.md) · [Conformance](conformance-model.md)*
 
 > **Normative status.** This chapter is normative. Requirement identifiers of the
 > form `IMP-n` are testable conformance criteria.
@@ -145,14 +145,14 @@ A scheduled review is not a glance at the rule. **IMP-11.** A review MUST assess
 and record each of:
 
 1. **Relevance.** Is the threat still credible against this organization?
-   Re-score threat relevance using the [planning rubric](03-planning-phase.md).
+   Re-score threat relevance using the [planning rubric](planning-phase.md).
 2. **Efficacy.** Does the detection still fire on the technique? Evidence MUST
    be a validation test result, not an opinion.
 3. **Precision.** Is 30-day precision above threshold? See
-   [Detection Metrics](09-metrics.md).
+   [Detection Metrics](detection-metrics.md).
 4. **Robustness.** Has the detection drifted down the robustness ladder because
    of exceptions or environmental change? See
-   [Detection Robustness](13-detection-robustness.md).
+   [Detection Robustness](detection-robustness.md).
 5. **Telemetry.** Are all required log sources still live, complete and
    correctly parsed?
 6. **Response.** Is the linked playbook still accurate, and did analysts
@@ -212,7 +212,7 @@ The validation suite for each detection MUST contain at minimum:
 - One fixture per accepted exception, confirming the exception suppresses only
   what it claims to suppress.
 
-See [Detection as Code](11-detection-as-code.md) for the pipeline that enforces
+See [Detection as Code](detection-as-code.md) for the pipeline that enforces
 this automatically.
 
 ---
@@ -296,7 +296,7 @@ improves detections before anything goes wrong.
   re-examine every detection mapped to the affected techniques.
 - **Robustness promotion.** Work detections up the robustness ladder
   deliberately: convert an indicator match into a behavioral match. See
-  [Detection Robustness](13-detection-robustness.md).
+  [Detection Robustness](detection-robustness.md).
 - **Change advisory integration.** Subscribe detection engineering to the IT
   change advisory board. A firewall rule change, an operating system upgrade or
   an identity provider migration can invalidate detections silently.
@@ -309,4 +309,4 @@ the change lands in production.
 
 ---
 
-*Next: [Detection Metrics](09-metrics.md) · Previous: [Delivery Phase](07-delivery-phase.md)*
+*Next: [Detection Metrics](detection-metrics.md) · Previous: [Delivery Phase](delivery-phase.md)*

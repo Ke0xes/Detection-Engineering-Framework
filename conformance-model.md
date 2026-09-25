@@ -1,6 +1,6 @@
 # Conformance Model
 
-*[Framework index](index.md) · [Specification](00-specification.md)*
+*[Framework index](README.md) · [Specification](specification.md)*
 
 > **Normative status.** This chapter is normative.
 
@@ -217,4 +217,4 @@ must be redone.
 
 ---
 
-*Next: [Detection as Code](11-detection-as-code.md) · Previous: [Detection Metrics](09-metrics.md)*
+*Next: [Detection as Code](detection-as-code.md) · Previous: [Detection Metrics](detection-metrics.md)*

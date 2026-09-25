@@ -1,6 +1,6 @@
 # Governance and Roles
 
-*[Framework index](index.md) · [Specification](00-specification.md) · [Conformance](10-conformance.md)*
+*[Framework index](README.md) · [Specification](specification.md) · [Conformance](conformance-model.md)*
 
 > **Normative status.** This chapter is normative where requirement identifiers
 > appear.
@@ -213,4 +213,4 @@ leadership can act on.
 
 ---
 
-*Next: [Adoption Guide](16-adoption-guide.md) · Previous: [Modern Attack Surfaces](14-modern-attack-surfaces.md)*
+*Next: [Adoption Guide](from-theory-to-practice.md) · Previous: [Modern Attack Surfaces](modern-attack-surfaces.md)*

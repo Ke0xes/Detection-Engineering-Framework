@@ -1,6 +1,6 @@
 # Detection Engineering Framework Specification
 
-*[Framework index](index.md) · [Conformance](10-conformance.md)*
+*[Framework index](README.md) · [Conformance](conformance-model.md)*
 
 | | |
 | --- | --- |
@@ -39,21 +39,21 @@ identifier is never reused.
 
 | Prefix | Domain | Defined in |
 | --- | --- | --- |
-| `GOV` | Governance, roles and accountability | This document, [15](15-governance-and-roles.md) |
-| `PLN` | Planning and prioritization | [03](03-planning-phase.md) |
-| `TEL` | Telemetry and data | [12](12-telemetry-and-data.md) |
+| `GOV` | Governance, roles and accountability | This document, [15](governance-and-roles.md) |
+| `PLN` | Planning and prioritization | [03](planning-phase.md) |
+| `TEL` | Telemetry and data | [12](telemetry-and-data.md) |
 | `FEA` | Technical feasibility | This document |
-| `DET` | Detection engineering | This document, [13](13-detection-robustness.md) |
+| `DET` | Detection engineering | This document, [13](detection-robustness.md) |
 | `RSP` | Response engineering | This document |
-| `DAC` | Detection as code | [11](11-detection-as-code.md) |
+| `DAC` | Detection as code | [11](detection-as-code.md) |
 | `DEL` | Delivery | This document |
-| `IMP` | Improvement | [08](08-improvement-phase.md) |
-| `MET` | Metrics | [09](09-metrics.md) |
+| `IMP` | Improvement | [08](improvement-phase.md) |
+| `MET` | Metrics | [09](detection-metrics.md) |
 
 ### 1.3 Conformance
 
 Conformance is claimed at Level 1, 2 or 3 as defined in
-[Conformance Model](10-conformance.md). A conformance claim MUST state the
+[Conformance Model](conformance-model.md). A conformance claim MUST state the
 level, the specification version, the assessment date and the scope of the
 assessed environment.
 
@@ -75,7 +75,7 @@ level and version is meaningless and MUST NOT be made.
 | **Alert** | A signal that is placed in an analyst queue for disposition. |
 | **Detection debt** | The state of a detection that has passed its review date. |
 | **Detection drift** | Degradation in a detection's efficacy caused by change in telemetry, environment or adversary tradecraft, without any change to the detection itself. |
-| **Robustness tier** | A detection's resistance to adversary evasion, per [13](13-detection-robustness.md). |
+| **Robustness tier** | A detection's resistance to adversary evasion, per [13](detection-robustness.md). |
 | **Exception** | A scoped, time-bound suppression applied to a detection. |
 | **Detection council** | The cross-functional body accountable for detection strategy, prioritization and deprecation decisions. |
 
@@ -120,7 +120,7 @@ program-defined threshold.
 **GOV-8.** Roles and responsibilities MUST be documented as a RACI covering at
 minimum: use case intake, feasibility assessment, detection build, peer review,
 deployment approval, tuning, and deprecation. See
-[Governance and Roles](15-governance-and-roles.md).
+[Governance and Roles](governance-and-roles.md).
 
 ### 3.3 Documentation as artifact
 
@@ -141,7 +141,7 @@ diffed, reviewed or restored.
 
 ## 4. Planning phase
 
-**PLN-1** to **PLN-5** are defined in [Planning Phase](03-planning-phase.md).
+**PLN-1** to **PLN-5** are defined in [Planning Phase](planning-phase.md).
 Summarised:
 
 | ID | Requirement |
@@ -280,7 +280,7 @@ that trigger them.
 ## 8. Detection as code
 
 **DAC-1** to **DAC-8** are defined in
-[Detection as Code](11-detection-as-code.md). Summarised:
+[Detection as Code](detection-as-code.md). Summarised:
 
 | ID | Requirement |
 | --- | --- |
@@ -327,13 +327,13 @@ recorded.
 ## 10. Improvement phase
 
 **IMP-1** to **IMP-20** are defined in
-[Improvement Phase](08-improvement-phase.md).
+[Improvement Phase](improvement-phase.md).
 
 ---
 
 ## 11. Metrics
 
-**MET-1** to **MET-6** are defined in [Detection Metrics](09-metrics.md).
+**MET-1** to **MET-6** are defined in [Detection Metrics](detection-metrics.md).
 
 Of these, two are the most commonly breached and bear repeating here:
 
@@ -350,7 +350,7 @@ gaps with owners and dates, never as a bare count.
 ## 12. Telemetry and data
 
 **TEL-1** to **TEL-7** are defined in
-[Telemetry and Data](12-telemetry-and-data.md).
+[Telemetry and Data](telemetry-and-data.md).
 
 ---
 
@@ -418,4 +418,4 @@ remain interpretable.
 
 ---
 
-*Next: [Background and Introduction](01-introduction.md) · [Conformance Model](10-conformance.md)*
+*Next: [Background and Introduction](Background-and-Introduction.md) · [Conformance Model](conformance-model.md)*

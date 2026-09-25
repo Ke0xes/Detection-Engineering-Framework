@@ -10,7 +10,7 @@ Security issues that are in scope:
 
 | Category | Example |
 | --- | --- |
-| **Tooling vulnerabilities** | Code execution or path traversal in `def_validate.py`, `def_test.py`, `score.py` or `normalise-docs.ps1` |
+| **Tooling vulnerabilities** | Code execution or path traversal in `def_validate.py`, `def_test.py`, `score.py` or `normalize-docs.ps1` |
 | **Supply chain** | A compromised or malicious dependency; an unpinned action in a workflow |
 | **CI/CD** | A workflow configuration permitting privilege escalation or secret exfiltration |
 | **Harmful guidance** | Documented procedures that would materially weaken a reader's security posture if followed |
@@ -19,7 +19,7 @@ Security issues that are in scope:
 Out of scope:
 
 - Detection rules being evadable. All detections are evadable; that is why
-  [chapter 13](docs/13-detection-robustness.md) exists. Open a normal issue.
+  [chapter 13](detection-robustness.md) exists. Open a normal issue.
 - Disagreement with a normative requirement. Open a *Specification change* issue.
 
 ## Reporting

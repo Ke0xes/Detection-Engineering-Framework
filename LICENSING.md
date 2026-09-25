@@ -32,7 +32,8 @@ When citing the prose, the required attribution is:
 > https://github.com/Ke0xes/Detection-Engineering-Framework
 > Licensed under CC BY 4.0.
 
-A machine-readable citation is provided in [CITATION.cff](CITATION.cff).
+A machine-readable citation is provided in
+[CITATION.cff](https://github.com/Ke0xes/Detection-Engineering-Framework/blob/main/CITATION.cff).
 
 ## Contributions
 

@@ -1,6 +1,6 @@
 # Detection Robustness
 
-*[Framework index](index.md) · [Specification](00-specification.md) · [Conformance](10-conformance.md)*
+*[Framework index](README.md) · [Specification](specification.md) · [Conformance](conformance-model.md)*
 
 > **Normative status.** This chapter is normative where requirement identifiers
 > appear.
@@ -159,4 +159,4 @@ credential access via legitimate dumping tooling.
 
 ---
 
-*Next: [Modern Attack Surfaces](14-modern-attack-surfaces.md) · Previous: [Telemetry and Data](12-telemetry-and-data.md)*
+*Next: [Modern Attack Surfaces](modern-attack-surfaces.md) · Previous: [Telemetry and Data](telemetry-and-data.md)*

@@ -1,6 +1,6 @@
 # Modern Attack Surfaces
 
-*[Framework index](index.md) · [Specification](00-specification.md) · [Conformance](10-conformance.md)*
+*[Framework index](README.md) · [Specification](specification.md) · [Conformance](conformance-model.md)*
 
 The lifecycle in this framework is surface-independent. The *assumptions* most
 detection programs carry are not: they were formed when the estate was Windows
@@ -29,7 +29,7 @@ malware executes and no endpoint is compromised.
 
 | Surface | Why |
 | --- | --- |
-| OAuth consent and permission grants | Persistent delegated access that survives credential rotation. See the [worked example](19-worked-example.md) |
+| OAuth consent and permission grants | Persistent delegated access that survives credential rotation. See the [worked example](worked-example.md) |
 | Authentication method registration | Adding a method is the quietest persistence mechanism in most tenants |
 | Conditional access policy modification | Disabling a control is a precondition to using it |
 | Privileged role assignment and eligible-role activation | Privilege escalation in a cloud directory |
@@ -39,7 +39,7 @@ malware executes and no endpoint is compromised.
 
 ### Framework implications
 
-- Asset criticality in the [planning rubric](03-planning-phase.md) applies to
+- Asset criticality in the [planning rubric](planning-phase.md) applies to
   *identities*, not only systems. A privileged identity is a tier 1 asset.
 - Response playbooks MUST include token revocation explicitly. Consent removal
   or password reset alone does not end access, and this step is the one most
@@ -144,7 +144,7 @@ trusted by everything downstream.
 | Branch protection modification | Disabling review is the precondition to injecting code |
 
 **Framework implication.** The detection repository described in
-[Detection as Code](11-detection-as-code.md) is itself in this category. A
+[Detection as Code](detection-as-code.md) is itself in this category. A
 program that automates detection deployment has created a new high-value target
 and MUST monitor it. Apply the framework to itself.
 
@@ -228,4 +228,4 @@ a review date.
 
 ---
 
-*Next: [Governance and Roles](15-governance-and-roles.md) · Previous: [Detection Robustness](13-detection-robustness.md)*
+*Next: [Governance and Roles](governance-and-roles.md) · Previous: [Detection Robustness](detection-robustness.md)*

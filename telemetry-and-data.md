@@ -1,6 +1,6 @@
 # Telemetry and Data
 
-*[Framework index](index.md) · [Specification](00-specification.md) · [Conformance](10-conformance.md)*
+*[Framework index](README.md) · [Specification](specification.md) · [Conformance](conformance-model.md)*
 
 > **Normative status.** This chapter is normative. Requirement identifiers of the
 > form `TEL-n` are testable conformance criteria.
@@ -158,4 +158,4 @@ fund the metadata discipline the framework requires.
 
 ---
 
-*Next: [Detection Robustness](13-detection-robustness.md) · Previous: [Detection as Code](11-detection-as-code.md)*
+*Next: [Detection Robustness](detection-robustness.md) · Previous: [Detection as Code](detection-as-code.md)*

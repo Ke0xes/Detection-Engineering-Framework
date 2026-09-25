@@ -1,6 +1,6 @@
 # Development Phase B: Detection Code Engineering
 
-*[Framework index](index.md) · [Specification](00-specification.md) · [Conformance](10-conformance.md)*
+*[Framework index](README.md) · [Specification](specification.md) · [Conformance](conformance-model.md)*
 
 ## Development Code Engineering and Testing
 

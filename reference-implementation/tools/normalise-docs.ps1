@@ -4,11 +4,13 @@
 
 [CmdletBinding()]
 param(
-    [string[]] $Path = @('docs', 'templates'),
+    [string[]] $Path = @('.', 'reference-implementation', 'tools-and-templates', 'assessment'),
     [switch]   $WhatIfOnly
 )
 
 $ErrorActionPreference = 'Stop'
+
+$excludedDirs = @('.venv', 'venv', 'site', 'node_modules', '.git')
 
 $emojiChar = '(?:[\uD800-\uDBFF][\uDC00-\uDFFF]|[\u2300-\u23FF\u2460-\u24FF\u25A0-\u25FF\u2600-\u27BF\u2B00-\u2BFF\u3030\u303D\uFE0F\u200D\u20E3])'
 $emojiRun  = "(?:$emojiChar)+ ?"
@@ -141,9 +143,17 @@ function Convert-MarkdownFile {
 }
 
 $changed = 0
+$seen = New-Object System.Collections.Generic.HashSet[string]
 foreach ($p in $Path) {
     if (-not (Test-Path $p)) { continue }
-    Get-ChildItem -Path $p -Recurse -Filter *.md -File | ForEach-Object {
+    $recurse = ($p -ne '.')
+    $files = if ($recurse) { Get-ChildItem -Path $p -Recurse -Filter *.md -File }
+             else          { Get-ChildItem -Path $p -Filter *.md -File }
+    $files | Where-Object {
+        $rel = $_.FullName.Replace($PWD.Path + [IO.Path]::DirectorySeparatorChar, '')
+        -not ($excludedDirs | Where-Object { $rel -like "$_$([IO.Path]::DirectorySeparatorChar)*" })
+    } | ForEach-Object {
+        if (-not $seen.Add($_.FullName)) { return }
         if (Convert-MarkdownFile -File $_.FullName) {
             $changed++
             Write-Host "normalised  $($_.FullName.Replace($PWD.Path + [IO.Path]::DirectorySeparatorChar, ''))"

@@ -1,6 +1,6 @@
 # Worked Example: End to End
 
-*[Framework index](index.md) · [Specification](00-specification.md) · [Conformance](10-conformance.md)*
+*[Framework index](README.md) · [Specification](specification.md) · [Conformance](conformance-model.md)*
 
 This chapter carries a single use case through every phase of the framework, so
 that the abstractions have somewhere to land. Every artifact referenced here
@@ -41,7 +41,7 @@ Recording that boundary is what prevents a scope argument at handover.
 
 ## Stage 2 — Prioritization
 
-Scored against the anchored rubric in [chapter 3](03-planning-phase.md):
+Scored against the anchored rubric in [chapter 3](planning-phase.md):
 
 | Dimension | Score | Anchor that applied |
 | --- | --- | --- |
@@ -121,7 +121,7 @@ is a decision rather than an omission.
 ### Robustness
 
 Declared `behavior`. Apply the honesty test from
-[chapter 13](13-detection-robustness.md):
+[chapter 13](detection-robustness.md):
 
 > What is the smallest change an adversary could make that stops this firing
 > while the technique still works?
@@ -277,4 +277,4 @@ Honesty about the limits:
 
 ---
 
-*Previous: [Related Work](18-related-work.md) · [Framework index](index.md)*
+*Previous: [Related Work](related-work.md) · [Framework index](README.md)*

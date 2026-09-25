@@ -9,7 +9,7 @@ participating should be able to do so without personal hostility.
 We commit to making participation harassment-free for everyone, regardless of
 experience level, background, identity or employer.
 
-## Expected behaviour
+## Expected behavior
 
 - **Argue with the idea.** "This requirement is unachievable for a three-person
   team, here is why" is exactly the contribution this project needs.
@@ -21,7 +21,7 @@ experience level, background, identity or employer.
 - **Respect vendor neutrality.** Discuss platform capabilities factually.
   Promotional content is not a contribution.
 
-## Unacceptable behaviour
+## Unacceptable behavior
 
 - Personal attacks, insults or derogatory comments
 - Harassment, public or private
@@ -37,13 +37,13 @@ when representing the project publicly.
 
 ## Enforcement
 
-Report unacceptable behaviour to the lead maintainer via the contact route in
+Report unacceptable behavior to the lead maintainer via the contact route in
 [SECURITY.md](SECURITY.md). Reports are handled confidentially.
 
 Maintainers will respond proportionately:
 
-1. **Correction.** A private note explaining why the behaviour was inappropriate.
-2. **Warning.** A formal warning with consequences for continued behaviour.
+1. **Correction.** A private note explaining why the behavior was inappropriate.
+2. **Warning.** A formal warning with consequences for continued behavior.
 3. **Temporary ban.** From project spaces for a specified period.
 4. **Permanent ban.** For sustained or severe violations.
 

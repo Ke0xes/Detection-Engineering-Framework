@@ -1,6 +1,6 @@
 # Adoption Guide: From Theory to Practice
 
-*[Framework index](index.md) · [Specification](00-specification.md) · [Conformance](10-conformance.md)*
+*[Framework index](README.md) · [Specification](specification.md) · [Conformance](conformance-model.md)*
 
 > **TLDR**: The Detection Engineering Framework provides excellent structure, but real-world implementation requires careful adaptation to avoid rigidity, resource constraints, and operational blind spots.
 

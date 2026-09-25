@@ -92,11 +92,11 @@ criteria, and a sampling approach for large catalogs.
 The framework is written from the perspective of a single detection. The
 genuinely hard problems in mature programs are catalog-scale: deduplication,
 coverage overlap, correlated failure across detections sharing a log source,
-and capacity modelling against a backlog. This deserves its own chapter.
+and capacity modeling against a backlog. This deserves its own chapter.
 
 ### AI/ML chapter maturity
 
-[Chapter 14](docs/14-modern-attack-surfaces.md) treats AI systems briefly and
+[Chapter 14](modern-attack-surfaces.md) treats AI systems briefly and
 will date faster than anything else in the framework. As ATLAS matures and
 agent telemetry standards emerge, this should become a full chapter.
 
@@ -106,7 +106,7 @@ agent telemetry standards emerge, this should become a full chapter.
 
 | Not planned | Why |
 | --- | --- |
-| A detection content library | Detections are environment-specific. See [Related Work](docs/18-related-work.md) |
+| A detection content library | Detections are environment-specific. See [Related Work](related-work.md) |
 | A rule language | Sigma exists |
 | A certification scheme | Requires a neutral body the project does not have |
 | A hosted assessment service | Out of scope for a specification project |
