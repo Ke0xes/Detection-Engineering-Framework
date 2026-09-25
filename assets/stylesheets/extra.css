@@ -1,0 +1,47 @@
+/* Dark scheme mapped from the Cisco palette in SOC Service Design V0.0.8 styles.css. */
+[data-md-color-scheme="slate"] {
+    --md-hue: 214;
+
+    /* Surfaces */
+    --md-default-bg-color: #0a1626;
+    --md-code-bg-color: #10233c;
+    --md-admonition-bg-color: #10233c;
+    --md-footer-bg-color: #07182D;
+    --md-footer-bg-color--dark: #0a1626;
+
+    /* Text */
+    --md-default-fg-color: #e9eef5;
+    --md-default-fg-color--light: #b9c6d8;
+    --md-default-fg-color--lighter: #8a99b0;
+    --md-default-fg-color--lightest: #274063;
+    --md-code-fg-color: #e9eef5;
+    --md-typeset-color: #e9eef5;
+
+    /* Header and navigation bar: Cisco midnight with white text */
+    --md-primary-fg-color: #07182D;
+    --md-primary-fg-color--light: #10233c;
+    --md-primary-fg-color--dark: #07182D;
+    --md-primary-bg-color: #FFFFFF;
+    --md-primary-bg-color--light: #B4B9C0;
+
+    /* Accent: Cisco blue, with midnight text on accent fills */
+    --md-accent-fg-color: #02C8FF;
+    --md-accent-fg-color--transparent: rgba(2, 200, 255, .08);
+    --md-accent-bg-color: #07182D;
+    --md-accent-bg-color--light: rgba(7, 24, 45, .7);
+    --md-typeset-a-color: #02C8FF;
+
+    /* Lines, tables and highlights */
+    --md-typeset-table-color: #274063;
+    --md-typeset-mark-color: rgba(2, 200, 255, .28);
+
+    /* Elevation */
+    --md-shadow-z1: 0 1px 2px rgba(0, 0, 0, .4), 0 6px 16px rgba(0, 0, 0, .45);
+    --md-shadow-z2: 0 1px 2px rgba(0, 0, 0, .4), 0 6px 16px rgba(0, 0, 0, .45);
+    --md-shadow-z3: 0 12px 34px rgba(0, 0, 0, .6);
+}
+
+/* Previous/next links written for GitHub readers; the site footer shows the same links. */
+.journey-footer {
+    display: none;
+}

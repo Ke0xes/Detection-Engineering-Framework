@@ -1,59 +1,30 @@
 # Detection as Code
 
-*[Framework index](README.md) · [Specification](specification.md) · [Conformance](conformance-model.md)*
+<!-- journey:where -->
+*Walk the lifecycle › Development B: Detection engineering › Going deeper*
+<!-- /journey:where -->
 
-> **Normative status.** This chapter is normative. Requirement identifiers of the
-> form `DAC-n` are testable conformance criteria.
+A detection is a production security control: changing one changes what the
+organization can see. In many programs, however, a detection can be edited
+directly in a console by one person, with no review, no test, no record of its
+previous state and no way to restore it. Few organizations would accept that
+for a firewall rule.
 
-Detection as code is not "we keep our rules in Git." It is the application of
-software engineering controls to detection content: version control, peer
-review, automated testing, and deployment from a reviewed source of truth.
+Detection as code applies software engineering controls to detection content:
+version control, peer review, automated testing, and deployment from a reviewed
+source. Keeping rules in a Git repository is the starting point rather than the
+whole practice. This deep dive describes the repository layout the framework's
+tools assume, the checks that gate each change, the review checklist, staged
+deployment, and how to detect changes made outside the process.
 
-A working reference implementation of everything in this chapter is in
-[`reference-implementation/`](https://github.com/Ke0xes/Detection-Engineering-Framework/tree/main/reference-implementation).
-It runs.
+> **Running example.** Every file for the consent phishing detection, from its
+> original request to its test data and playbook, lives in one repository.
+> Each proposed change runs the same validation and test scripts before it can
+> be merged. See
+> [stage 8 of the example](worked-example.md#stage-8-automated-checks).
 
----
-
-## Why it matters
-
-A detection is a production control. Changing one changes what the organization
-can see. Yet in most programs a detection can be edited directly in a console by
-one person, with no review, no test, no record of what it looked like before,
-and no way to restore it.
-
-No competent organization would accept that for a firewall rule. Detection
-content is treated more casually largely because the tooling made it easy to be
-casual.
-
----
-
-## Requirements
-
-**DAC-1.** Detection logic and detection metadata MUST be version-controlled.
-
-**DAC-2.** Changes MUST be made through pull requests. Direct commits to the
-default branch MUST be prevented by branch protection.
-
-**DAC-3.** At least one reviewer other than the author MUST approve. High
-severity detections SHOULD require two.
-
-**DAC-4.** Automated validation MUST gate merge. At minimum: schema
-conformance, the framework conformance checks, and syntax validation for each
-target platform.
-
-**DAC-5.** Fixture tests MUST gate merge. A change that breaks a detection's
-true-positive fixture MUST NOT be mergeable.
-
-**DAC-6.** Deployment to production MUST be automated from the reviewed source.
-Manual copy-paste into a console MUST NOT be the deployment mechanism.
-
-**DAC-7.** Divergence between the repository and the production platform MUST
-be detected and reconciled on a defined cadence. Out-of-band changes happen;
-undetected out-of-band changes are what make the repository untrustworthy.
-
-**DAC-8.** Rollback MUST be achievable by reverting a commit and re-running the
-deployment, without manual reconstruction of prior state.
+A working [reference implementation](https://github.com/Ke0xes/Detection-Engineering-Framework/tree/main/reference-implementation)
+of everything described here is included in the repository.
 
 ---
 
@@ -208,7 +179,7 @@ Do not build this on day one. The order that works:
 | Stage | Do this | Do not yet |
 | --- | --- | --- |
 | **Crawl** | Put metadata and logic in Git. Review changes by pull request, even manually. | Build a pipeline |
-| **Walk** | Add schema validation and conformance checks in CI. Add fixtures for your ten noisiest detections. | Automate deployment |
+| **Walk** | Add schema validation and conformance checks in CI. Add fixtures for the ten noisiest detections. | Automate deployment |
 | **Run** | Automate deployment, add drift reconciliation, add scheduled adversary emulation. | — |
 
 A team that reaches "walk" has most of the benefit. The pipeline is the last
@@ -216,4 +187,59 @@ A team that reaches "walk" has most of the benefit. The pipeline is the last
 
 ---
 
-*Next: [Telemetry and Data](telemetry-and-data.md) · Previous: [Conformance Model](conformance-model.md)*
+## In brief
+
+- Detection logic and its metadata are version-controlled together and changed
+  only through reviewed pull requests.
+- Automated checks gate every change: schema validation, framework conformance
+  checks, and tests against data the detection must and must not match.
+- Deployment is automated from the reviewed source, staged, and reversible by
+  reverting a commit.
+- A scheduled job compares the platform with the repository, so that changes
+  made outside the process are found.
+- Most of the benefit comes from version control and validation. Automated
+  deployment can follow later.
+
+## Requirements in this chapter
+
+**DAC-1.** Detection logic and detection metadata MUST be version-controlled.
+
+**DAC-2.** Changes MUST be made through pull requests. Direct commits to the
+default branch MUST be prevented by branch protection.
+
+**DAC-3.** At least one reviewer other than the author MUST approve. High
+severity detections SHOULD require two.
+
+**DAC-4.** Automated validation MUST gate merge. At minimum: schema
+conformance, the framework conformance checks, and syntax validation for each
+target platform.
+
+**DAC-5.** Fixture tests MUST gate merge. A change that breaks a detection's
+true-positive fixture MUST NOT be mergeable.
+
+**DAC-6.** Deployment to production MUST be automated from the reviewed source.
+Manual copy-paste into a console MUST NOT be the deployment mechanism.
+
+**DAC-7.** Divergence between the repository and the production platform MUST
+be detected and reconciled on a defined cadence. Out-of-band changes happen;
+undetected out-of-band changes are what make the repository untrustworthy.
+
+**DAC-8.** Rollback MUST be achievable by reverting a commit and re-running the
+deployment, without manual reconstruction of prior state.
+
+## What comes next
+
+The development phase has one stage left.
+[The response engineering phase](development-phase-C.md) designs the playbooks,
+runbooks and dashboards that turn an alert into action, and tests them as
+thoroughly as the detection itself.
+
+<!-- journey:next -->
+<div class="journey-footer" markdown>
+
+---
+
+**Previous:** [Going deeper: Detection robustness](detection-robustness.md) · **Next:** [The response engineering phase](development-phase-C.md)
+
+</div>
+<!-- /journey:next -->

@@ -11,7 +11,7 @@
     "MD024": { "siblings_only": true },
 
     "MD033": {
-      "allowed_elements": ["br", "img", "a", "details", "summary", "strong", "sub", "sup", "kbd"]
+      "allowed_elements": ["br", "img", "a", "details", "summary", "strong", "sub", "sup", "kbd", "div"]
     },
 
     // Bare URLs appear inside example log fixtures and reference lists.

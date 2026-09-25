@@ -8,7 +8,7 @@ repo_name: Ke0xes/Detection-Engineering-Framework
 edit_uri: edit/main/
 
 copyright: >
-  Licensed under Apache-2.0 &middot; Detection Engineering Framework v2.1.0
+  Licensed under Apache-2.0 &middot; Detection Engineering Framework v2.1.1
 
 # Chapters live at the repository root so that every URL published before v2.1
 # still resolves. mkdocs-same-dir permits docs_dir and site_dir to coexist.
@@ -31,6 +31,8 @@ exclude_docs: |
   assessment/
   schema/
   reference-implementation/
+  skills/*/SKILL.md
+  skills/*/references/
   CITATION.cff
   requirements-docs.txt
 
@@ -57,40 +59,50 @@ theme:
         name: Switch to dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
+      primary: custom
+      accent: custom
       toggle:
         icon: material/weather-sunny
         name: Switch to light mode
 
+# The order below is the reading path. Chapter "where you are" lines and
+# previous/next links are generated from it by reading_order.py.
 nav:
-  - Home: README.md
-  - Normative core:
-      - Specification: specification.md
-      - Conformance Model: conformance-model.md
-  - Lifecycle:
-      - Background and Introduction: Background-and-Introduction.md
-      - Detection Engineering Lifecycle: Detection-Engineering-Lifecycle.md
-      - Planning Phase: planning-phase.md
-      - Development A - Technical Feasibility: development-phase-A.md
-      - Development B - Detection Engineering: development-phase-B.md
-      - Development C - Response Engineering: development-phase-C.md
-      - Delivery Phase: delivery-phase.md
-      - Improvement Phase: improvement-phase.md
-  - Engineering practice:
-      - Detection Metrics: detection-metrics.md
-      - Detection as Code: detection-as-code.md
-      - Telemetry and Data: telemetry-and-data.md
-      - Detection Robustness: detection-robustness.md
-      - Modern Attack Surfaces: modern-attack-surfaces.md
-      - Governance and Roles: governance-and-roles.md
-  - Applying it:
-      - Adoption Guide: from-theory-to-practice.md
-      - Advanced Best Practices: best-practices.md
-      - Related Work: related-work.md
-      - Worked Example: worked-example.md
-  - Templates:
-      - Overview: tools-and-templates/README.md
-      - Use case requests: tools-and-templates/templates/use-case-requests/README.md
+  - Understand the framework:
+      - Welcome: README.md
+      - Why a framework is needed: Background-and-Introduction.md
+      - The lifecycle at a glance: Detection-Engineering-Lifecycle.md
+      - "A detection's journey": worked-example.md
+  - Walk the lifecycle:
+      - Planning:
+          - The planning phase: planning-phase.md
+          - "Going deeper: Governance and roles": governance-and-roles.md
+      - "Development A: Technical feasibility":
+          - The technical feasibility phase: development-phase-A.md
+          - "Going deeper: Telemetry and data": telemetry-and-data.md
+          - "Going deeper: Modern attack surfaces": modern-attack-surfaces.md
+      - "Development B: Detection engineering":
+          - The detection engineering phase: development-phase-B.md
+          - "Going deeper: Detection robustness": detection-robustness.md
+          - "Going deeper: Detection as code": detection-as-code.md
+      - "Development C: Response engineering":
+          - The response engineering phase: development-phase-C.md
+      - Delivery:
+          - The delivery phase: delivery-phase.md
+      - Improvement:
+          - The improvement phase: improvement-phase.md
+          - "Going deeper: Detection metrics": detection-metrics.md
+  - Put it into practice:
+      - Adopting the framework: from-theory-to-practice.md
+      - Advanced practices: best-practices.md
+      - Assessing a program: conformance-model.md
+      - Tools and templates: tools-and-templates/README.md
+      - Use case request forms: tools-and-templates/templates/use-case-requests/README.md
       - Use case request template: tools-and-templates/templates/use-case-requests/use-case-request-template.md
+      - AI assistant skill: skills/senior-detection-engineer/README.md
+  - Reference:
+      - The specification: specification.md
+      - Related work: related-work.md
   - Project:
       - Contributing: CONTRIBUTING.md
       - Governance: GOVERNANCE.md
@@ -132,6 +144,7 @@ extra_javascript:
 
 extra_css:
   - https://unpkg.com/katex@0/dist/katex.min.css
+  - assets/stylesheets/extra.css
 
 # Chapters deliberately link to schemas, fixtures and tooling that are not part
 # of the rendered site. Repository-wide link integrity is enforced separately

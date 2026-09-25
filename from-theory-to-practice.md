@@ -1,46 +1,42 @@
-# Adoption Guide: From Theory to Practice
+# Adopting the Framework
 
-*[Framework index](README.md) · [Specification](specification.md) · [Conformance](conformance-model.md)*
+<!-- journey:where -->
+*Put it into practice › Adopting the framework*
+<!-- /journey:where -->
 
-> **TLDR**: The Detection Engineering Framework provides excellent structure, but real-world implementation requires careful adaptation to avoid rigidity, resource constraints, and operational blind spots.
+The lifecycle chapters describe the framework as it works in a well-resourced
+program. Most organizations do not start there. Teams are small, data is
+incomplete, tooling budgets are limited, and active threats do not wait for a
+planning cycle to finish. A framework adopted without regard to these
+conditions can slow a team down rather than help it.
 
-The Detection Engineering Framework provides a commendable and structured blueprint for maturing a security organization's detection capabilities. It champions a shift from ad-hoc alerting to a repeatable, engineering-driven lifecycle, incorporating industry best practices like "Detection-as-Code" and threat-informed defense.
-
-However, any theoretical framework must withstand the friction of reality. When implemented without critical foresight, this framework can inadvertently introduce rigidity, create dependencies on non-existent resources, and fail to address the complex human and technical dynamics of a security organization.
-
-Here are some of my own candid analysis of the framework's potential flaws and offers concrete, actionable strategies to mitigate them. The goal is not to discredit the framework, but to arm implementers with the awareness needed to adapt it successfully to their unique environment.
+This chapter examines four ways adoption commonly goes wrong and how to avoid
+each: treating the process as rigid, assuming a level of maturity the
+organization does not yet have, neglecting the improvement phase, and relying
+on manual testing. For each it describes the problem, its consequence, and
+practical mitigations, including an expedited path for active threats and a
+staged, crawl-walk-run approach to building capability.
 
 ---
 
 ## Issue 1: The Trap of Rigidity and "Analysis Paralysis"
 
-The framework's greatest strength—its structured, multi-phase process—is also its most significant potential weakness. A rigid adherence to every step for every detection can cripple a team's ability to respond with agility.
+The lifecycle's structure is what makes detections consistent and defensible.
+Applied rigidly to every detection, the same structure prevents a team from
+responding quickly.
 
 ### The Problem
 
-When faced with a zero-day exploit or a rapidly unfolding threat, a team cannot afford a multi-week planning and development cycle. The process becomes a bureaucratic hurdle rather than an enabling structure. This leads to "Analysis Paralysis," where the pursuit of a perfect, fully documented detection prevents the deployment of a "good enough" detection that is desperately needed *now*.
+A zero-day exploit or a fast-moving campaign cannot wait for a planning and
+development cycle measured in weeks. Applied without exception, the process
+becomes an obstacle rather than a support, and the pursuit of a complete,
+fully documented detection delays the simple one that is needed now.
 
 ### The Consequence
 
-The SOC is left blind to an active threat while the engineering team is stuck in procedural compliance. The Mean Time to Detect (MTTD) for novel threats skyrockets.
-
-```mermaid
-flowchart TD
-    A[Zero-Day Threat Detected] --> B{Follow Full Framework?}
-    B -->|Yes| C[Start Planning Phase]
-    C --> D[Requirements Gathering]
-    D --> E[Development Phase]
-    E --> F[Testing Phase]
-    F --> G[Deployment]
-    G --> H[3-4 Weeks Later...]
-    H --> I[Threat Already Caused Damage]
-    
-    B -->|No| J[Emergency Path]
-    J --> K[Deploy MVD]
-    K --> L[Immediate Protection]
-    
-    
-```
+The SOC cannot see an active threat while the engineering team completes the
+procedure. Time to detect novel threats grows at exactly the moment it matters
+most.
 
 ### Mitigation Strategies
 
@@ -50,228 +46,220 @@ flowchart TD
 graph LR
     A[Threat Intelligence] --> B{Threat Type?}
     B -->|Proactive/Strategic| C[Standard Path]
-    B -->|Active/Zero-Day| D[Emergency Path]
-    
+    B -->|Active/Zero-Day| D[Expedited Path]
+
     C --> E[Full Planning]
     E --> F[Development]
-    F --> G[Comprehensive Testing]
+    F --> G[Full Testing]
     G --> H[Documentation]
     H --> I[Production Deploy]
-    
+
     D --> J[MVD Development]
     J --> K[Quick Deploy]
-    K --> L[Later: Standard Path Review]
-    
-    
+    K --> L[Review within 30 days]
 ```
 
-- **Standard Path:** For proactive, intelligence-driven detections, follow the full framework lifecycle. This is for building a robust, long-term detection portfolio.
-- **Emergency/Rapid Response Path:** For active threats, zero-days, or critical new TTPs, use an expedited process. This path bypasses extensive planning and focuses on a "Minimum Viable Detection" (MVD). The rule is deployed quickly, with the explicit understanding that it will be revisited and hardened via the standard path once the immediate threat subsides.
+- **Standard path.** Proactive, intelligence-driven detections follow the full
+  lifecycle. This path builds the long-term detection portfolio.
+- **Expedited path.** Active threats, zero-days and critical new techniques
+  follow a shortened process that produces a Minimum Viable Detection (MVD).
+  The detection is deployed quickly, on the understanding that it will be
+  brought up to the standard, or withdrawn, once the immediate threat has
+  passed. The [specification](specification.md#13-the-expedited-path) defines
+  who may invoke the path and how its use is reported.
 
 #### 2. Embrace Agile Principles
 
-- **Timebox Everything:** Use sprints (e.g., 1-2 weeks) for detection development. The goal is to produce a working detection, even if simple, by the end of the sprint.
-- **Prioritize Ruthlessly:** Use a backlog and constantly re-evaluate priorities based on emerging threats. Not all detections are created equal.
+- **Timebox the work.** Detection development runs in short sprints, typically
+  one to two weeks, and each sprint produces a working detection, even a
+  simple one.
+- **Reprioritize continually.** The backlog is re-evaluated as threats emerge,
+  using the [planning rubric](planning-phase.md#priority-management).
 
 #### 3. Mandate the "Minimum Viable Detection" (MVD) Concept
 
-Define the absolute minimum criteria for a detection to be deployed (e.g., has a clear hypothesis, tested against one positive case, and has a basic response step). This prevents "gold plating" and focuses the team on delivering value quickly.
+The MVD is the smallest set of artifacts acceptable for production: a recorded
+hypothesis, one true-positive fixture, a named owner, a response instruction,
+and a review date no more than 30 days away. At that review, the detection is
+brought to full conformance or withdrawn. Defining the minimum prevents both
+unreviewed shortcuts and unnecessary polish under time pressure.
 
 ---
 
 ## Issue 2: The Assumption of High Organizational Maturity
 
-The framework implicitly assumes an organization possesses a level of maturity in staffing, data availability, and tooling that is often unrealistic.
+The lifecycle is described in terms of a program with dedicated roles, good
+data and an integrated toolchain. Many organizations have none of these yet.
 
 ### The Problem
 
-It presumes the existence of dedicated roles (Threat Intel Analyst, Detection Engineer, SOC Analyst, Data Engineer), access to clean and comprehensive data sources, and an integrated toolchain (Git, CI/CD, SIEM API, etc.). In reality, most organizations have teams where individuals wear multiple hats, data is messy and incomplete, and budgets for new tools are scarce.
+The lifecycle refers to distinct roles, such as threat intelligence analyst,
+detection engineer, SOC analyst and data engineer; to clean, complete data
+sources; and to a toolchain with version control, CI/CD and platform APIs. In
+practice, individuals often cover several roles, data is incomplete, and
+budgets for new tools are small.
 
 ### The Consequence
 
-Teams attempting to adopt the framework wholesale will fail. They lack the foundational resources, leading to frustration, burnout, and the perception that "good" detection engineering is impossible for them.
-
-```mermaid
-graph TD
-    A[Organization Reality Check] --> B[Team Size]
-    A --> C[Budget Constraints]
-    A --> D[Data Quality]
-    A --> E[Tool Availability]
-    
-    B --> F{Small Team?}
-    F -->|Yes| G[Multiple Roles per Person]
-    F -->|No| H[Dedicated Specialists]
-    
-    C --> I{Limited Budget?}
-    I -->|Yes| J[Tool Limitations]
-    I -->|No| K[Full Toolchain]
-    
-    D --> L{Clean Data?}
-    L -->|No| M[Messy/Incomplete Data]
-    L -->|Yes| N[Comprehensive Sources]
-    
-    G --> O[Framework Adoption Risk]
-    J --> O
-    M --> O
-    O --> P[Implementation Failure]
-    
-    
-```
+Teams that try to adopt the whole framework at once, without those
+foundations, tend to fail. The result is frustration, burnout, and a belief
+that good detection engineering is out of reach for them.
 
 ### Mitigation Strategies
 
 #### 1. Adopt a Crawl-Walk-Run Approach
 
-```mermaid
-flowchart LR
-    A[CRAWL] --> B[WALK] --> C[RUN]
-    
-    A --> A1[Shared Documents]
-    A --> A2[Manual Peer Review]
-    A --> A3[Single Data Source]
-    
-    B --> B1[Git Version Control]
-    B --> B2[Basic Testing Scripts]
-    B --> B3[Simple Wiki Documentation]
-    
-    C --> C1[Full Detection-as-Code]
-    C --> C2[CI/CD Pipeline]
-    C --> C3[Automated Feedback Loops]
-    
-    
-```
-
-- **Crawl:** Start with the basics. Don't build a CI/CD pipeline on day one. Begin by simply writing detection logic in a shared document with manual peer review. Focus on one high-value data source (e.g., EDR, Windows Security Events).
-- **Walk:** Introduce version control with Git. Start writing basic scripts to test detections. Begin documenting playbooks in a simple wiki.
-- **Run:** Implement full Detection-as-Code with automated testing, CI/CD deployment, and mature feedback loops.
+- **Crawl.** Start with the basics rather than a CI/CD pipeline. Write
+  detection logic in a shared document with manual peer review, and focus on
+  one high-value data source, such as EDR or Windows security events.
+- **Walk.** Move detections into version control with Git, write basic
+  scripts to test them, and document playbooks in a simple wiki.
+- **Run.** Implement full detection as code, with automated testing, automated
+  deployment and established feedback loops. [Detection as
+  code](detection-as-code.md) describes the target state.
 
 #### 2. Justify Investment with Data
 
-Use the framework's own principles to make the case for resources. Perform a gap analysis using MITRE ATT&CK. Show leadership exactly which threat behaviors you are blind to. Frame the need for a new data source or tool as a direct solution to mitigate a specific, quantifiable risk.
+The framework's own methods make the case for resources. A gap analysis
+against MITRE ATT&CK shows leadership exactly which threat behaviors the
+organization cannot see. Each request for a new data source or tool is then
+framed as the remedy for a specific, quantified risk.
 
 #### 3. Leverage Open-Source and Existing Tools Aggressively
 
-Can't afford a new SIEM? Maximize the one you have. Use open-source tools like Sigma for standardized rule writing, Atomic Red Team for testing, and basic Git repositories for version control.
+Where a new SIEM is not affordable, make full use of the existing one.
+Open-source tools cover much of the rest: Sigma for portable rule logic,
+Atomic Red Team for testing, and a Git repository for version control.
 
 ---
 
 ## Issue 3: The Vague and Under-Defined "Improvement Phase"
 
-The framework correctly identifies the need for continuous improvement, but this phase is the easiest to neglect and often fails due to a lack of concrete mechanisms.
+The [improvement phase](improvement-phase.md) defines concrete mechanisms, but
+it is still the phase most easily neglected, because it competes for time with
+new detection work.
 
 ### The Problem
 
-"Gathering feedback" is not a process. Without a formal, required mechanism, feedback from the SOC to the engineering team will be inconsistent, based on anecdotes, and easily ignored. Furthermore, without quantifiable metrics, "improvement" is subjective.
+"Gathering feedback" is not a process. Without a required mechanism, feedback
+from the SOC to the engineering team is inconsistent, anecdotal and easily
+ignored. Without measurement, "improvement" is a matter of opinion.
 
 ### The Consequence
 
-The feedback loop breaks. False positives persist, alert fatigue burns out the SOC, and the same problematic detections fire for months or years. The detection portfolio becomes stale and untrustworthy.
-
-```mermaid
-graph TD
-    A[Detection Fires] --> B[SOC Analyst Response]
-    B --> C{Feedback Mechanism Exists?}
-    C -->|No| D[Feedback Lost]
-    C -->|Yes| E[Formal Feedback Submitted]
-    
-    D --> F[Same Issues Persist]
-    F --> G[Alert Fatigue]
-    G --> H[SOC Effectiveness Drops]
-    
-    E --> I[Metrics Tracked]
-    I --> J[Detection Tuning]
-    J --> K[Improved Performance]
-    
-    
-```
+The feedback loop breaks. False positives persist, alert fatigue wears down the
+SOC, and the same problematic detections fire for months or years. The
+detection portfolio becomes stale and untrusted.
 
 ### Mitigation Strategies
 
 #### 1. Formalize the Feedback Mechanism
 
-- Integrate the ticketing system. Add mandatory fields to the incident response ticket for "Detection Efficacy" (e.g., True Positive/False Positive), "Tuning Recommendation," and "Clarity of Playbook."
-- A detection is not "closed" until this feedback is formally submitted to the engineering team's backlog.
+- Add required fields to the incident ticket for the detection's disposition
+  (true positive or false positive), a tuning recommendation, and the clarity
+  of the playbook.
+- Treat an alert as not closed until that feedback has reached the
+  engineering backlog.
 
 #### 2. Define and Track Ruthless Metrics
 
-| Metric | Description | Action Threshold |
-|-----------|----------------|-------------------|
-| **False Positive Rate (FPR)** | Track per-detection | >25% FPR over 30 days triggers review |
-| **Mean Time to Tune (MTTT)** | Feedback submission to tuned deployment | Target: <7 days |
-| **Detection Efficacy** | Purple Team test success rate | Target: >85% |
-| **SOC Acknowledgment Rate** | Are analysts ignoring alerts? | <70% indicates severe problem |
+| Metric | Description | Action threshold |
+| --- | --- | --- |
+| **Precision** | Share of a detection's alerts confirmed as genuine, over 30 days | Below 0.50 enters the tuning backlog |
+| **Mean Time to Tune (MTTT)** | Feedback submission to tuned rule in production | Target under 7 days |
+| **Detection efficacy** | Share of purple team tests the detection catches | Target above 85% |
+| **SOC acknowledgment rate** | Share of alerts analysts acknowledge | Below 70% indicates analysts are ignoring the detection |
+
+[Detection metrics](detection-metrics.md) defines these measures and the
+thresholds at each conformance level.
 
 #### 3. Schedule Mandatory Detection Reviews
 
-Institute a quarterly "Detection Portfolio Review." Every detection is reviewed for performance, relevance, and alignment with the current threat landscape. Detections that are no longer valuable or are too noisy are formally deprecated and removed.
+A quarterly detection portfolio review examines every detection for
+performance, relevance and alignment with the current threat landscape.
+Detections that no longer earn their place, or are too noisy to fix, are
+formally retired.
 
 ---
 
 ## Issue 4: Insufficient Emphasis on Proactive, Automated Validation
 
-While the framework mentions testing, it does not sufficiently stress the critical need for *continuous* and *automated* validation against real-world attack techniques.
+Testing at release shows that a detection worked once. It does not show that
+the detection still works.
 
 ### The Problem
 
-A detection that works perfectly in a developer's lab can fail silently in production due to a minor change in the environment, a log source failure, or a slight variation in an attacker's technique. Manual testing is not scalable enough to catch this "detection drift."
+A detection that works in the lab can fail silently in production because of a
+small change in the environment, a log source failure, or a variation in the
+attacker's technique. Manual testing does not scale to catch this detection
+drift.
 
 ### The Consequence
 
-The organization operates under a false sense of security, believing they have coverage when, in reality, their key detections are broken. This is discovered only after a major incident has already occurred.
-
-```mermaid
-flowchart TD
-    A[Detection in Lab] --> B[Perfect Performance]
-    B --> C[Deploy to Production]
-    C --> D[Production Environment]
-    
-    D --> E[Environment Changes]
-    D --> F[Log Source Issues]
-    D --> G[Attack Variations]
-    
-    E --> H[Silent Failure]
-    F --> H
-    G --> H
-    
-    H --> I[Major Incident Occurs]
-    I --> J[Detection Didn't Fire]
-    J --> K[Discovery of Broken Detection]
-    
-    
-```
+The organization believes it has coverage when key detections are broken, and
+discovers the fact only after a major incident.
 
 ### Mitigation Strategies
 
 #### 1. Integrate Adversary Emulation into the Lifecycle
 
-- **During Development:** No detection is approved until it is tested against a corresponding [Atomic Red Team](https://github.com/redcanaryco/atomic-red-team) test.
-- **In Production:** Schedule automated, recurring tests of key detections using an orchestration tool (e.g., a scheduled script or a BAS platform). The results should generate an alert if a detection fails to fire as expected.
+- **During development.** No detection is approved until it has been tested
+  against a corresponding emulation, such as an
+  [Atomic Red Team](https://github.com/redcanaryco/atomic-red-team) test.
+- **In production.** Key detections are tested automatically on a schedule,
+  using a scheduled script or a breach and attack simulation platform. A
+  detection that fails to fire raises an alert.
 
 #### 2. Establish a Formal Purple Teaming Cadence
 
-Move beyond simple testing. Regularly bring together the offense (Red Team) and defense (Blue Team) to simulate TTPs and validate/improve detections in real-time. This uncovers gaps that automated testing might miss.
+Red and blue teams meet regularly to emulate techniques together and improve
+detections as they go. Purple teaming finds gaps that automated tests miss,
+because the people running it can vary the technique in response to what they
+see.
 
 #### 3. Treat "Detection Health" as a Critical Metric
 
-Create a dashboard that shows the status of every production detection based on the last automated test. A "stale" or "failing" detection should be treated as a high-priority bug.
+A dashboard shows the status of every production detection, based on its last
+automated test. A detection whose test is stale or failing is treated as a
+high-priority defect.
 
 ---
 
-## Adapt, Don't Just Adopt
+## Quick Reference
 
-> **Key Insight**: The framework's true value is realized not by rigid adoption, but by using it as a guide for organizational improvement.
-
-The Detection Engineering Framework is an excellent *idealized model*. Its true value is realized not by rigid adoption, but by using it as a guide for a conversation about your organization's specific needs, capabilities, and constraints.
-
-The most successful teams will be those who are brutally honest about their own maturity, who are pragmatic in their implementation, and who relentlessly focus on the operational reality of the SOC analyst. By anticipating the challenges outlined above and actively implementing mitigation strategies, an organization can transform this framework from a theoretical blueprint into a powerful, living engine for world-class security detection.
+| Challenge | Solution | Success metric |
+| --- | --- | --- |
+| Analysis paralysis | Two-tiered pipeline | Expedited deployments within 24 hours |
+| Resource constraints | Crawl-walk-run approach | Incremental capability growth |
+| Poor feedback loops | Formalized mechanisms | Precision above 0.50, MTTT under 7 days |
+| Detection drift | Automated validation | Over 85% of purple team tests detected |
 
 ---
 
-### Quick Reference
+## In brief
 
-| Challenge | Solution | Success Metric |
-|-------------|-------------|------------------|
-| Analysis Paralysis | Two-Tiered Pipeline | Emergency deployments <24hrs |
-| Resource Constraints | Crawl-Walk-Run Approach | Incremental capability growth |
-| Poor Feedback Loops | Formalized Mechanisms | FPR <25%, MTTT <7 days |
-| Detection Drift | Automated Validation | >85% Purple Team success rate |
+- The framework is a model to adapt, not a procedure to follow step by step.
+  The right starting point depends on the team's size, data and tooling.
+- Active threats take an expedited path. A minimum viable detection is
+  deployed quickly and brought to full conformance within 30 days.
+- Capability grows in stages: consistent records first, then automated
+  validation, then automated deployment.
+- Improvement needs explicit mechanisms, and validation needs to be automated
+  and continuous rather than a one-off test at release.
+
+## What comes next
+
+The next chapter, [advanced practices](best-practices.md), collects practices
+for programs that are already operating the lifecycle and want to strengthen
+it, from detection councils and debt management to staged rollouts and
+feedback loops.
+
+<!-- journey:next -->
+<div class="journey-footer" markdown>
+
+---
+
+**Previous:** [Going deeper: Detection metrics](detection-metrics.md) · **Next:** [Advanced practices](best-practices.md)
+
+</div>
+<!-- /journey:next -->

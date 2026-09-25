@@ -1,62 +1,86 @@
-# Detection Engineering Lifecycle
+# The Detection Engineering Lifecycle
 
-*[Framework index](README.md) · [Specification](specification.md) · [Conformance](conformance-model.md)*
+<!-- journey:where -->
+*Understand the framework › The lifecycle at a glance*
+<!-- /journey:where -->
 
----
+The framework organizes detection work into four phases: planning,
+development, delivery and improvement. Improvement feeds back into planning, so
+the phases form a cycle rather than a one-way sequence. A detection passes
+through the cycle once to reach production, and then returns to it repeatedly
+for as long as it remains in service.
 
-This detection engineering framework allows for strategic and effective decision making in a phased manner when dealing with planning, developing, delivering and improving new use cases for the SOC.
+This chapter gives an overview of the whole cycle and the steps within each
+phase. Each phase has its own chapter later in the guide. The chapter after
+this one shows the cycle applied to a single detection from start to finish.
 
-Each of these phases is separately addressed hereafter. Before we look at the phases, it is important to note that in this framework itself, two-way traceability is important. Thus, it must be possible to connect elements at the operational layer to elements at the tactical and ultimately strategical layers and vice versa. This allows the SOC to show how business drivers are implemented in operational monitoring (top-down) and which monitoring rules relate to which specific threats and business drivers (bottom-up).
+One principle connects all four phases: two-way traceability. It must be
+possible to connect elements at the operational layer, such as individual
+detection rules, to the tactical and strategic layers above them, and to trace
+in the other direction as well. This allows a SOC to show how business drivers
+are implemented in operational monitoring (top-down) and which threats and
+business drivers each monitoring rule serves (bottom-up).
 
 ## Two-Way Traceability
-
-> **Key Principle**: The key principle that connects each phase is Two-way traceability throughout the framework lifecycle.
 
 ```mermaid
 graph LR
     subgraph "Strategic Layer"
         A[Business Drivers]
     end
-    
+
     subgraph "Tactical Layer"
         B[Security Controls]
     end
-    
+
     subgraph "Operational Layer"
         C[Detection Rules]
     end
-    
+
     A -.->|Top-Down| B
     B -.->|Top-Down| C
     C -.->|Bottom-Up| B
     B -.->|Bottom-Up| A
-    
 ```
 
-**Benefits:**
+Traceability works in both directions:
 
-- **Top-Down**: Show how business drivers are implemented in operational monitoring
-- **Bottom-Up**: Connect monitoring rules to specific threats and business drivers
+- **Top-down**, it shows how each business driver is put into practice in
+  operational monitoring. Given a risk in the risk register, it is possible to
+  list the detections that address it.
+- **Bottom-up**, it shows why each detection exists. Given a rule, it is
+  possible to name the threat, risk or obligation it serves, the telemetry it
+  depends on, and the response it triggers.
+
+The second direction matters most when something goes wrong. When a log
+source fails or a rule is proposed for retirement, traceability shows
+immediately what coverage is affected and which obligations are at stake.
 
 ---
 
 ## Lifecycle Phases
 
-### 1Planning Phase
+### Planning Phase
 
-> **Foundation**: In this phase, the foundation for the use case and detection formation is laid down.
+Planning establishes why a detection is needed, how urgently, and whether it
+is worth building. It turns a business driver into a scoped, prioritized use
+case request.
 
-### 2Development Phase
+### Development Phase
 
-> **Creation**: Once the planning phase is complete, you move on to the development phase.
+Development builds the detection in three stages: confirming the telemetry is
+available, designing and testing the logic, and building the response.
 
-### 3Delivery Phase
+### Delivery Phase
 
-> **Implementation**: The delivery phase involves implementing the detection rules and use cases into the SIEM system.
+Delivery hands the detection to the team that will operate it, activates it in
+production, and records it in the detection catalog.
 
-### 4Improvement Phase
+### Improvement Phase
 
-> **Continuous Enhancement**: The improvement phase is an ongoing process that occurs after the initial delivery.
+Improvement keeps the detection accurate for as long as it is in service
+through feedback, tuning and scheduled review, and eventually retires it. Its
+findings flow back into planning.
 
 ```mermaid
 graph LR
@@ -64,15 +88,15 @@ graph LR
     B --> C[Delivery Phase]
     C --> D[Improvement Phase]
     D --> A
-    
 ```
 
 ---
 
 ## Detailed Framework Overview
 
-This comprehensive framework transforms **business monitoring needs** due to Risk, Threat, Compliance drivers into **operational security detection and response** through a structured 12-phase methodology that ensures robust detection engineering practices.
-Lets have a look at the steps involved in each phase.
+Within the four phases the framework defines fourteen steps. Together they turn
+a business need, arising from a risk, a threat or a compliance obligation, into
+a detection and response that operate in production and are kept up to date.
 
 ---
 
@@ -80,12 +104,10 @@ Lets have a look at the steps involved in each phase.
 
 ```mermaid
 flowchart TD
-    %% Planning Phase
     A1[Risk] --> B[Use Case Request]
     A2[Threat] --> B
     A3[Compliance] --> B
-    
-    %% Development Phase
+
     B --> C[Prep for Development]
     C --> D[Technical Analysis]
     D --> E[Attack Simulation]
@@ -94,18 +116,21 @@ flowchart TD
     G --> H[Code Testing]
     H --> I[Response Development]
     I --> J[Response Testing]
-    
-    %% Deployment Phase
+
     J --> K[SOC Handover]
     K --> L[Rule Activation]
     L --> M[Cataloging]
 
-    %% Improvement Phase
     M --> N[Refinement]
     N -.->|Use-case Improvement| B
     N -.->|Detection Improvement| G
     N -.->|Response Improvement| I
 ```
+
+The dotted lines show that improvement does not always return to the start. A
+change in business need returns to the use case request; a flaw in the logic
+returns to code development; a gap in the response returns to response
+development.
 
 ---
 
@@ -115,27 +140,41 @@ flowchart TD
 
 #### Step 1: Identifying Primary Drivers
 
-The framework recognizes that effective detection engineering cannot exist in a vacuum. Every use case must be anchored to legitimate business needs that justify the investment of time, resources, and organizational focus. This step establishes the critical foundation by identifying and documenting the specific business drivers that necessitate new detection capabilities.
+Every use case must be anchored to a genuine business need that justifies the
+time and resources it will consume. The first step identifies and records that
+need. It comes from one or more of three drivers:
 
-**Risk drivers** emerge from enterprise risk management activities where organizations identify potential threats to their business operations, assets, or reputation. These drivers often stem from business impact analyzes that reveal vulnerabilities in critical processes or systems. When risk assessments highlight gaps in current security posture, they generate requirements for enhanced detection capabilities that can provide early warning of potential incidents.
-
-**Threat drivers** originate from intelligence about active adversaries and attack campaigns targeting the organization or its industry. These drivers are informed by threat intelligence feeds that provide insights into current attack patterns, emerging tactics, techniques, and procedures used by threat actors. Organizations must continuously adapt their detection strategies to address evolving threat landscapes and industry-specific attack vectors.
-
-**Compliance drivers** arise from regulatory obligations and industry standards that mandate specific security controls and monitoring capabilities. Whether driven by financial regulations like SOX, healthcare standards like HIPAA, or payment processing requirements like PCI-DSS, compliance drivers ensure that detection capabilities align with external requirements and audit expectations.
+- **Risk drivers** arise from enterprise risk management, where the
+  organization identifies threats to its operations, assets or reputation. They
+  often come from business impact analyses that expose weaknesses in critical
+  processes or systems.
+- **Threat drivers** arise from intelligence about active attackers and
+  campaigns against the organization or its industry: current attack patterns,
+  and the tactics, techniques and procedures attackers use.
+- **Compliance drivers** arise from regulations and industry standards that
+  require specific controls and monitoring, such as SOX for financial
+  reporting, HIPAA for health data, or PCI DSS for payment card data.
 
 #### Step 2: Use Case Request
 
-Once business drivers have been identified, organizations must translate these high-level requirements into specific, actionable use case requests. This step serves as the critical bridge between strategic business needs and tactical detection engineering work. The use case request process ensures that every detection engineering effort is properly scoped, justified, and aligned with organizational priorities.
+The drivers are translated into a specific use case request. The request links
+back to its drivers and states why the detection is needed, what problem it
+solves, what it should detect and in what circumstances, and how success will
+be measured.
 
-The documentation process begins with capturing the business justification that links back to the original drivers. This documentation must clearly articulate why the detection capability is needed, what business problem it solves, and how success will be measured. The use case request also defines the specific detection objectives, outlining what types of threats or activities the new capability should identify and under what circumstances alerts should be generated.
-
-Priority categorization becomes essential when organizations face multiple competing demands for detection engineering resources. The framework provides structured criteria for evaluating use case requests based on factors such as potential business impact, regulatory requirements, threat severity, and available resources. This prioritization ensures that the most critical detection capabilities are developed first while maintaining clear visibility into the pipeline of future work.
+Detection engineering capacity is always limited, so requests are prioritized.
+The framework scores each request against written criteria, including threat
+relevance, the value of what it protects, the size of the coverage gap, and the
+cost to build and maintain it, so that the most important detections are built
+first and the pipeline of future work remains visible.
 
 #### Step 3: Prep for Development
 
-The preparation step establishes the necessary infrastructure, resources, and planning required for successful detection engineering work. This step recognizes that effective detection development requires more than just technical skills – it demands proper environment setup, resource allocation, and project planning to ensure smooth execution.
-
-Environment setup involves preparing development and testing infrastructure that mirrors production systems while providing safe spaces for experimentation and validation. This includes configuring access to relevant data sources, setting up development tools, and establishing secure channels for collaboration between team members. The preparation step also involves assembling the right mix of skills and expertise, bringing together detection engineers, threat intelligence analysts, and subject matter experts who understand the specific technologies and attack vectors being addressed.
+Before development begins, the environment, people and plan are put in place.
+That means a development and test environment that resembles production,
+access to the relevant data sources and tools, and the right mix of people:
+detection engineers, threat intelligence analysts, and specialists in the
+technologies and attacks involved.
 
 ---
 
@@ -143,92 +182,114 @@ Environment setup involves preparing development and testing infrastructure that
 
 #### Step 4: Technical Analysis
 
-Technical analysis represents the most critical investigative step of the framework, where detection engineers develop deep understanding of the technical landscape that will support their detection logic. This step goes far beyond surface-level requirements gathering to examine the underlying data sources, infrastructure constraints, and technical feasibility of proposed detection approaches.
-
-Data source analysis forms the cornerstone of this step, requiring engineers to thoroughly understand what log data is available, how it is formatted, where it is stored, and what information it contains. This analysis often reveals gaps between what organizations think they are logging and what data is actually available for detection purposes. Engineers must also assess the quality, completeness, and reliability of data sources to ensure that detection logic will function consistently in production environments.
-
-Infrastructure evaluation examines the technical capabilities and constraints of existing security tools and platforms. This includes understanding processing capacity, storage limitations, query performance characteristics, and integration capabilities that will impact detection rule deployment and operation.
+Technical analysis establishes what the detection can realistically be built
+on. It examines the data sources in detail: what is logged, in what format,
+where it is stored, and how complete and reliable it is. This step often shows
+a gap between what an organization believes it logs and what is actually
+available. It also examines the constraints of the detection platform, such as
+processing capacity, storage, query performance and integration.
 
 #### Step 5: Attack Simulation
 
-Attack simulation provides empirical validation of detection approaches before significant development investment occurs. This step moves beyond theoretical analysis to actual testing of attack scenarios in controlled environments, providing concrete evidence of what detection approaches will and will not work in practice.
-
-The simulation process begins with developing realistic attack scenarios based on current threat intelligence and the specific use case requirements. These scenarios must accurately reflect the tactics, techniques, and procedures that real adversaries would use, ensuring that detection logic will be effective against actual threats rather than theoretical ones. Simulation activities are conducted in isolated environments that mirror production systems but prevent any risk to operational infrastructure.
-
-Through controlled testing, engineers establish baseline behavior patterns that distinguish normal activity from malicious actions. This baseline establishment is crucial for developing detection logic that minimizes false positives while maintaining high sensitivity to actual threats. The simulation step often reveals important insights about attack detection that are not apparent from purely analytical approaches.
-The implementation and development steps represent the core technical work where detection concepts are transformed into operational capabilities. These four interconnected steps build upon each other to create robust, tested, and deployable detection solutions that meet the requirements established in earlier steps.
+Attack simulation tests the approach against evidence before significant
+effort is invested. Realistic attack scenarios, based on current threat
+intelligence and the use case, are run in an isolated environment that
+resembles production. The simulation shows what the attack actually produces
+in the logs, and establishes a baseline that distinguishes normal activity from
+malicious activity. It frequently reveals things that analysis alone would
+miss.
 
 #### Step 6: Development Pre-req
 
-The development prerequisites step finalizes all technical requirements and design decisions before coding begins. This step serves as the final checkpoint to ensure that all necessary groundwork has been completed and that development can proceed efficiently without major roadblocks or design changes.
-
-Technical requirements finalization involves converting the insights gained from analysis and simulation steps into specific, implementable specifications. These requirements must be detailed enough to guide development work while flexible enough to accommodate technical discoveries made during implementation. The architecture design process establishes the overall structure and approach for the detection solution, defining how different components will interact and how the solution will integrate with existing security infrastructure.
-
-Data modeling becomes particularly important during this step, as engineers must define exactly how information will be structured, processed, and stored throughout the detection pipeline. This includes designing schemas for log parsing, defining data enrichment processes, and establishing the format for detection outputs that will be consumed by downstream systems.
+This step finalizes the technical requirements and design before any logic is
+written. The findings from analysis and simulation become a specification
+detailed enough to guide development: how the detection will be structured,
+how it fits the existing platform, how events will be parsed and enriched, and
+what its output will look like to the systems and people that consume it.
 
 #### Step 7: Code Development
 
-Code development transforms design specifications into functional detection logic that can identify threats and generate appropriate alerts. This step requires deep technical expertise in detection engineering tools and platforms, as well as thorough understanding of the attack scenarios and data sources established in previous steps.
-
-Detection logic creation involves writing the core algorithms and rules that will identify malicious activity within the monitored data streams. This logic must be precise enough to minimize false positives while comprehensive enough to catch variations in attack techniques. Engineers must consider factors such as timing windows, correlation logic across multiple data sources, and threshold settings that balance sensitivity with operational practicality.
-
-Query development translates detection logic into the specific syntax and structure required by SIEM platforms and security tools. This often involves optimizing queries for performance while maintaining detection effectiveness, as poorly optimized detection rules can impact overall system performance and response times.
+Code development turns the design into working detection logic. The logic has
+to be precise enough to avoid noise and broad enough to catch variations of the
+technique, with attention to time windows, correlation across data sources, and
+thresholds. It is then written in the query language of the target platform
+and tuned for performance, since an inefficient rule can slow the whole
+platform.
 
 #### Step 8: Code Testing
 
-Comprehensive testing validates that developed detection capabilities function correctly across a wide range of scenarios and conditions. This step goes beyond simple functionality testing to examine performance characteristics, edge cases, and integration behavior that could impact production deployment.
+Testing confirms that the detection works under realistic conditions:
 
-Unit testing focuses on validating individual components of the detection logic, ensuring that each element functions correctly in isolation. This includes testing parsing logic, correlation algorithms, and output formatting to verify that each component produces expected results when presented with known inputs.
-
-Integration testing examines how detection components work together and how they interact with existing security infrastructure. This testing reveals potential conflicts with other detection rules, resource consumption patterns, and integration issues that might not be apparent during unit testing.
-
-Performance testing evaluates how detection rules behave under realistic load conditions, measuring factors such as processing time, memory consumption, and system impact. This testing is crucial for ensuring that new detection capabilities do not adversely affect overall security platform performance.
+- **Unit testing** checks each part of the logic in isolation, such as parsing,
+  correlation and output formatting, against known inputs.
+- **Integration testing** checks how the detection interacts with other rules
+  and with the platform, including conflicts and resource use.
+- **Performance testing** measures processing time, memory use and platform
+  impact under realistic load.
 
 #### Step 9: Response Development
 
-Response development creates the procedures, workflows, and automation that will handle alerts generated by the new detection capabilities. This step recognizes that effective detection is only valuable if it leads to appropriate and timely response actions.
-
-Alert configuration establishes how detection events will be formatted, prioritized, and routed to appropriate response teams. This includes defining alert severity levels, establishing escalation criteria, and configuring notification mechanisms that ensure critical threats receive immediate attention while minimizing alert fatigue from lower-priority events.
-
-Playbook development creates standardized procedures that guide security analysts through the investigation and response process when alerts are triggered. These playbooks must provide clear, step-by-step guidance while remaining flexible enough to accommodate variations in attack techniques and environmental factors. Effective playbooks also include decision trees that help analysts determine appropriate response actions based on investigation findings.
+A detection is useful only if it leads to the right action in time. This step
+defines how alerts are formatted, prioritized and routed, including severity
+levels, escalation criteria and notifications, and produces the playbook that
+guides analysts through investigation and response. A good playbook gives
+clear steps, allows for variation in how attacks unfold, and includes decision
+points that help analysts choose the right action.
 
 #### Step 10: Response Testing
 
-Response testing validates that the complete detection and response system functions effectively under realistic operational conditions. This step moves beyond the technical testing of detection logic to examine the human and procedural elements that determine whether detection capabilities translate into effective security outcomes.
-
-Tabletop exercises engage security teams in simulated incident scenarios that test not only the technical detection capabilities but also the human response processes, communication protocols, and decision-making procedures that activate when alerts are generated. These exercises reveal gaps between theoretical response procedures and practical operational realities, highlighting areas where additional training, process refinement, or tool configuration may be needed.
-
-Simulated incident response drills provide hands-on testing of the complete alert-to-resolution workflow, measuring how effectively security teams can investigate alerts, make appropriate decisions, and take corrective actions. These drills often reveal important insights about alert quality, investigation tools, and procedural effectiveness that cannot be discovered through purely technical testing approaches.
+Response testing checks the human and procedural side of the detection. In
+tabletop exercises the teams involved walk through a simulated incident, which
+tests communication, decision-making and escalation as well as the technology.
+Drills then exercise the full path from alert to resolution. Both regularly
+expose differences between the documented procedure and what actually happens,
+and show where training, process or tooling needs to change.
 
 ---
 
-### Delivery Phase - Steps 11-12: Deployment & Operations
+### Delivery Phase - Steps 11-13: Deployment & Operations
 
-The final steps of the framework focus on transitioning developed detection capabilities from development environments into operational production use. These steps ensure that detection capabilities are not only technically sound but also operationally sustainable and properly integrated into existing security operations workflows.
+The delivery steps move the detection from development into production, and
+make sure it can be operated and sustained by the team that inherits it.
 
 #### Step 11: SOC Handover
 
-The SOC handover step manages the critical transition of detection capabilities from development teams to operational security teams. This transition requires more than simply deploying technical capabilities – it demands comprehensive knowledge transfer, training, and support structure establishment to ensure operational success.
-
-Documentation development creates comprehensive reference materials that enable SOC analysts to effectively operate and maintain the new detection capabilities. This documentation must balance completeness with usability, providing detailed technical information while remaining accessible to analysts with varying levels of expertise. Effective documentation includes not only technical specifications but also decision trees, troubleshooting guides, and escalation procedures that support day-to-day operations.
-
-Training programs ensure that SOC teams have the knowledge and skills necessary to operate new detection capabilities effectively. These programs must address both technical aspects of the detection tools and procedural aspects of incident response, providing hands-on experience that builds confidence and competence in real-world scenarios.
+Handover transfers the detection, and the knowledge behind it, from the
+development team to the operating team. It includes documentation that analysts
+of varying experience can use: technical detail, decision trees,
+troubleshooting guidance and escalation procedures. It also includes training
+that covers both the detection itself and the response procedures.
 
 #### Step 12: Rule Activation
 
-Rule activation represents the transition from testing to live production operation, where detection capabilities begin monitoring actual organizational activity and generating alerts for real security events. This step requires careful orchestration to ensure smooth deployment while minimizing operational disruption.
-
-Production deployment involves implementing detection rules in live environments while maintaining continuous monitoring of system performance and alert quality. Initial deployment often uses graduated approaches, such as shadow mode operation or limited scope deployment, that allow for real-world validation without full operational impact.
-
-Baseline establishment during the initial operational period provides critical data about normal detection behavior, false positive rates, and system performance under actual load conditions. This baseline data becomes essential for ongoing tuning and optimization efforts that improve detection effectiveness over time.
+Activation puts the detection into production. Deployment is usually staged,
+for example by running the rule without raising alerts, or enabling it for a
+limited scope first, so that its behavior can be checked against real activity
+before it affects the whole operation. The first weeks establish a baseline
+for alert volume, alert quality and platform load, which later tuning relies
+on.
 
 #### Step 13: Cataloging
 
-The cataloging step ensures that organizational knowledge and experience gained through the detection engineering process is captured, documented, and made available for future use. This step recognizes that effective detection engineering programs build upon accumulated knowledge and that individual detection projects contribute to broader organizational capabilities.
+Cataloging records the detection, and the knowledge gained in building it, for
+future use. The record captures not only what was built and how it works, but
+why the design decisions were made, which alternatives were rejected, and what
+difficulties arose. Lessons learned feed back into the team's methods, testing
+procedures and training.
 
-Comprehensive documentation goes beyond simple technical specifications to capture the reasoning, trade-offs, and lessons learned throughout the development process. This documentation includes not only what was built and how it works, but also why specific design decisions were made, what alternatives were considered, and what challenges were encountered during development and deployment.
+---
 
-Knowledge management processes ensure that insights gained from individual detection engineering projects are incorporated into organizational best practices and training materials. This includes updating development methodologies based on lessons learned, refining testing procedures based on operational experience, and sharing successful approaches across different detection engineering teams.
+### Improvement Phase - Step 14: Refinement
+
+#### Step 14: Refinement
+
+Refinement begins as soon as the detection is live and continues until it is
+retired. Analyst feedback, scheduled reviews, automated health checks and
+incident reviews identify detections that are noisy, silent, outdated or
+incomplete. Depending on the cause, the change returns to the use case request,
+to code development, or to response development, as the dotted lines in the
+diagram above show. A detection that no longer serves its purpose is retired
+through a recorded procedure rather than simply switched off.
 
 ---
 
@@ -236,15 +297,39 @@ Knowledge management processes ensure that insights gained from individual detec
 
 | Phase | Key Metrics | Success Indicators |
 |-------|----------------|----------------------|
-| **Planning** | Scope Definition, Resource Allocation | Clear objectives, Stakeholder buy-in |
-| **Development** | Rule Quality, Coverage | Comprehensive detection, Low false positives |
-| **Delivery** | Implementation Speed, Integration Success | Operational SIEM, Real-time monitoring |
-| **Improvement** | Detection Rate, Response Time | Reduced incidents, Faster resolution |
+| **Planning** | Scope definition, resource allocation | Clear objectives, stakeholder agreement |
+| **Development** | Rule quality, coverage | Tested logic, high precision |
+| **Delivery** | Implementation speed, integration success | Alert volume within forecast, timely triage |
+| **Improvement** | Detection health, response time | Few detections overdue for review, faster resolution |
+
+[Detection metrics](detection-metrics.md) defines each measure precisely.
 
 ---
 
-***Framework Philosophy**: "Every detection capability should be purposefully designed, rigorously tested, and operationally sustainable."*
+## In brief
+
+- The lifecycle has four phases: planning, development, delivery and
+  improvement. Improvement feeds back into planning.
+- Development is split into three stages: technical feasibility, detection
+  engineering and response engineering.
+- Two-way traceability connects every detection to the business drivers above
+  it and the telemetry below it.
+- Every phase produces recorded outputs, so that the reasoning behind a
+  detection survives the people who built it.
+
+## What comes next
+
+An overview of phases can remain abstract until it is applied to something
+concrete. The next chapter follows a single detection, for consent phishing
+against a cloud identity provider, through every phase of the cycle. The same
+detection serves as the running example for the rest of the guide.
+
+<!-- journey:next -->
+<div class="journey-footer" markdown>
 
 ---
 
-> **Pro Tip**: The Detection Engineering Framework emphasizes the importance of **end-to-end traceability** from business drivers to operational outcomes, ensuring that every detection investment delivers measurable business value.
+**Previous:** [Why a framework is needed](Background-and-Introduction.md) · **Next:** [A detection's journey](worked-example.md)
+
+</div>
+<!-- /journey:next -->

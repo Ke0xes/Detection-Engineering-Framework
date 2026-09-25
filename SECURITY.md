@@ -19,7 +19,7 @@ Security issues that are in scope:
 Out of scope:
 
 - Detection rules being evadable. All detections are evadable; that is why
-  [chapter 13](detection-robustness.md) exists. Open a normal issue.
+  [detection robustness](detection-robustness.md) exists. Open a normal issue.
 - Disagreement with a normative requirement. Open a *Specification change* issue.
 
 ## Reporting

@@ -1,14 +1,24 @@
 # Governance and Roles
 
-*[Framework index](README.md) · [Specification](specification.md) · [Conformance](conformance-model.md)*
+<!-- journey:where -->
+*Walk the lifecycle › Planning › Going deeper*
+<!-- /journey:where -->
 
-> **Normative status.** This chapter is normative where requirement identifiers
-> appear.
+The planning phase describes how requests are captured, scored and ranked. This
+chapter describes who does that work and who has the authority to decide. In
+practice, detection programs fail more often through organizational design
+than through technique: the logic may be sound, but no one owns the outcome,
+priorities are set by whoever raised them most recently, and analysts who
+consume the alerts have no formal route to influence the engineers who write
+them.
 
-Most detection programs fail on organizational design rather than on technique.
-The logic is fine; nobody owns the outcome, priorities are set by whoever
-shouted most recently, and the people who consume the alerts have no formal
-route to influence the people who write them.
+> **Running example.** The consent phishing request was scored and accepted by
+> the detection council, the cross-functional body described below, which also
+> approved the one exception later added to the detection.
+
+The sections below cover the functions a detection program needs, how
+accountability is divided among them, how requests move from intake to
+backlog, and how capacity and service levels are set.
 
 ---
 
@@ -96,8 +106,9 @@ otherwise made badly by default.
 
 ## RACI
 
-**GOV-8** requires a documented RACI. This is the reference model; adapt the
-column headings to your structure, but every row must have exactly one `A`.
+**GOV-8** requires a documented RACI. This is the reference model. The column
+headings can be adapted to the organization's structure, but every row must
+have exactly one `A`.
 
 | Activity | Det. Eng | Content Mgr | Threat Intel | Data Eng | SOC | IR | Council | Business |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -213,4 +224,37 @@ leadership can act on.
 
 ---
 
-*Next: [Adoption Guide](from-theory-to-practice.md) · Previous: [Modern Attack Surfaces](modern-attack-surfaces.md)*
+## In brief
+
+- Detection work needs defined functions: engineering, content management,
+  threat intelligence, telemetry engineering, analysis and incident response.
+  In a small team, one person may hold several.
+- A detection council, with representation beyond the SOC, is the decision
+  authority for prioritization disputes, exceptions and deprecation.
+- Every lifecycle activity has exactly one accountable party, recorded in a
+  RACI.
+- Improvement work needs protected capacity, or it is displaced by new build
+  requests.
+
+## Requirements in this chapter
+
+`GOV-16` is set out above. The related governance requirements, `GOV-5` to
+`GOV-8` for ownership, the council and the RACI, are in the
+[specification](specification.md#32-accountability).
+
+## What comes next
+
+With a request accepted and owners assigned, the lifecycle moves into
+development. [The technical feasibility phase](development-phase-A.md) is the
+first of its three stages, and establishes whether the organization can
+actually observe the activity the detection is meant to find.
+
+<!-- journey:next -->
+<div class="journey-footer" markdown>
+
+---
+
+**Previous:** [The planning phase](planning-phase.md) · **Next:** [The technical feasibility phase](development-phase-A.md)
+
+</div>
+<!-- /journey:next -->

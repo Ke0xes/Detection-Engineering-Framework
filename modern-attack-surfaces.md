@@ -1,13 +1,27 @@
 # Modern Attack Surfaces
 
-*[Framework index](README.md) · [Specification](specification.md) · [Conformance](conformance-model.md)*
+<!-- journey:where -->
+*Walk the lifecycle › Development A: Technical feasibility › Going deeper*
+<!-- /journey:where -->
 
-The lifecycle in this framework is surface-independent. The *assumptions* most
-detection programs carry are not: they were formed when the estate was Windows
-endpoints on a corporate network, and they transfer poorly.
+The lifecycle in this framework applies to any environment. The assumptions
+that most detection programs carry do not. Many were formed when the estate
+consisted of Windows endpoints on a corporate network, and they transfer poorly
+to environments where the endpoint is not the point of compromise.
 
-This chapter records what changes when the framework is applied to surfaces
-where the endpoint is not the unit of compromise.
+This deep dive belongs to the technical feasibility phase because the first
+question it changes is what can be observed. Each section describes, for one
+kind of environment, which assumptions no longer hold, where the most valuable
+detection opportunities lie, and what that means for applying the framework.
+
+> **Running example.** The consent phishing detection is an identity
+> detection. It involves no endpoint and no malware, and the attacker's access
+> survives a password reset. The identity section below explains why this
+> pattern has become common.
+
+The environments covered are identity, the cloud control plane, SaaS
+applications, containers and Kubernetes, CI/CD and the software supply chain,
+operational technology, and AI and machine learning systems.
 
 ---
 
@@ -175,7 +189,7 @@ threats using **MITRE ATLAS** alongside ATT&CK; the detection schema supports
 
 ### Two distinct problems
 
-**1. Attacks on AI systems you operate.**
+**1. Attacks on AI systems the organization operates.**
 
 | Surface | Why |
 | --- | --- |
@@ -221,11 +235,38 @@ The lifecycle does not change. What changes per surface is:
 | Response authority | OT and production cloud constrain automated containment |
 | Review cadence | Faster-changing surfaces need shorter cadences |
 
-**The framework's claim is that one lifecycle governs all of them.** A consent
-grant, a container escape, an IAM policy change and an agent tool invocation are
-all: a business driver, a hypothesis, telemetry, logic, a test, a response, and
-a review date.
+The lifecycle itself is the same in every environment. A consent grant, a
+container escape, an IAM policy change and an agent tool invocation each need a
+business driver, a hypothesis, telemetry, logic, a test, a response and a
+review date.
 
 ---
 
-*Next: [Governance and Roles](governance-and-roles.md) · Previous: [Detection Robustness](detection-robustness.md)*
+## In brief
+
+- Identity is now the primary attack surface. Many significant intrusions
+  involve no malware and no endpoint compromise.
+- Cloud control planes, SaaS applications and pipelines are attacked through
+  sequences of authorized API calls, which demand different detection logic
+  from endpoint work.
+- Telemetry availability is often the binding constraint, particularly for
+  SaaS, and is best addressed at procurement.
+- AI agents with tool access are best treated as privileged identities, with
+  their own inventory entry, monitoring and containment procedure.
+
+## What comes next
+
+With feasibility established, the lifecycle moves to
+[the detection engineering phase](development-phase-B.md): turning confirmed
+telemetry into detection logic that states its intent, handles exceptions, and
+is tested before release.
+
+<!-- journey:next -->
+<div class="journey-footer" markdown>
+
+---
+
+**Previous:** [Going deeper: Telemetry and data](telemetry-and-data.md) · **Next:** [The detection engineering phase](development-phase-B.md)
+
+</div>
+<!-- /journey:next -->

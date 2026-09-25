@@ -57,7 +57,7 @@ maintainer's employer, then open an OWASP project proposal. See
 
 ### Citability
 
-Register a Zenodo DOI against the v2.1.0 tag so the framework can be cited in
+Register a Zenodo DOI against the v2.1.1 tag so the framework can be cited in
 academic work and audit documentation.
 
 ### Compliance mappings
@@ -97,7 +97,7 @@ and capacity modeling against a backlog. This deserves its own chapter.
 
 ### AI/ML chapter maturity
 
-[Chapter 14](modern-attack-surfaces.md) treats AI systems briefly and
+[Modern attack surfaces](modern-attack-surfaces.md) treats AI systems briefly and
 will date faster than anything else in the framework. As ATLAS matures and
 agent telemetry standards emerge, this should become a full chapter.
 

@@ -1,8 +1,18 @@
-# Templates
+# Tools and Templates
 
-Fill-in artifacts for implementing the framework. Licensed Apache-2.0, like the
-rest of the repository, so they can be copied into your own repositories and
-internal systems without licence friction.
+<!-- journey:where -->
+*Put it into practice › Tools and templates*
+<!-- /journey:where -->
+
+The framework is accompanied by artifacts that help put it into practice: intake
+forms for use case requests, machine-readable schemas for detection and use
+case records, a reference implementation with validation and tests, and a
+self-assessment instrument. This page describes what each is for and where to
+find it.
+
+All of them are licensed Apache-2.0, like the rest of the repository, so they
+can be copied into other repositories and internal systems without licence
+friction.
 
 ## What is here
 
@@ -14,7 +24,7 @@ internal systems without licence friction.
 | [`microsoft-forms-use-case-request-form.txt`](templates/use-case-requests/microsoft-forms-use-case-request-form.txt) | Planning | Microsoft Forms question set |
 | [`google-forms-use-case-request-form.txt`](templates/use-case-requests/google-forms-use-case-request-form.txt) | Planning | Google Forms question set |
 
-## The templates you probably want instead
+## Schemas instead of templates
 
 For anything downstream of planning, the **schemas and reference
 implementation** are the templates. They are machine-readable, validated in CI,
@@ -36,10 +46,10 @@ of sync with it, and the copy people actually use will be the stale one.
 
 ## Using the intake forms
 
-The `.txt` files are field definitions for building the request form in your
-existing intake system. Adapt field names to your instance.
+The `.txt` files are field definitions for building the request form in an
+existing intake system. Field names can be adapted to the local instance.
 
-Whichever system you use, the form MUST capture enough to satisfy
+Whichever system is used, the form MUST capture enough to satisfy
 [`schema/use-case.schema.json`](../schema/use-case.schema.json), because the
 submitted request becomes the `UC-` record that every resulting detection
 traces back to (`GOV-1`).
@@ -63,9 +73,35 @@ criticality, coverage gap, build cost and maintenance burden.
 detection engineering and threat intelligence apply the anchored descriptors.
 Self-scoring produces a backlog in which every request is a five.
 
+## AI assistant skill
+
+The [senior detection engineer skill](../skills/senior-detection-engineer/README.md)
+packages the rubric, schema, review checklist, metrics and conformance
+requirements for use by an AI assistant. It can score requests, review and
+write rules, produce detection records, fixtures and playbooks, and run a
+conformance gap assessment. Its outputs are drafts, to be verified against
+real telemetry and passed through the program's normal review.
+
 ## Contributing templates
 
 New templates are welcome where a machine-readable artifact would not serve
-better. Before contributing, check whether the thing you want to template
-should instead be an extension to the schema. See
+better. Before contributing, check whether the proposed template should
+instead be an extension to the schema. See
 [CONTRIBUTING.md](../CONTRIBUTING.md).
+
+## What comes next
+
+The remaining chapters are reference material.
+[The specification](../specification.md) states every requirement in the
+framework in testable form, and [related work](../related-work.md) compares
+the framework with other established work in the field.
+
+<!-- journey:next -->
+<div class="journey-footer" markdown>
+
+---
+
+**Previous:** [Assessing a program](../conformance-model.md) · **Next:** [Use case request forms](templates/use-case-requests/README.md)
+
+</div>
+<!-- /journey:next -->

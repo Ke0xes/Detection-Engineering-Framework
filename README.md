@@ -1,48 +1,125 @@
 # Detection Engineering Framework
 
-[![Specification](https://img.shields.io/badge/specification-v2.1.0-0d419d)](specification.md)
+[![Specification](https://img.shields.io/badge/specification-v2.1.1-0d419d)](specification.md)
 [![Conformance](https://img.shields.io/badge/conformance-L1%20%7C%20L2%20%7C%20L3-1f6feb)](conformance-model.md)
 [![Validate](https://github.com/Ke0xes/Detection-Engineering-Framework/actions/workflows/validate.yml/badge.svg)](https://github.com/Ke0xes/Detection-Engineering-Framework/actions/workflows/validate.yml)
 [![License: Apache 2.0](https://img.shields.io/badge/license-Apache%202.0-blue)](https://github.com/Ke0xes/Detection-Engineering-Framework/blob/main/License)
 [![Stars](https://img.shields.io/github/stars/Ke0xes/Detection-Engineering-Framework?style=flat&color=555)](https://github.com/Ke0xes/Detection-Engineering-Framework/stargazers)
 
-**A lifecycle standard for building, governing and retiring security
-detections.**
+The Detection Engineering Framework is an open, vendor-neutral method for
+building, running and retiring security detections. It follows each detection
+from the business reason it exists, through the telemetry and logic behind it
+and the response it triggers, to the day it is reviewed, tuned or
+decommissioned.
 
-Most detection programs can tell you how many rules they have. Far fewer can
-tell you which business risk each rule serves, whether it still works, what
-would break if a log source failed, or when it was last reviewed. This framework
-makes those questions answerable — and enforces the answers in CI.
+It is written for detection engineers and SOC leads. Security leaders will find
+a shorter path through it below.
 
-**[Read the documentation](https://ke0xes.github.io/Detection-Engineering-Framework/)**
-
----
-
-## What makes this different
-
-Three things, in combination, that you will not find together elsewhere:
-
-**1. Traceability is a hard requirement, not an aspiration.**
-Every detection traces upward to a recorded risk, threat or compliance driver
-and downward to specific telemetry — in a machine-readable form, answerable in
-both directions. *"The EDR pipeline was down for six hours; what were we blind
-to?"* becomes a query rather than a week of archaeology.
-
-**2. Response engineering is a co-equal phase.**
-A detection cannot reach production without a linked, exercised response
-playbook. An alert without a response plan generates work, not security.
-
-**3. Vendor Agnostic Logic sits above rule formats, not beside them.**
-VAL expresses detection intent as named observable conditions and a boolean
-relationship between them. One VAL, many platform implementations, one fixture
-set. This complements Sigma; it does not compete with it.
-
-Full positioning against ATT&CK, Sigma, DeTT&CT, Palantir ADS, Summiting the
-Pyramid and others: **[Related Work](related-work.md)**.
+The framework is available as a
+[documentation site](https://ke0xes.github.io/Detection-Engineering-Framework/)
+and as this repository.
 
 ---
 
-## This one runs
+## The problem it addresses
+
+Consider a detection engineer joining a mature security operations center. The
+SIEM holds four hundred rules. Some fire hundreds of times a day and are
+routinely closed without investigation. Others have not fired in two years, and
+nobody knows whether that means the threat is absent or the rule is broken. A
+few were written for an audit, some after an incident, many for reasons no one
+recorded. When the endpoint telemetry pipeline fails for six hours, nobody can
+say which of those four hundred rules went blind.
+
+None of this is unusual, and none of it results from poor engineering. It
+results from treating detections as individual pieces of logic rather than as
+assets with a purpose, dependencies, an owner and a lifespan.
+
+The framework gives each detection those properties. Every detection is traced
+to a recorded business driver (a risk, a threat or a compliance obligation), to
+the telemetry it relies on, and to the response it initiates. It is tested
+before release, measured in production, reviewed on a schedule, and retired
+deliberately when it no longer earns its place.
+
+---
+
+## How the framework works
+
+The framework organizes detection work into four phases that repeat as a cycle.
+
+```mermaid
+flowchart LR
+    P[Planning] --> D[Development]
+    D --> L[Delivery]
+    L --> I[Improvement]
+    I --> P
+```
+
+- **Planning** establishes why a detection is needed, how urgently, and whether
+  it is worth building. Requests are prioritized with a scoring rubric whose
+  levels are described in writing, so that two people scoring the same request
+  reach the same answer.
+- **Development** happens in three stages. The first confirms that the necessary
+  telemetry exists and behaves as expected. The second designs and tests the
+  detection logic. The third builds the response that follows when the detection
+  fires.
+- **Delivery** hands the detection to the team that will operate it, forecasts
+  its alert volume, and releases it in stages.
+- **Improvement** keeps it healthy: analyst feedback, scheduled review, tuning,
+  drift detection, and eventually retirement.
+
+One principle connects the phases: **two-way traceability**. From any business
+driver it should be possible to list the detections that serve it, and from any
+detection it should be possible to name the drivers, telemetry and response
+behind it.
+
+---
+
+## What the framework contains
+
+The framework has three parts, intended to be used together.
+
+1. **The guide.** Chapters that walk through each phase, explain the reasoning
+   behind it, and follow one detection from start to finish as a running
+   example.
+2. **The specification.** The same practices stated as testable requirements,
+   grouped into three conformance levels. Level 1 is achievable by a small team
+   with no tooling budget; Level 3 describes a program that measures and
+   corrects itself.
+3. **The tools.** Machine-readable schemas for detection and use case records, a
+   reference implementation with validation and tests, templates for intake
+   forms, and a self-assessment instrument.
+
+---
+
+## Where to start
+
+| Reader | Suggested path |
+| --- | --- |
+| **Detection engineer** | [The lifecycle at a glance](Detection-Engineering-Lifecycle.md), then [A detection's journey](worked-example.md), then the phase chapters in order |
+| **SOC lead** | [Why a framework is needed](Background-and-Introduction.md), [A detection's journey](worked-example.md), [The planning phase](planning-phase.md) and [The improvement phase](improvement-phase.md) |
+| **Security leader** | This page, [A detection's journey](worked-example.md), [Assessing a program](conformance-model.md) and [Related work](related-work.md). Each chapter closes with an *In brief* summary for readers who need the conclusions rather than the method |
+| **Small team with no budget** | [Adopting the framework](from-theory-to-practice.md), which covers a minimal starting point and how to grow from it |
+| **Assessor or auditor** | [Assessing a program](conformance-model.md) and [The specification](specification.md) |
+
+Readers who prefer to follow the full path can start with
+[Why a framework is needed](Background-and-Introduction.md) and use the
+*Next* link at the foot of each chapter.
+
+---
+
+## See it working
+
+The repository includes a complete reference implementation. It contains one
+detection, for malicious OAuth application consent in Microsoft Entra ID,
+carried through every phase: the original request, the detection record,
+portable and platform-specific rule logic, test data, a response playbook and
+production metrics. The same detection is the running example throughout the
+guide.
+
+Two scripts check that example against the framework. The first validates the
+records against the schemas and the specification. The second runs the
+detection logic against its test data.
 
 ```bash
 git clone https://github.com/Ke0xes/Detection-Engineering-Framework.git
@@ -53,192 +130,109 @@ python reference-implementation/tools/def_validate.py --strict
 python reference-implementation/tools/def_test.py
 ```
 
-```text
-Validated 2 artifact(s): 0 error(s), 0 warning(s)
+Both report success on the unmodified repository. The checks become more
+instructive once something is changed. Each edit below, made to
+`reference-implementation/detections/DET-2026-0001.yml`, causes validation to
+fail with the requirement that was breached:
 
-PASS  DET-2026-0001  tp-01-privileged-consent-mailread.json  (expected match)
-PASS  DET-2026-0001  tp-02-admin-grant-directoryread.json  (expected match)
-PASS  DET-2026-0001  tn-01-allowlisted-app.json  (expected no-match)
-PASS  DET-2026-0001  tn-02-unprivileged-user.json  (expected no-match)
-PASS  DET-2026-0001  tn-03-exception-scoped.json  (expected no-match)
-
-5 passed, 0 failed, 0 skipped
-```
-
-Now break something and watch the governance fail the build:
-
-| Edit `reference-implementation/detections/DET-2026-0001.yml` | Result |
+| Change | Reported failure |
 | --- | --- |
-| Set `last_reviewed` back six months | `IMP-9` fails — in detection debt |
-| Expire an exception | `IMP-6` fails — exception expired |
-| Set `review_cadence_days: 180` | `IMP-8` fails — detections with exceptions review at 90 |
-| Set `precision_30d: 0.4` | `MET-2` fails — must be in the tuning backlog |
-| Point `use_case_ref` at nothing | `TRACE` fails — reference does not resolve |
+| Move `last_reviewed` back six months | The detection is overdue for review (`IMP-9`) |
+| Set an exception's `expires` date in the past | The exception has expired (`IMP-6`) |
+| Set `review_cadence_days: 180` | Detections with exceptions must be reviewed every 90 days (`IMP-8`) |
+| Set `precision_30d: 0.4` | Precision is below the tuning threshold (`MET-2`) |
+| Point `use_case_ref` at a request that does not exist | The detection cannot be traced to a business driver (`TRACE`) |
 
-That is the difference between a framework and a document.
+The same checks run in continuous integration on every change to this
+repository, and can be adopted in any detection repository. The
+[reference implementation guide](reference-implementation/README.md) explains
+how.
+
+### Use it with an AI assistant
+
+The repository also includes an
+[AI agent skill](skills/senior-detection-engineer/README.md) that makes an
+assistant such as GitHub Copilot or Claude act as a senior detection engineer
+working to this framework. It scores requests, designs and reviews rules,
+writes detection records, fixtures and playbooks, and assesses conformance.
+The skill is self-contained and can be copied into any project.
 
 ---
 
-## Start here
+## How it relates to other work
 
-| If you are... | Go to |
-| --- | --- |
-| Deciding whether to adopt this | [Related Work and Differentiation](related-work.md) |
-| Wanting to see it work end to end | [Worked Example](worked-example.md) |
-| Looking for the rules you must follow | [Specification](specification.md) |
-| Assessing your program | [Conformance Model](conformance-model.md) · [Assessment instrument](assessment/) |
-| New to detection engineering | [Background and Introduction](Background-and-Introduction.md) |
-| Building the pipeline | [Detection as Code](detection-as-code.md) |
-| A small team with no budget | [Adoption Guide](from-theory-to-practice.md) |
+The framework builds on established work rather than replacing it. MITRE ATT&CK
+and ATLAS provide the vocabulary for adversary behavior, Sigma provides portable
+rule syntax, and MITRE's Summiting the Pyramid research informs how detection
+robustness is assessed.
 
----
+Three things distinguish it:
 
-## The framework
+- **Traceability is required, not recommended.** Every detection must link to a
+  business driver and to its telemetry in a machine-readable form.
+- **Response is part of the detection.** A detection is not complete until the
+  response it triggers has been designed and rehearsed.
+- **Detection intent is recorded independently of any platform.** Vendor
+  Agnostic Logic (VAL) states what a detection is looking for before it is
+  written in a particular query language, so the same intent can be implemented
+  and tested on several platforms.
 
-> Chapter numbers are a stable reading index used for cross-references in the
-> text. Filenames are unchanged from earlier versions so that existing links
-> keep working.
-
-### Normative core
-
-| # | Chapter |
-| --- | --- |
-| 00 | [Specification](specification.md) — every requirement, RFC 2119 language |
-| 10 | [Conformance Model](conformance-model.md) — L1/L2/L3, evidence, what may be claimed |
-
-### Lifecycle
-
-| # | Chapter |
-| --- | --- |
-| 01 | [Background and Introduction](Background-and-Introduction.md) |
-| 02 | [Detection Engineering Lifecycle](Detection-Engineering-Lifecycle.md) |
-| 03 | [Planning Phase](planning-phase.md) — drivers, feasibility, anchored prioritization rubric |
-| 04 | [Development A — Technical Feasibility](development-phase-A.md) |
-| 05 | [Development B — Detection Engineering](development-phase-B.md) |
-| 06 | [Development C — Response Engineering](development-phase-C.md) |
-| 07 | [Delivery Phase](delivery-phase.md) |
-| 08 | [Improvement Phase](improvement-phase.md) — triggers, change classes, drift, deprecation |
-
-### Engineering practice
-
-| # | Chapter |
-| --- | --- |
-| 09 | [Detection Metrics](detection-metrics.md) — precision over FPR, health monitoring |
-| 11 | [Detection as Code](detection-as-code.md) — repository layout, CI gates, deployment |
-| 12 | [Telemetry and Data](telemetry-and-data.md) — data quality, normalization, ingest economics |
-| 13 | [Detection Robustness](detection-robustness.md) — the robustness ladder, coverage weighting |
-| 14 | [Modern Attack Surfaces](modern-attack-surfaces.md) — identity, cloud, SaaS, containers, CI/CD, OT, AI |
-| 15 | [Governance and Roles](governance-and-roles.md) — RACI, intake, capacity, SLAs |
-
-### Applying it
-
-| # | Chapter |
-| --- | --- |
-| 16 | [Adoption Guide](from-theory-to-practice.md) |
-| 17 | [Advanced Best Practices](best-practices.md) |
-| 18 | [Related Work](related-work.md) |
-| 19 | [Worked Example](worked-example.md) |
-
----
-
-## Executable artifacts
-
-| Path | What it is |
-| --- | --- |
-| [`schema/detection.schema.json`](schema/detection.schema.json) | The detection metadata contract |
-| [`schema/use-case.schema.json`](schema/use-case.schema.json) | The planning artifact contract |
-| [`reference-implementation/`](reference-implementation/) | A complete worked detection, validation tooling and tests |
-| [`assessment/`](assessment/) | Conformance instrument and scorer |
-| [`tools-and-templates/`](tools-and-templates/) | Use case request template and codified intake forms |
-
----
-
-## Conformance in one table
-
-| | **L1 Foundational** | **L2 Managed** | **L3 Optimised** |
-| --- | --- | --- | --- |
-| Answers | Do we know what we have and why? | Is it engineered and governed? | Is it measured, validated and self-correcting? |
-| Reachable by | 1-3 people, no budget | A dedicated detection function | Detection function with platform support |
-| Testing | Manual, documented | Fixtures in CI | Fixtures plus continuous adversary emulation |
-| Improvement | Reactive, tracked | Scheduled reviews enforced | Drift detected automatically |
-
-A conformance claim names the level, the specification version, the assessment
-date and the scope. *"DEF compliant"* is not a claim.
-
----
-
-## One correction worth calling out
-
-Version 2.0 of this framework defined the false positive rate as
-$FPR = FP/(FP+TN)$ and gave a worked example with an assumed true-negative
-count.
-
-That is withdrawn. $TN$ — benign events correctly *not* alerted on — is
-unbounded and unmeasurable in an event stream, so any stated value is
-fabricated. It also always produces a flatteringly small number: a rule
-generating 400 false alerts a day against 50 million events reports an FPR of
-0.0008% while the SOC drowns.
-
-The framework now requires **Precision** ($TP/(TP+FP)$), which is read directly
-from case management data and reflects what analysts actually experience. See
-[Detection Metrics](detection-metrics.md).
-
-Other frameworks still publish the old formula. This one does not, and says why.
+[Related work](related-work.md) sets out the comparison in detail.
 
 ---
 
 ## Contributing
 
-**Implementation reports are the most valuable contribution.** If you adopted
-part of this and something did not work, [tell us](https://github.com/Ke0xes/Detection-Engineering-Framework/issues/new?template=implementation-report.yml).
-A requirement that cannot be met in practice is a defect in the specification.
+The most useful contribution is an account of what happened when a team adopted
+part of the framework, particularly where something proved impractical.
+Requirements that cannot be met in practice are defects in the specification.
+Implementation reports can be filed as an
+[issue](https://github.com/Ke0xes/Detection-Engineering-Framework/issues/new?template=implementation-report.yml).
 
-Also wanted: a second worked example on a non-identity surface, platform
-backends for the fixture runner, and compliance mappings.
+Other contributions are also welcome, notably a second worked example on a
+non-identity surface, platform backends for the test runner, and mappings to
+compliance frameworks. [CONTRIBUTING.md](CONTRIBUTING.md),
+[ROADMAP.md](ROADMAP.md) and [GOVERNANCE.md](GOVERNANCE.md) describe how the
+project is run. The project currently has one maintainer, and GOVERNANCE.md
+describes the intended path to broader, neutral governance.
 
-See [CONTRIBUTING.md](CONTRIBUTING.md), [ROADMAP.md](ROADMAP.md) and
-[GOVERNANCE.md](GOVERNANCE.md).
+## License
 
-> **On governance.** This project currently has one maintainer. That is a real
-> limitation for something aiming to be a standard, and the path away from it —
-> additional maintainers from other organizations, then a neutral home — is
-> documented in [GOVERNANCE.md](GOVERNANCE.md). Maintainers from outside the
-> lead maintainer's employer are explicitly prioritized.
-
----
-
-## Licence
-
-Everything in this repository — prose, specification, schemas, tooling,
-templates and assessment material — is licensed under the
+The entire repository is licensed under the
 [Apache License 2.0](https://github.com/Ke0xes/Detection-Engineering-Framework/blob/main/License).
 Attribution requirements are in
 [NOTICE](https://github.com/Ke0xes/Detection-Engineering-Framework/blob/main/NOTICE).
 
-Apache 2.0 includes an explicit patent grant, which matters for a specification
-that vendors may implement, and it is a licence most enterprise legal functions
-already approve for internal use.
-
 ## Citing
 
-Machine-readable metadata: [CITATION.cff](https://github.com/Ke0xes/Detection-Engineering-Framework/blob/main/CITATION.cff).
-
-> Hatode, K. et al. *Detection Engineering Framework*, version 2.1.0, 2026.
+> Hatode, K. et al. *Detection Engineering Framework*, version 2.1.1, 2026.
 > https://github.com/Ke0xes/Detection-Engineering-Framework
+
+Machine-readable citation metadata is in
+[CITATION.cff](https://github.com/Ke0xes/Detection-Engineering-Framework/blob/main/CITATION.cff).
 
 ## Credits
 
-Created by **[Kunal Hatode](https://kunal.hatode.com)**, developed originally
+Created by **[Kunal Hatode](https://kunal.hatode.com)**, originally developed
 during work as a Cyber Operations Security Architect at Cisco and published
 independently.
 
 With thanks to:
 
-- **[Frank Hassenrueck](https://www.linkedin.com/in/frank-hassenr%C3%BCck-371529116/)** — co-wrote technical core elements
-- **[Matrix Chau](https://www.linkedin.com/in/matrixchau/)** — early feedback and co-writing
+- **[Frank Hassenrueck](https://www.linkedin.com/in/frank-hassenr%C3%BCck-371529116/)**, who co-wrote technical core elements
+- **[Matrix Chau](https://www.linkedin.com/in/matrixchau/)**, who provided early feedback and co-wrote parts of the framework
 
-The ideas here are assembled from the work of the wider security community.
-The framework's contribution is the lifecycle, the conformance model, the
-schemas and the enforcement — not the underlying insights about adversary
-behavior, which belong to MITRE, to SigmaHQ, and to the practitioners who
-publish their methods.
+The ideas assembled here draw on the wider security community. The framework's
+own contribution is the lifecycle, the conformance model, the schemas and their
+enforcement; the underlying understanding of adversary behavior belongs to
+MITRE, SigmaHQ and the practitioners who publish their methods.
+
+<!-- journey:next -->
+<div class="journey-footer" markdown>
+
+---
+
+**Next:** [Why a framework is needed](Background-and-Introduction.md)
+
+</div>
+<!-- /journey:next -->

@@ -1,18 +1,25 @@
 # Detection Robustness
 
-*[Framework index](README.md) · [Specification](specification.md) · [Conformance](conformance-model.md)*
-
-> **Normative status.** This chapter is normative where requirement identifiers
-> appear.
+<!-- journey:where -->
+*Walk the lifecycle › Development B: Detection engineering › Going deeper*
+<!-- /journey:where -->
 
 Two detections can both claim coverage of the same ATT&CK technique and differ
-by an order of magnitude in how hard they are to evade. Counting rules treats
-them as equal. This chapter defines how to tell them apart, and why the
-distinction should drive prioritization, coverage reporting and review.
+greatly in how hard they are to evade. One matches the file name of a known
+tool; the other matches the action the tool performs. Renaming a file defeats
+the first in seconds. Defeating the second requires a different technique
+altogether. A coverage report that simply counts rules treats them as equal.
 
-This work builds on the Pyramid of Pain and on MITRE's Summiting the Pyramid
-research. Where those describe *analytic* robustness, this chapter connects it
-to the framework's lifecycle controls.
+This deep dive describes how to tell the two apart, and why the difference
+should shape prioritization, coverage reporting and review. It builds on the
+Pyramid of Pain and on MITRE's Summiting the Pyramid research, and connects
+that work to the lifecycle controls described elsewhere in the guide.
+
+> **Running example.** The consent phishing detection is classed as
+> behavior-based. It matches the permission grant itself rather than any
+> attacker tooling, so it cannot be evaded by renaming or recompiling anything.
+> The worked comparison at the end of this chapter shows how that classification
+> is tested.
 
 ---
 
@@ -37,7 +44,7 @@ optimistically. Apply this test:
 > cause this detection to stop firing while the technique still succeeds.
 
 If the answer is "change a string" it is `indicator`, whatever the metadata
-says. If you cannot construct such a change, it may genuinely be `invariant`.
+says. If no such change can be constructed, it may genuinely be `invariant`.
 
 **DET-7** requires that ephemeral and indicator detections declare their
 curation process. An indicator list that nobody owns decays into pure noise, and
@@ -150,8 +157,9 @@ Tier: `behavior`. Evasion cost: obtain credential material by a different
 technique entirely, for example from a memory dump taken by a legitimate signed
 tool. Weight 0.8.
 
-Both appear as "one detection for T1003.001" in a naive coverage report. Only
-one of them will still work next quarter.
+Both appear as "one detection for T1003.001" in a coverage report that counts
+rules. Detection A stops working as soon as the tool is renamed; Detection B
+continues to work until the attacker changes technique.
 
 Note that Detection B is still not `invariant`: the named alternative evasion is
 real, which is why detection-in-depth requires a second detection covering
@@ -159,4 +167,36 @@ credential access via legitimate dumping tooling.
 
 ---
 
-*Next: [Modern Attack Surfaces](modern-attack-surfaces.md) · Previous: [Telemetry and Data](telemetry-and-data.md)*
+## In brief
+
+- Every detection declares one of five robustness tiers, from ephemeral
+  indicators such as hashes to invariant properties the technique cannot avoid.
+- The tier is tested by asking what minimal change would let an attacker evade
+  the detection while the technique still succeeds.
+- Coverage is weighted by tier and by validation, not counted by rule.
+- Accumulated exceptions erode robustness without any change to the logic,
+  which is why an exception needs an expiry and a test of its boundary.
+
+## Requirements in this chapter
+
+The tier declaration is required by `DET-4`, curation of indicator-based
+detections by `DET-7`, and boundary tests for exceptions by `DET-10`, all in
+the [specification](specification.md#62-quality-attributes). Weighted coverage
+reporting is `MET-3`, described in [detection metrics](detection-metrics.md).
+
+## What comes next
+
+The second deep dive for this stage, [detection as code](detection-as-code.md),
+explains how detections and the tests that protect their robustness are
+managed like software. Readers following the core path can continue to
+[the response engineering phase](development-phase-C.md).
+
+<!-- journey:next -->
+<div class="journey-footer" markdown>
+
+---
+
+**Previous:** [The detection engineering phase](development-phase-B.md) · **Next:** [Going deeper: Detection as code](detection-as-code.md)
+
+</div>
+<!-- /journey:next -->

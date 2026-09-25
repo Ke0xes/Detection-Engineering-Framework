@@ -186,7 +186,7 @@
 **Detection Metrics:**
 
 - **Target Detection Rate:** `[Percentage or specific threshold]`
-- **Maximum False Positive Rate:** `[Acceptable percentage]`
+- **Minimum Precision:** `[Share of alerts confirmed as genuine, e.g. 0.50]`
 - **Mean Time to Detect (MTTD):** `[Target timeframe]`
 
 **Operational Metrics:**
