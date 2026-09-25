@@ -1,0 +1,21 @@
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# MkDocs build output
+site/
+
+# Node (docs tooling only)
+node_modules/
+
+# Editor and OS
+.DS_Store
+Thumbs.db
+.vscode/settings.json
+
+# Local evidence and scratch output from runbook execution
+evidence/
+*.local.*

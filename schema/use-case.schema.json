@@ -1,0 +1,214 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Ke0xes/Detection-Engineering-Framework/schema/use-case.schema.json",
+  "title": "Detection Engineering Framework - Use Case Request",
+  "description": "Planning-phase artifact. Captures the business driver, the contextual feasibility analysis and the anchored priority score defined in docs/03-planning-phase.md.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "id",
+    "title",
+    "status",
+    "submitted",
+    "requester",
+    "drivers",
+    "scope",
+    "priority",
+    "outcomes"
+  ],
+  "properties": {
+    "schema_version": { "const": "2.1" },
+    "id": {
+      "type": "string",
+      "pattern": "^UC-[0-9]{4}-[0-9]{4}$",
+      "examples": ["UC-2026-0007"]
+    },
+    "title": { "type": "string", "minLength": 10, "maxLength": 120 },
+    "status": {
+      "type": "string",
+      "enum": ["submitted", "triage", "accepted", "in-development", "delivered", "rejected", "withdrawn"]
+    },
+    "submitted": { "type": "string", "format": "date" },
+    "requester": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "department"],
+      "properties": {
+        "name": { "type": "string" },
+        "role": { "type": "string" },
+        "department": { "type": "string" }
+      }
+    },
+    "business_owner": { "type": "string" },
+
+    "drivers": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["types", "justification"],
+      "properties": {
+        "types": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "enum": ["risk", "threat", "compliance"] }
+        },
+        "justification": {
+          "type": "string",
+          "minLength": 50,
+          "description": "Why this is needed, what happens if it is not built, and how success will be measured."
+        },
+        "risk_refs": { "type": "array", "items": { "type": "string" } },
+        "compliance_refs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["framework", "control"],
+            "properties": {
+              "framework": { "type": "string" },
+              "control": { "type": "string" },
+              "deadline": { "type": "string", "format": "date" }
+            }
+          }
+        },
+        "intel_refs": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["objective", "in_scope"],
+      "properties": {
+        "objective": { "type": "string", "minLength": 20 },
+        "in_scope": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+        "out_of_scope": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Explicit non-goals. Omitting these is the most common cause of scope disputes at handover."
+        },
+        "business_services": { "type": "array", "items": { "type": "string" } },
+        "expected_attack_techniques": {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^T[0-9]{4}(\\.[0-9]{3})?$" }
+        },
+        "candidate_logsources": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+
+    "priority": {
+      "description": "Anchored rubric from docs/03-planning-phase.md. Score = ((T*3)+(A*3)+(G*2)) / (C+M).",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["threat_relevance", "asset_criticality", "coverage_gap", "build_cost", "maintenance_burden", "scored_on"],
+      "properties": {
+        "threat_relevance": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "asset_criticality": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "coverage_gap": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "build_cost": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "maintenance_burden": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "computed_score": { "type": "number", "minimum": 0 },
+        "scored_by": { "type": "string" },
+        "scored_on": { "type": "string", "format": "date" },
+        "rationale": { "type": "string" },
+        "path": {
+          "type": "string",
+          "enum": ["standard", "expedited", "compliance-deadline"],
+          "description": "PLN-3: threat_relevance of 5 routes to expedited. PLN-4: compliance requests schedule against deadline."
+        }
+      }
+    },
+
+    "outcomes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["success_criteria"],
+      "properties": {
+        "success_criteria": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string" },
+          "description": "Measurable. 'Improved visibility' is not a success criterion."
+        },
+        "target_precision": { "type": "number", "minimum": 0, "maximum": 1 },
+        "acceptable_alert_volume_per_day": { "type": "number", "minimum": 0 },
+        "required_response_time_minutes": { "type": "integer", "minimum": 1 }
+      }
+    },
+
+    "stakeholders": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "role"],
+        "properties": {
+          "name": { "type": "string" },
+          "role": { "type": "string" },
+          "raci": { "type": "string", "enum": ["responsible", "accountable", "consulted", "informed"] }
+        }
+      }
+    },
+
+    "feasibility": {
+      "description": "Contextual feasibility analysis. Completed during triage, before acceptance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "telemetry_available": { "type": "string", "enum": ["yes", "partial", "no", "unknown"] },
+        "telemetry_gaps": { "type": "array", "items": { "type": "string" } },
+        "estimated_ingest_cost_annual": { "type": "number", "minimum": 0 },
+        "estimated_effort_days": { "type": "number", "minimum": 0 },
+        "blocking_dependencies": { "type": "array", "items": { "type": "string" } },
+        "assessed_by": { "type": "string" },
+        "assessed_on": { "type": "string", "format": "date" }
+      }
+    },
+
+    "resulting_detections": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^DET-[0-9]{4}-[0-9]{4}$" },
+      "description": "Closes the traceability loop from business driver to deployed detection."
+    },
+
+    "decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "outcome": { "type": "string", "enum": ["accepted", "rejected", "deferred"] },
+        "rationale": { "type": "string" },
+        "decided_by": { "type": "string" },
+        "decided_on": { "type": "string", "format": "date" }
+      }
+    }
+  },
+
+  "allOf": [
+    {
+      "$comment": "PLN-4: a compliance-driven request must carry a deadline.",
+      "if": {
+        "properties": { "drivers": { "properties": { "types": { "contains": { "const": "compliance" } } } } },
+        "required": ["drivers"]
+      },
+      "then": {
+        "properties": {
+          "drivers": {
+            "required": ["compliance_refs"],
+            "properties": { "compliance_refs": { "minItems": 1, "items": { "required": ["deadline"] } } }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "An accepted request must record who accepted it and why.",
+      "if": {
+        "properties": { "status": { "enum": ["accepted", "in-development", "delivered", "rejected"] } },
+        "required": ["status"]
+      },
+      "then": {
+        "required": ["decision", "feasibility"],
+        "properties": { "decision": { "required": ["outcome", "rationale", "decided_by", "decided_on"] } }
+      }
+    }
+  ]
+}

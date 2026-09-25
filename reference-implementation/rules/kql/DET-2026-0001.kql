@@ -1,0 +1,50 @@
+// DET-2026-0001 - OAuth application consent granted to unverified publisher by privileged identity
+// Platform: Microsoft Sentinel   Language: KQL
+// Schedule: every 10 minutes, 20 minute lookback (overlap is intentional; dedupe on AuditRecordId)
+//
+// Watchlists required:
+//   ApprovedApplications  - columns: ApplicationId
+//   PrivilegedIdentities  - columns: UserPrincipalName
+//
+// Traceability: UC-2026-0001 | ATT&CK T1528, T1550.001, T1098.003
+
+let lookback = 20m;
+let SensitiveScopes = dynamic(["Mail.Read", "Mail.Send", "Files.Read", "Directory.Read", "Sites.Read"]);
+let ConsentOperations = dynamic([
+    "Consent to application",
+    "Add delegated permission grant",
+    "Add app role assignment grant to user"
+]);
+let ApprovedApps = (_GetWatchlist('ApprovedApplications') | project ApplicationId = tostring(ApplicationId));
+let PrivilegedUsers = (_GetWatchlist('PrivilegedIdentities') | project UserPrincipalName = tolower(tostring(UserPrincipalName)));
+AuditLogs
+| where TimeGenerated > ago(lookback)
+| where OperationName in (ConsentOperations)
+| where Result == "success"
+| extend InitiatorUpn = tolower(tostring(InitiatedBy.user.userPrincipalName))
+| extend TargetResource = TargetResources[0]
+| extend ApplicationId = tostring(TargetResource.id)
+| extend ApplicationName = tostring(TargetResource.displayName)
+| extend GrantedScopes = tostring(parse_json(tostring(TargetResource.modifiedProperties))[0].newValue)
+// Scope relevance
+| where GrantedScopes has_any (SensitiveScopes)
+// Privileged initiator
+| join kind=inner (PrivilegedUsers) on $left.InitiatorUpn == $right.UserPrincipalName
+// Exclude approved applications
+| join kind=leftanti (ApprovedApps) on ApplicationId
+// EXC-0001 - expires 2026-12-31 - Identity Services - scheduled first-party re-consent
+| where not(ApplicationId == "d3590ed6-52b3-4102-aeff-aad2292ab01c"
+        and InitiatorUpn == "svc-identity-automation@contoso.com")
+| project
+    TimeGenerated,
+    DetectionId = "DET-2026-0001",
+    InitiatorUpn,
+    ApplicationId,
+    ApplicationName,
+    GrantedScopes,
+    OperationName,
+    CorrelationId,
+    AuditRecordId = tostring(Id)
+| extend
+    AlertSeverity = "High",
+    PlaybookRef = "PB-0003-oauth-consent-abuse"

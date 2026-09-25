@@ -1,0 +1,57 @@
+name: Correction or defect
+description: Report an error in the documentation, schemas or tooling
+title: "[FIX] "
+labels: ["defect"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        For security issues in the tooling or CI configuration, use private
+        vulnerability reporting instead. See SECURITY.md.
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Documentation (docs/)
+        - Specification text (normative)
+        - Schema (schema/)
+        - Reference implementation
+        - Tooling (def_validate, def_test, score)
+        - Assessment instrument
+        - CI workflows
+        - Templates
+        - Site build or navigation
+    validations:
+      required: true
+
+  - type: input
+    id: location
+    attributes:
+      label: Location
+      description: File path, and requirement ID or heading if applicable.
+      placeholder: "docs/09-metrics.md, section 'The required metric set'"
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is wrong
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What it should say or do
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction
+      description: For tooling defects, the command and its output.
+      render: shell

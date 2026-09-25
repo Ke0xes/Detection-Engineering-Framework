@@ -1,0 +1,4 @@
+mkdocs>=1.6.1
+mkdocs-material>=9.5.49
+mkdocs-same-dir>=0.1.3
+pymdown-extensions>=10.12

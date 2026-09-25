@@ -1,0 +1,47 @@
+{
+  "config": {
+    "default": true,
+
+    // New prose is hand-wrapped at ~80 chars; legacy chapters are unwrapped.
+    // Enforcing a line length would churn the entire corpus for no benefit.
+    "MD013": false,
+
+    // Repeated sub-headings such as "The Problem" are intentional across
+    // different parent sections.
+    "MD024": { "siblings_only": true },
+
+    "MD033": {
+      "allowed_elements": ["br", "img", "a", "details", "summary", "strong", "sub", "sup", "kbd"]
+    },
+
+    // Bare URLs appear inside example log fixtures and reference lists.
+    "MD034": false,
+
+    // Consecutive standalone blockquotes separated by a blank line are an
+    // intentional pattern in several chapters; the rule cannot distinguish
+    // them from an accidentally split quote.
+    "MD028": false,
+
+    // Several chapters open with a breadcrumb line before the H1.
+    "MD041": false,
+
+    // Legacy chapters use bold text as a pseudo-heading in places. Converting
+    // them to real headings would change the document outline and break the
+    // anchors that external links already point at.
+    "MD036": false,
+
+    // Table pipe padding. Cosmetic only, and fights the existing corpus.
+    "MD060": false,
+
+    "MD046": { "style": "fenced" },
+    "MD004": { "style": "dash" },
+    "MD029": { "style": "ordered" }
+  },
+  "globs": ["**/*.md"],
+  "ignores": [
+    ".venv/**",
+    "site/**",
+    "node_modules/**",
+    "LICENSE*"
+  ]
+}

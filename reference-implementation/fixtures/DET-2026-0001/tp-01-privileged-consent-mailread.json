@@ -1,0 +1,16 @@
+{
+  "_comment": "True positive: privileged identity consents to an unverified application requesting mailbox read and offline access.",
+  "TimeGenerated": "2026-06-11T09:14:22Z",
+  "Operation": "Consent to application",
+  "Result": "success",
+  "InitiatorUpn": "j.mbeki@contoso.com",
+  "InitiatorIsPrivileged": true,
+  "InitiatorDirectoryRoles": ["Global Reader", "Exchange Administrator"],
+  "ApplicationId": "8f21c4de-90ab-4c77-b1d9-6ea2f0c31b55",
+  "ApplicationName": "Quarterly Report Sync",
+  "ApplicationIsAllowlisted": false,
+  "ApplicationPublisherVerified": false,
+  "GrantedScopes": "Mail.Read offline_access User.Read",
+  "CorrelationId": "b0e4a1c2-3d5f-4a77-9c11-6f2d8e4b7a90",
+  "AuditRecordId": "AUD-8891002"
+}

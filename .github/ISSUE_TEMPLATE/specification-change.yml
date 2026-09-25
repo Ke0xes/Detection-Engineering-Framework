@@ -1,0 +1,93 @@
+name: Specification change
+description: Propose adding, changing or withdrawing a normative requirement
+title: "[SPEC] "
+labels: ["specification", "needs-discussion"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Normative changes require a 14-day comment period and two maintainer
+        approvals. Please open this issue before writing a pull request.
+
+  - type: dropdown
+    id: change_type
+    attributes:
+      label: Type of change
+      options:
+        - New requirement
+        - Strengthen existing requirement (SHOULD to MUST)
+        - Weaken existing requirement (MUST to SHOULD)
+        - Change level assignment (L1/L2/L3)
+        - Withdraw requirement
+        - Clarify wording without changing conformance
+    validations:
+      required: true
+
+  - type: input
+    id: requirement_id
+    attributes:
+      label: Requirement identifier
+      description: Existing identifier, or the domain prefix you propose for a new one.
+      placeholder: "IMP-7, or: new requirement in the TEL domain"
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed_text
+    attributes:
+      label: Proposed normative text
+      description: Write it as it would appear. Use RFC 2119 keywords in capitals.
+      placeholder: "TEL-8. A conforming program MUST ..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: rationale
+    attributes:
+      label: Rationale
+      description: >
+        What failure does this prevent? Implementation experience is the
+        strongest argument available here.
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Acceptable evidence
+      description: >
+        How would an assessor verify conformance? A requirement that cannot be
+        evidenced cannot be assessed and will not be accepted.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: level
+    attributes:
+      label: Proposed conformance level
+      options:
+        - L1 Foundational
+        - L2 Managed
+        - L3 Optimised
+    validations:
+      required: true
+
+  - type: textarea
+    id: adoptability
+    attributes:
+      label: Adoptability impact
+      description: >
+        If proposed for L1: can a two-person team with no budget still meet it?
+        If not, it belongs at L2 or L3.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Confirmations
+      options:
+        - label: I have read CONTRIBUTING.md
+          required: true
+        - label: I understand a new or strengthened MUST is a MAJOR version change
+          required: true

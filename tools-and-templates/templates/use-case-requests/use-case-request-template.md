@@ -1,8 +1,8 @@
-# 📋 Use Case Request Template
+# Use Case Request Template
 
 > **Instructions**: Complete all sections below. Remove this instruction block and any guidance comments (marked with `<!-- -->`) before submitting.
 
-## 📊 Request Information
+## Request Information
 
 | **Field** | **Details** |
 |-----------|-------------|
@@ -14,26 +14,29 @@
 
 ---
 
-## 🎯 Business Context
+## Business Context
 
-### 📈 Business Drivers
+### Business Drivers
 <!-- Check all that apply and provide details -->
 
 **Primary Driver:**
+
 - [ ] **Risk Mitigation** - Describe the specific risk being addressed
 - [ ] **Threat Response** - Identify the threat actors or attack vectors
 - [ ] **Compliance Requirement** - Specify regulation/standard (PCI-DSS, SOX, GDPR, etc.)
 
 **Business Justification:**
-```
+
+```text
 [Explain why this use case is needed from a business perspective]
 [Include potential impact if not implemented]
 [Reference any recent incidents or threat intelligence]
 ```
 
-### 🏢 Organizational Impact
+### Organizational Impact
 
 **Affected Business Units:**
+
 - [ ] IT Operations
 - [ ] Finance
 - [ ] HR
@@ -42,38 +45,43 @@
 - [ ] Other: ________________
 
 **Business Criticality:**
-```
+
+```text
 [Describe how this detection relates to business-critical systems or processes]
 [Identify potential business disruption if threats go undetected]
 ```
 
 ---
 
-## 🔍 Technical Requirements
+## Technical Requirements
 
-### 🎯 Scope and Objectives
+### Scope and Objectives
 
 **Primary Objective:**
-```
+
+```text
 [Clear statement of what this use case should detect or prevent]
 ```
 
 **Success Criteria:**
-```
+
+```text
 [Measurable outcomes that define successful implementation]
 [Include detection accuracy, response time, or coverage metrics]
 ```
 
 **Out of Scope:**
-```
+
+```text
 [Explicitly state what this use case will NOT cover]
 ```
 
-### 📊 Data Sources and Systems
+### Data Sources and Systems
 
 **Required Data Sources:**
+
 - [ ] Windows Event Logs
-- [ ] Linux/Unix Logs  
+- [ ] Linux/Unix Logs
 - [ ] Network Traffic (NetFlow/PCAP)
 - [ ] DNS Logs
 - [ ] Proxy/Web Logs
@@ -85,114 +93,130 @@
 - [ ] Other: ________________
 
 **Affected Systems/Assets:**
-```
+
+```text
 [List specific systems, networks, or asset types that should be monitored]
 [Include IP ranges, hostnames, or system classifications]
 ```
 
-### ⚔️ Threat Landscape
+### Threat Landscape
 
 **Attack Techniques (MITRE ATT&CK):**
-```
+
+```text
 [Reference specific MITRE ATT&CK techniques if known]
 [Example: T1566.001 - Spearphishing Attachment]
 ```
 
 **Known Indicators:**
-```
+
+```text
 [List any known IOCs, patterns, or signatures]
 [Include file hashes, domains, IPs, or behavioral patterns]
 ```
 
 **Attack Scenarios:**
-```
+
+```text
 [Describe the attack scenarios this use case should detect]
 [Include attack progression and potential impact]
 ```
 
 ---
 
-## 👥 Stakeholder Information
+## Stakeholder Information
 
-### 🎪 Primary Stakeholders
+### Primary Stakeholders
 
 **Business Owner:**
+
 - **Name:** `[Name and Title]`
 - **Department:** `[Department]`
 - **Contact:** `[Email/Phone]`
 - **Role:** `[Decision authority and responsibilities]`
 
 **Technical Owner:**
+
 - **Name:** `[Name and Title]`
 - **Department:** `[IT/Security Team]`
 - **Contact:** `[Email/Phone]`
 - **Role:** `[Implementation and maintenance responsibilities]`
 
-### 📞 Secondary Stakeholders
+### Secondary Stakeholders
 
 **Incident Response Team:**
+
 - **Primary Contact:** `[Name and Contact]`
 - **Escalation Path:** `[Escalation procedures]`
 
 **Compliance/Legal:**
+
 - **Contact:** `[Name and Contact if applicable]`
 - **Requirements:** `[Specific compliance considerations]`
 
 ---
 
-## 📈 Implementation Planning
+## Implementation Planning
 
-### 🚀 Deployment Requirements
+### Deployment Requirements
 
 **Environment:**
+
 - [ ] Production
 - [ ] Staging/Test
 - [ ] Development
 - [ ] All Environments
 
 **Performance Considerations:**
-```
+
+```text
 [Expected query volume, data retention requirements]
 [Resource impact on SIEM/logging infrastructure]
 ```
 
 **Integration Requirements:**
-```
+
+```text
 [Required integrations with ticketing, SOAR, or other systems]
 [Alert routing and notification requirements]
 ```
 
-### 📊 Success Metrics
+### Success Metrics
 
 **Detection Metrics:**
+
 - **Target Detection Rate:** `[Percentage or specific threshold]`
 - **Maximum False Positive Rate:** `[Acceptable percentage]`
 - **Mean Time to Detect (MTTD):** `[Target timeframe]`
 
 **Operational Metrics:**
+
 - **Alert Volume:** `[Expected alerts per day/week]`
 - **Response Time:** `[Target response timeframe]`
 - **Coverage:** `[Percentage of environment covered]`
 
 ---
 
-## 🔄 Approval and Tracking
+## Approval and Tracking
 
-### ✅ Approval Workflow
+### Approval Workflow
 
 **Business Approval:**
+
 - **Approved By:** `[Name and Date]`
 - **Signature:** `[Digital signature or approval reference]`
 
 **Technical Approval:**
+
 - **Reviewed By:** `[Security Architect/Engineer Name and Date]`
 - **Technical Feasibility:** `[ ] Approved [ ] Needs Review [ ] Rejected`
 
 **Budget/Resource Approval:**
+
 - **Approved By:** `[Manager/Director Name and Date]`
 - **Resource Allocation:** `[Approved hours/budget]`
 
-### 📋 Status Tracking
+### Status Tracking
 
 | **Phase** | **Status** | **Assigned To** | **Due Date** | **Notes** |
 |-----------|------------|-----------------|--------------|-----------|
@@ -205,25 +229,27 @@
 
 ---
 
-## 📝 Additional Notes
+## Additional Notes
 
 **Special Considerations:**
-```
+
+```text
 [Any additional requirements, constraints, or considerations]
 [Dependencies on other projects or systems]
 [Regulatory or legal considerations]
 ```
 
 **Related Use Cases:**
-```
+
+```text
 [Reference any related or dependent use cases]
 [Identify potential conflicts or overlaps]
 ```
 
 ---
 
-**Template Version:** 1.0  
-**Last Updated:** [Date]  
-**Framework Phase:** Planning Phase  
+**Template Version:** 1.0
+**Last Updated:** [Date]
+**Framework Phase:** Planning Phase
 
-> 💡 **Next Steps**: After completing this template, proceed to the Technical Feasibility Analysis phase of the Detection Engineering Framework.
+> **Next Steps**: After completing this template, proceed to the Technical Feasibility Analysis phase of the Detection Engineering Framework.

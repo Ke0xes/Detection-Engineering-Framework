@@ -1,0 +1,20 @@
+# Normalise line endings in the repository to LF.
+* text=auto eol=lf
+
+*.md       text eol=lf
+*.yml      text eol=lf
+*.yaml     text eol=lf
+*.json     text eol=lf
+*.txt      text eol=lf
+*.cff      text eol=lf
+*.ps1      text eol=crlf
+*.sh       text eol=lf
+
+License      text eol=lf
+NOTICE       text eol=lf
+
+# Keep generated site output and lockfiles out of diffs.
+site/**      linguist-generated=true
+*.png binary
+*.jpg binary
+*.svg text eol=lf

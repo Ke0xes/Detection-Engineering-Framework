@@ -1,0 +1,461 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Ke0xes/Detection-Engineering-Framework/schema/detection.schema.json",
+  "title": "Detection Engineering Framework - Detection Metadata",
+  "description": "Canonical metadata contract for a single detection under the Detection Engineering Framework v2.1. Platform-agnostic: the detection logic itself lives in platform_implementations, this document describes everything else.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "id",
+    "version",
+    "title",
+    "description",
+    "status",
+    "created",
+    "owner",
+    "traceability",
+    "classification",
+    "threat",
+    "logsources",
+    "platform_implementations",
+    "response",
+    "lifecycle"
+  ],
+  "properties": {
+    "schema_version": {
+      "description": "Version of this schema the document conforms to.",
+      "const": "2.1"
+    },
+    "id": {
+      "description": "Immutable detection identifier. Never reused, never renumbered.",
+      "type": "string",
+      "pattern": "^DET-[0-9]{4}-[0-9]{4}$",
+      "examples": ["DET-2026-0042"]
+    },
+    "version": {
+      "description": "Semantic version of the detection. MAJOR for logic changes that alter what fires, MINOR for scope or enrichment changes, PATCH for documentation and exceptions.",
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 120,
+      "description": "Behavior-describing title. Should name what the adversary did, not the tool that saw it."
+    },
+    "description": {
+      "type": "string",
+      "minLength": 50,
+      "description": "What this detects, why it matters, and what an analyst should conclude when it fires."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "testing", "canary", "production", "deprecated", "retired"]
+    },
+    "created": { "type": "string", "format": "date" },
+    "last_modified": { "type": "string", "format": "date" },
+    "author": { "type": "string" },
+    "owner": {
+      "description": "Accountable team, not an individual. Individuals leave.",
+      "type": "string",
+      "minLength": 2
+    },
+
+    "traceability": {
+      "description": "Two-way traceability. Every detection connects upward to a business driver and downward to telemetry.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["use_case_ref", "driver_type"],
+      "properties": {
+        "use_case_ref": {
+          "type": "string",
+          "pattern": "^UC-[0-9]{4}-[0-9]{4}$",
+          "description": "The use case request that authorised this detection."
+        },
+        "driver_type": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "enum": ["risk", "threat", "compliance"] }
+        },
+        "risk_refs": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Identifiers from the enterprise risk register."
+        },
+        "compliance_refs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["framework", "control"],
+            "properties": {
+              "framework": { "type": "string", "examples": ["PCI-DSS 4.0", "NIST CSF 2.0", "DORA", "NIS2", "ISO 27001:2022"] },
+              "control": { "type": "string", "examples": ["10.4.1", "DE.CM-01"] }
+            }
+          }
+        },
+        "business_service": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Business services or crown-jewel assets this detection protects."
+        }
+      }
+    },
+
+    "classification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["severity", "confidence", "robustness_tier"],
+      "properties": {
+        "severity": {
+          "type": "string",
+          "enum": ["critical", "high", "medium", "low", "informational"],
+          "description": "Drives response SLA and review cadence."
+        },
+        "confidence": {
+          "type": "string",
+          "enum": ["high", "medium", "low"],
+          "description": "How likely a fire is a true positive. Drives whether this alerts, correlates, or only enriches."
+        },
+        "robustness_tier": {
+          "type": "string",
+          "enum": ["ephemeral", "indicator", "tool-artifact", "behavior", "invariant"],
+          "description": "How hard this is for an adversary to evade. See docs/13-detection-robustness.md."
+        },
+        "alert_disposition": {
+          "type": "string",
+          "enum": ["alert", "correlate-only", "enrich-only", "hunt-only"],
+          "description": "Not every detection should create an analyst alert."
+        },
+        "tags": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+
+    "threat": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["attack"],
+      "properties": {
+        "attack": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["techniques"],
+          "properties": {
+            "version": { "type": "string", "description": "ATT&CK version this mapping was made against." },
+            "tactics": {
+              "type": "array",
+              "items": { "type": "string", "pattern": "^TA[0-9]{4}$" }
+            },
+            "techniques": {
+              "type": "array",
+              "minItems": 1,
+              "items": { "type": "string", "pattern": "^T[0-9]{4}(\\.[0-9]{3})?$" }
+            }
+          }
+        },
+        "atlas_techniques": {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^AML\\.T[0-9]{4}(\\.[0-9]{3})?$" },
+          "description": "MITRE ATLAS techniques for AI/ML system threats."
+        },
+        "threat_actors": { "type": "array", "items": { "type": "string" } },
+        "intel_refs": { "type": "array", "items": { "type": "string", "format": "uri" } },
+        "kill_chain_phase": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["reconnaissance", "weaponization", "delivery", "exploitation", "installation", "command-and-control", "actions-on-objectives"] }
+        }
+      }
+    },
+
+    "logsources": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Every telemetry dependency. Used to compute blast radius when a source fails.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "required"],
+        "properties": {
+          "name": { "type": "string", "examples": ["windows-security-4688", "entra-id-signin", "aws-cloudtrail"] },
+          "product": { "type": "string" },
+          "service": { "type": "string" },
+          "category": { "type": "string" },
+          "required": { "type": "boolean", "description": "false means the detection degrades but still functions without it." },
+          "normalization": { "type": "string", "enum": ["ocsf", "ecs", "asim", "cim", "native", "custom"] },
+          "expected_interval_minutes": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Maximum tolerable gap before a liveness alert fires. Required for MET-4 conformance."
+          },
+          "data_quality": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "completeness": { "type": "integer", "minimum": 1, "maximum": 5 },
+              "timeliness": { "type": "integer", "minimum": 1, "maximum": 5 },
+              "field_coverage": { "type": "integer", "minimum": 1, "maximum": 5 },
+              "assessed_on": { "type": "string", "format": "date" }
+            }
+          }
+        }
+      }
+    },
+
+    "val": {
+      "description": "Vendor Agnostic Logic: the platform-independent statement of intent that all implementations must satisfy.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "hypothesis": {
+          "type": "string",
+          "description": "One sentence: if an adversary does X, then Y will be observable in Z."
+        },
+        "blocks": {
+          "type": "array",
+          "description": "Named observable conditions that implementations correlate.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "condition"],
+            "properties": {
+              "id": { "type": "string", "pattern": "^B[0-9]+$" },
+              "description": { "type": "string" },
+              "condition": { "type": "string" },
+              "correlation_fields": { "type": "array", "items": { "type": "string" } },
+              "logsource_refs": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        },
+        "expression": {
+          "type": "string",
+          "description": "Boolean expression over block identifiers, e.g. 'B1 AND (B2 OR B3)'.",
+          "examples": ["B1 AND B2 AND NOT B4"]
+        },
+        "time_window_minutes": { "type": "integer", "minimum": 1 }
+      }
+    },
+
+    "platform_implementations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["platform", "language", "path"],
+        "properties": {
+          "platform": { "type": "string", "examples": ["splunk-es", "microsoft-sentinel", "elastic-security", "google-secops", "crowdstrike-ng-siem", "sigma"] },
+          "language": { "type": "string", "enum": ["spl", "kql", "eql", "esql", "yara-l", "sigma", "sql", "lucene", "other"] },
+          "path": { "type": "string", "description": "Repository-relative path to the rule file." },
+          "schedule": { "type": "string", "description": "Cron expression or platform-native schedule." },
+          "lookback_minutes": { "type": "integer", "minimum": 1 },
+          "deployed": { "type": "boolean" },
+          "deployed_on": { "type": "string", "format": "date" }
+        }
+      }
+    },
+
+    "false_positives": {
+      "type": "array",
+      "description": "Known benign causes. Written for the analyst reading the alert at 03:00.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["description"],
+        "properties": {
+          "description": { "type": "string" },
+          "triage_guidance": { "type": "string" }
+        }
+      }
+    },
+
+    "exceptions": {
+      "type": "array",
+      "description": "Active suppressions. IMP-5 requires justification, owner and expiry on every entry.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "scope", "justification", "owner", "created", "expires"],
+        "properties": {
+          "id": { "type": "string" },
+          "scope": { "type": "string", "description": "Precisely what is suppressed. Narrow scopes only." },
+          "justification": { "type": "string", "minLength": 20 },
+          "owner": { "type": "string" },
+          "created": { "type": "string", "format": "date" },
+          "expires": { "type": "string", "format": "date" },
+          "approved_by": { "type": "string" }
+        }
+      }
+    },
+
+    "enrichments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["source", "fields"],
+        "properties": {
+          "source": { "type": "string", "examples": ["asset-inventory", "identity-directory", "threat-intel-platform", "vulnerability-scanner"] },
+          "fields": { "type": "array", "items": { "type": "string" } },
+          "required": { "type": "boolean", "default": false }
+        }
+      }
+    },
+
+    "validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fixtures"],
+      "properties": {
+        "fixtures": {
+          "type": "array",
+          "minItems": 2,
+          "description": "IMP-13 requires at least one true-positive and one true-negative fixture.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["path", "expect"],
+            "properties": {
+              "path": { "type": "string" },
+              "expect": { "type": "string", "enum": ["match", "no-match"] },
+              "description": { "type": "string" }
+            }
+          }
+        },
+        "emulation": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "framework": { "type": "string", "enum": ["atomic-red-team", "caldera", "stratus-red-team", "leonidas", "commercial-bas", "manual"] },
+              "test_id": { "type": "string", "examples": ["T1003.001-1"] },
+              "last_run": { "type": "string", "format": "date" },
+              "result": { "type": "string", "enum": ["pass", "fail", "partial", "not-run"] }
+            }
+          }
+        },
+        "last_validated": { "type": "string", "format": "date" },
+        "validation_result": { "type": "string", "enum": ["pass", "fail", "partial", "not-run"] }
+      }
+    },
+
+    "response": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["playbook_ref"],
+      "properties": {
+        "playbook_ref": { "type": "string", "description": "A detection without a response plan is an unfinished detection." },
+        "runbook_ref": { "type": "string" },
+        "automation_ref": { "type": "string" },
+        "triage_priority_minutes": { "type": "integer", "minimum": 1 },
+        "escalation_path": { "type": "string" },
+        "containment_authorised": {
+          "type": "boolean",
+          "description": "Whether the SOC may take containment action without further approval."
+        }
+      }
+    },
+
+    "metrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Populated by automation from case management data. Not hand-edited.",
+      "properties": {
+        "precision_30d": { "type": "number", "minimum": 0, "maximum": 1 },
+        "alert_volume_30d": { "type": "integer", "minimum": 0 },
+        "escalation_rate_30d": { "type": "number", "minimum": 0, "maximum": 1 },
+        "median_triage_minutes": { "type": "number", "minimum": 0 },
+        "last_fired": { "type": "string", "format": "date" },
+        "computed_on": { "type": "string", "format": "date" }
+      }
+    },
+
+    "lifecycle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["review_cadence_days"],
+      "properties": {
+        "review_cadence_days": {
+          "type": "integer",
+          "enum": [90, 180, 365],
+          "description": "IMP-8. Critical severity requires 90; any open exception forces 90."
+        },
+        "last_reviewed": { "type": "string", "format": "date" },
+        "next_review_due": { "type": "string", "format": "date" },
+        "deprecation": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "reason": {
+              "type": "string",
+              "enum": ["threat-irrelevant", "superseded", "irreparable-precision", "telemetry-withdrawn", "cost-disproportionate", "preventive-control-adopted"]
+            },
+            "successor_id": { "type": "string", "pattern": "^DET-[0-9]{4}-[0-9]{4}$" },
+            "coverage_impact": { "type": "string" },
+            "deprecated_on": { "type": "string", "format": "date" },
+            "retired_on": { "type": "string", "format": "date" },
+            "approved_by": { "type": "string" }
+          }
+        }
+      }
+    },
+
+    "references": {
+      "type": "array",
+      "items": { "type": "string", "format": "uri" }
+    }
+  },
+
+  "allOf": [
+    {
+      "$comment": "IMP-8: critical detections must be reviewed at least every 90 days.",
+      "if": {
+        "properties": { "classification": { "properties": { "severity": { "const": "critical" } }, "required": ["severity"] } },
+        "required": ["classification"]
+      },
+      "then": {
+        "properties": { "lifecycle": { "properties": { "review_cadence_days": { "const": 90 } } } }
+      }
+    },
+    {
+      "$comment": "IMP-8: any detection carrying exceptions must be reviewed at least every 90 days.",
+      "if": {
+        "properties": { "exceptions": { "type": "array", "minItems": 1 } },
+        "required": ["exceptions"]
+      },
+      "then": {
+        "properties": { "lifecycle": { "properties": { "review_cadence_days": { "const": 90 } } } }
+      }
+    },
+    {
+      "$comment": "Detections in production must have been validated and must record review state.",
+      "if": {
+        "properties": { "status": { "const": "production" } },
+        "required": ["status"]
+      },
+      "then": {
+        "required": ["validation", "metrics"],
+        "properties": {
+          "lifecycle": { "required": ["review_cadence_days", "last_reviewed"] },
+          "validation": { "required": ["fixtures", "last_validated"] }
+        }
+      }
+    },
+    {
+      "$comment": "Deprecated and retired detections must record why and what replaced them.",
+      "if": {
+        "properties": { "status": { "enum": ["deprecated", "retired"] } },
+        "required": ["status"]
+      },
+      "then": {
+        "properties": {
+          "lifecycle": {
+            "required": ["deprecation"],
+            "properties": { "deprecation": { "required": ["reason", "coverage_impact", "deprecated_on"] } }
+          }
+        }
+      }
+    }
+  ]
+}

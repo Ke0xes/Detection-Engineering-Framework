@@ -1,0 +1,67 @@
+cff-version: 1.2.0
+title: Detection Engineering Framework
+message: >-
+  If you use this framework, please cite it using the metadata in this file.
+type: software
+version: 2.1.0
+date-released: "2026-09-23"
+license: Apache-2.0
+license-url: "https://github.com/Ke0xes/Detection-Engineering-Framework/blob/main/License"
+repository-code: "https://github.com/Ke0xes/Detection-Engineering-Framework"
+url: "https://ke0xes.github.io/Detection-Engineering-Framework/"
+
+abstract: >-
+  A lifecycle standard for building, governing and retiring security
+  detections. The framework defines normative requirements across planning,
+  technical feasibility, detection engineering, response engineering, delivery
+  and improvement, together with a three-level conformance model, machine-
+  readable schemas for detection and use case metadata, and a reference
+  implementation that enforces conformance in continuous integration. It
+  requires two-way traceability from business drivers to telemetry, treats
+  response engineering as a co-equal phase, and defines Vendor Agnostic Logic
+  as a platform-independent correlation layer above portable rule formats.
+
+authors:
+  - family-names: Hatode
+    given-names: Kunal
+    website: "https://kunal.hatode.com"
+    roles:
+      - Framework author and maintainer
+
+contact:
+  - family-names: Hatode
+    given-names: Kunal
+
+keywords:
+  - detection engineering
+  - security operations
+  - threat detection
+  - SOC
+  - detection as code
+  - MITRE ATT&CK
+  - incident response
+  - security monitoring
+  - threat-informed defense
+
+references:
+  - type: generic
+    title: MITRE ATT&CK
+    url: "https://attack.mitre.org/"
+    notes: Technique taxonomy consumed by this framework.
+  - type: generic
+    title: MITRE ATLAS
+    url: "https://atlas.mitre.org/"
+    notes: AI/ML threat taxonomy consumed by this framework.
+  - type: generic
+    title: Sigma
+    url: "https://sigmahq.io/"
+    notes: Recommended portable detection rule format.
+  - type: generic
+    title: Summiting the Pyramid
+    url: "https://center-for-threat-informed-defense.github.io/summiting-the-pyramid/"
+    notes: Analytic robustness research that chapter 13 builds upon.
+
+identifiers:
+  - type: url
+    value: "https://github.com/Ke0xes/Detection-Engineering-Framework/releases/tag/v2.1.0"
+    description: Tagged release corresponding to this citation.

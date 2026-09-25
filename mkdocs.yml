@@ -1,0 +1,143 @@
+site_name: Detection Engineering Framework
+site_description: A lifecycle standard for building, governing and retiring security detections.
+site_author: Kunal Hatode
+site_url: https://ke0xes.github.io/Detection-Engineering-Framework/
+
+repo_url: https://github.com/Ke0xes/Detection-Engineering-Framework
+repo_name: Ke0xes/Detection-Engineering-Framework
+edit_uri: edit/main/
+
+copyright: >
+  Licensed under Apache-2.0 &middot; Detection Engineering Framework v2.1.0
+
+# Chapters live at the repository root so that every URL published before v2.1
+# still resolves. mkdocs-same-dir permits docs_dir and site_dir to coexist.
+docs_dir: .
+site_dir: site
+
+# Matches the page.html URLs the earlier Jekyll-built Pages site published.
+use_directory_urls: false
+
+plugins:
+  - same-dir
+  - search
+
+# Everything that is not a framework chapter or a project document.
+exclude_docs: |
+  .venv/
+  site/
+  node_modules/
+  .github/
+  assessment/
+  schema/
+  reference-implementation/
+  CITATION.cff
+  requirements-docs.txt
+
+theme:
+  name: material
+  language: en
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.action.edit
+    - content.code.copy
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+
+nav:
+  - Home: README.md
+  - Normative core:
+      - Specification: specification.md
+      - Conformance Model: conformance-model.md
+  - Lifecycle:
+      - Background and Introduction: Background-and-Introduction.md
+      - Detection Engineering Lifecycle: Detection-Engineering-Lifecycle.md
+      - Planning Phase: planning-phase.md
+      - Development A - Technical Feasibility: development-phase-A.md
+      - Development B - Detection Engineering: development-phase-B.md
+      - Development C - Response Engineering: development-phase-C.md
+      - Delivery Phase: delivery-phase.md
+      - Improvement Phase: improvement-phase.md
+  - Engineering practice:
+      - Detection Metrics: detection-metrics.md
+      - Detection as Code: detection-as-code.md
+      - Telemetry and Data: telemetry-and-data.md
+      - Detection Robustness: detection-robustness.md
+      - Modern Attack Surfaces: modern-attack-surfaces.md
+      - Governance and Roles: governance-and-roles.md
+  - Applying it:
+      - Adoption Guide: from-theory-to-practice.md
+      - Advanced Best Practices: best-practices.md
+      - Related Work: related-work.md
+      - Worked Example: worked-example.md
+  - Templates:
+      - Overview: tools-and-templates/README.md
+      - Use case requests: tools-and-templates/templates/use-case-requests/README.md
+      - Use case request template: tools-and-templates/templates/use-case-requests/use-case-request-template.md
+  - Project:
+      - Contributing: CONTRIBUTING.md
+      - Governance: GOVERNANCE.md
+      - Roadmap: ROADMAP.md
+      - Changelog: CHANGELOG.md
+      - Code of Conduct: CODE_OF_CONDUCT.md
+      - Security Policy: SECURITY.md
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+      toc_depth: 3
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.arithmatex:
+      generic: true
+
+extra_javascript:
+  - assets/katex-init.js
+  - https://unpkg.com/katex@0/dist/katex.min.js
+  - https://unpkg.com/katex@0/dist/contrib/auto-render.min.js
+
+extra_css:
+  - https://unpkg.com/katex@0/dist/katex.min.css
+
+# Chapters deliberately link to schemas, fixtures and tooling that are not part
+# of the rendered site. Repository-wide link integrity is enforced separately
+# by reference-implementation/tools/check_links.py.
+validation:
+  omitted_files: warn
+  absolute_links: warn
+  unrecognized_links: ignore
+  anchors: warn

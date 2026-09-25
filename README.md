@@ -1,202 +1,244 @@
 # Detection Engineering Framework
 
-[![Author](https://img.shields.io/badge/Author-Kunal_Hatode-blue)](https://github.com)
-[![GitHub Last Commit](https://img.shields.io/github/last-commit/Ke0xes/Detection-Engineering-Framework)](https://github.com/Ke0xes/Detection-Engineering-Framework/commits/main)
-[![GitHub License](https://img.shields.io/github/license/Ke0xes/Detection-Engineering-Framework)](https://github.com/Ke0xes/Detection-Engineering-Framework/blob/main/LICENSE)
-![Visitors](https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2FKe0xes%2FDetection-Engineering-Framework&countColor=%231b4d3ea&style=flat)
-[![GitHub Forks](https://img.shields.io/github/forks/Ke0xes/Detection-Engineering-Framework?style=social)](https://github.com/Ke0xes/Detection-Engineering-Framework/network/members)
-[![GitHub Stars](https://img.shields.io/github/stars/Ke0xes/Detection-Engineering-Framework?style=social)](https://github.com/Ke0xes/Detection-Engineering-Framework/stargazers)
+[![Specification](https://img.shields.io/badge/specification-v2.1.0-0d419d)](specification.md)
+[![Conformance](https://img.shields.io/badge/conformance-L1%20%7C%20L2%20%7C%20L3-1f6feb)](conformance-model.md)
+[![Validate](https://github.com/Ke0xes/Detection-Engineering-Framework/actions/workflows/validate.yml/badge.svg)](https://github.com/Ke0xes/Detection-Engineering-Framework/actions/workflows/validate.yml)
+[![License: Apache 2.0](https://img.shields.io/badge/license-Apache%202.0-blue)](https://github.com/Ke0xes/Detection-Engineering-Framework/blob/main/License)
+[![Stars](https://img.shields.io/github/stars/Ke0xes/Detection-Engineering-Framework?style=flat&color=555)](https://github.com/Ke0xes/Detection-Engineering-Framework/stargazers)
 
-> **A comprehensive framework for Security Operations Center (SOC) use case development, detection engineering, implementation, and management.**
+**A lifecycle standard for building, governing and retiring security
+detections.**
 
-This framework is designed to help security teams develop, implement, and maintain effective SOC use cases and detection rules. Whether you're building a new SOC or enhancing existing capabilities, this repository provides the guidance you need to excel.
+Most detection programs can tell you how many rules they have. Far fewer can
+tell you which business risk each rule serves, whether it still works, what
+would break if a log source failed, or when it was last reviewed. This framework
+makes those questions answerable — and enforces the answers in CI.
 
----
-
-## 📋 Table of Contents
-
-- [Overview](#overview)
-- [Core Framework](#-core-framework)
-- [Repository Structure](#-repository-structure)
-- [Getting Started](#-getting-started)
-- [Contributors](#-contributors)
-- [Acknowledgments & References](#-acknowledgments--references)
-- [License](#-license)
+**[Read the documentation](https://ke0xes.github.io/Detection-Engineering-Framework/)**
 
 ---
 
-## Overview
+## What makes this different
 
-The Detection Engineering Framework provides a structured, lifecycle-based approach to building and maintaining security detections. It encompasses:
+Three things, in combination, that you will not find together elsewhere:
 
-- ✅ **Comprehensive methodology** for detection development
-- ✅ **Practical templates** and tools for immediate use
-- ✅ **Best practices** gathered from industry leaders
-- ✅ **Real-world guidance** for overcoming implementation challenges
-- ✅ **Continuous improvement** processes for detection optimization
+**1. Traceability is a hard requirement, not an aspiration.**
+Every detection traces upward to a recorded risk, threat or compliance driver
+and downward to specific telemetry — in a machine-readable form, answerable in
+both directions. *"The EDR pipeline was down for six hours; what were we blind
+to?"* becomes a query rather than a week of archaeology.
 
----
+**2. Response engineering is a co-equal phase.**
+A detection cannot reach production without a linked, exercised response
+playbook. An alert without a response plan generates work, not security.
 
-## 📖 Core Framework
+**3. Vendor Agnostic Logic sits above rule formats, not beside them.**
+VAL expresses detection intent as named observable conditions and a boolean
+relationship between them. One VAL, many platform implementations, one fixture
+set. This complements Sigma; it does not compete with it.
 
-### Framework Components
-
-| Phase | Document | Description |
-|:------|:---------|:------------|
-| 🎯 **Foundation** | [Background and Introduction](Background-and-Introduction.md) | Introduction to detection engineering principles |
-| 🔄 **Lifecycle** | [Detection Engineering Lifecycle](Detection-Engineering-Lifecycle.md) | Complete framework methodology and overview |
-| 📋 **Planning** | [Planning Phase](planning-phase.md) | Strategic planning and use case identification |
-| 🔧 **Development** | [Development Phase A](development-phase-A.md) | Technical feasibility assessment |
-| 💻 **Development** | [Development Phase B](development-phase-B.md) | Detection code engineering and implementation |
-| 🚨 **Development** | [Development Phase C](development-phase-C.md) | Response engineering and playbook development |
-| 🚀 **Delivery** | [Delivery Phase](delivery-phase.md) | Production deployment methodology |
-| 📈 **Improvement** | [Improvement Phase](improvement-phase.md) | Continuous optimization and tuning |
-| 🎓 **Practical Guide** | [From Theory to Practice](from-theory-to-practice.md) | Navigating real-world implementation challenges |
-| ⭐ **Standards** | [Best Practices](best-practices.md) | Industry best practices and recommendations |
-| 🛠️ **Resources** | [Tools and Templates](tools-and-templates) | Practical templates and utilities |
+Full positioning against ATT&CK, Sigma, DeTT&CT, Palantir ADS, Summiting the
+Pyramid and others: **[Related Work](related-work.md)**.
 
 ---
 
-## 📁 Repository Structure
+## This one runs
 
-```
-Detection-Engineering-Framework/
-│
-├── 📄 README.md                              # This file - framework overview
-├── 📄 Background-and-Introduction.md         # Foundation and context
-├── 📄 Detection-Engineering-Lifecycle.md     # Complete lifecycle methodology
-│
-├── 🔵 Planning Phase
-│   └── planning-phase.md                     # Use case planning and prioritization
-│
-├── 🟢 Development Phase
-│   ├── development-phase-A.md                # Technical feasibility
-│   ├── development-phase-B.md                # Detection engineering
-│   └── development-phase-C.md                # Response engineering
-│
-├── 🟡 Delivery Phase
-│   └── delivery-phase.md                     # Production deployment
-│
-├── 🟣 Improvement Phase
-│   └── improvement-phase.md                  # Optimization and tuning
-│
-├── 📚 Guides
-│   ├── from-theory-to-practice.md            # Practical implementation guide
-│   └── best-practices.md                     # Best practices compilation
-│
-└── 🛠️ tools-and-templates/
-    ├── README.md                              # Tools overview
-    └── templates/
-        └── use-case-requests/                # Use case request templates
-            ├── README.md
-            ├── use-case-request-template.md
-            ├── google-forms-use-case-request-form.txt
-            ├── microsoft-forms-use-case-request-form.txt
-            ├── salesforce-use-case-request-form.txt
-            └── servicenow-use-case-request-form.txt
+```bash
+git clone https://github.com/Ke0xes/Detection-Engineering-Framework.git
+cd Detection-Engineering-Framework
+pip install -r reference-implementation/tools/requirements.txt
+
+python reference-implementation/tools/def_validate.py --strict
+python reference-implementation/tools/def_test.py
 ```
 
----
+```text
+Validated 2 artifact(s): 0 error(s), 0 warning(s)
 
-## 🚀 Getting Started
+PASS  DET-2026-0001  tp-01-privileged-consent-mailread.json  (expected match)
+PASS  DET-2026-0001  tp-02-admin-grant-directoryread.json  (expected match)
+PASS  DET-2026-0001  tn-01-allowlisted-app.json  (expected no-match)
+PASS  DET-2026-0001  tn-02-unprivileged-user.json  (expected no-match)
+PASS  DET-2026-0001  tn-03-exception-scoped.json  (expected no-match)
 
-> **💡 New to Detection Engineering?** Start with the [Background and Introduction](Background-and-Introduction.md) to understand core concepts.
+5 passed, 0 failed, 0 skipped
+```
 
-### Recommended Learning Path
+Now break something and watch the governance fail the build:
 
-1. **📖 Read the Foundation**
-   - Start with [Background and Introduction](Background-and-Introduction.md)
-   - Review the [Detection Engineering Lifecycle](Detection-Engineering-Lifecycle.md)
+| Edit `reference-implementation/detections/DET-2026-0001.yml` | Result |
+| --- | --- |
+| Set `last_reviewed` back six months | `IMP-9` fails — in detection debt |
+| Expire an exception | `IMP-6` fails — exception expired |
+| Set `review_cadence_days: 180` | `IMP-8` fails — detections with exceptions review at 90 |
+| Set `precision_30d: 0.4` | `MET-2` fails — must be in the tuning backlog |
+| Point `use_case_ref` at nothing | `TRACE` fails — reference does not resolve |
 
-2. **🔍 Understand the Phases**
-   - Study each phase document sequentially
-   - Focus on phases relevant to your current needs
-
-3. **🛠️ Apply Practical Tools**
-   - Explore the [Tools and Templates](tools-and-templates) directory
-   - Customize templates for your organization
-
-4. **📈 Implement Best Practices**
-   - Review [Best Practices](best-practices.md)
-   - Learn from [From Theory to Practice](from-theory-to-practice.md)
-
-5. **🔄 Iterate and Improve**
-   - Follow the [Improvement Phase](improvement-phase.md) guidance
-   - Continuously refine your detections
+That is the difference between a framework and a document.
 
 ---
 
-## 👥 Contributors
+## Start here
 
-> **🙏 Deep appreciation to everyone who contributed to this framework's inception!**
-
-### Core Contributors
-
-- **[Kunal Hatode](https://kunal.hatode.com)** - Framework Author & Maintainer
-  - Primary framework architecture and development
-  - Cyber Operations Security Architect at Cisco
-
-- **[Frank Hassenrueck](https://www.linkedin.com/in/frank-hassenr%C3%BCck-371529116/)**
-  - Co-wrote technical core elements of the framework
-  - Provided subject matter expertise
-
-- **[Matrix Chau](https://www.linkedin.com/in/matrixchau/)**
-  - Provided valuable early feedback
-  - Assisted in co-writing framework components
-
-### 🤝 Seeking Contributors
-
-> **📢 Call for Contributions:** This framework is a living document that evolves with the cybersecurity landscape. We actively welcome:
->
-> - 🐛 Bug reports and corrections
-> - 💡 Enhancement suggestions
-> - 📝 Real-world case studies
-> - 🔧 Tool and template contributions
-> - 📚 Documentation improvements
-> - 🌐 Translations
-
-**To contribute:** Submit a pull request or open an issue on the [GitHub repository](https://github.com/Ke0xes/Detection-Engineering-Framework).
+| If you are... | Go to |
+| --- | --- |
+| Deciding whether to adopt this | [Related Work and Differentiation](related-work.md) |
+| Wanting to see it work end to end | [Worked Example](worked-example.md) |
+| Looking for the rules you must follow | [Specification](specification.md) |
+| Assessing your program | [Conformance Model](conformance-model.md) · [Assessment instrument](assessment/) |
+| New to detection engineering | [Background and Introduction](Background-and-Introduction.md) |
+| Building the pipeline | [Detection as Code](detection-as-code.md) |
+| A small team with no budget | [Adoption Guide](from-theory-to-practice.md) |
 
 ---
 
-## 🙏 Acknowledgments & References
+## The framework
 
-### 📚 Preface
+> Chapter numbers are a stable reading index used for cross-references in the
+> text. Filenames are unchanged from earlier versions so that existing links
+> keep working.
 
-The Detection Engineering Framework stands as a testament to the collective wisdom and expertise shared by the cybersecurity community. We extend our deepest gratitude to the organizations, researchers, and thought leaders whose pioneering work has laid the foundation for this comprehensive framework.
+### Normative core
 
-This framework was developed during my position at Cisco as Cyber Operations Security Architect and has been greatly influenced by invaluable contributions from various Cisco colleagues, industry leaders, academic institutions, and security practitioners who have generously shared their insights, methodologies, and real-world experiences.
+| # | Chapter |
+| --- | --- |
+| 00 | [Specification](specification.md) — every requirement, RFC 2119 language |
+| 10 | [Conformance Model](conformance-model.md) — L1/L2/L3, evidence, what may be claimed |
+
+### Lifecycle
+
+| # | Chapter |
+| --- | --- |
+| 01 | [Background and Introduction](Background-and-Introduction.md) |
+| 02 | [Detection Engineering Lifecycle](Detection-Engineering-Lifecycle.md) |
+| 03 | [Planning Phase](planning-phase.md) — drivers, feasibility, anchored prioritization rubric |
+| 04 | [Development A — Technical Feasibility](development-phase-A.md) |
+| 05 | [Development B — Detection Engineering](development-phase-B.md) |
+| 06 | [Development C — Response Engineering](development-phase-C.md) |
+| 07 | [Delivery Phase](delivery-phase.md) |
+| 08 | [Improvement Phase](improvement-phase.md) — triggers, change classes, drift, deprecation |
+
+### Engineering practice
+
+| # | Chapter |
+| --- | --- |
+| 09 | [Detection Metrics](detection-metrics.md) — precision over FPR, health monitoring |
+| 11 | [Detection as Code](detection-as-code.md) — repository layout, CI gates, deployment |
+| 12 | [Telemetry and Data](telemetry-and-data.md) — data quality, normalization, ingest economics |
+| 13 | [Detection Robustness](detection-robustness.md) — the robustness ladder, coverage weighting |
+| 14 | [Modern Attack Surfaces](modern-attack-surfaces.md) — identity, cloud, SaaS, containers, CI/CD, OT, AI |
+| 15 | [Governance and Roles](governance-and-roles.md) — RACI, intake, capacity, SLAs |
+
+### Applying it
+
+| # | Chapter |
+| --- | --- |
+| 16 | [Adoption Guide](from-theory-to-practice.md) |
+| 17 | [Advanced Best Practices](best-practices.md) |
+| 18 | [Related Work](related-work.md) |
+| 19 | [Worked Example](worked-example.md) |
 
 ---
 
-### 🔗 Primary References
+## Executable artifacts
 
-| Organization/Source | Contribution | Link |
-|:-------------------|:-------------|:-----|
-| **Oracle Cloud Security** | Foundational principles for detection engineering programs and operational excellence | [Detection Engineering Program](https://blogs.oracle.com/cloudsecurity/post/how-to-improve-security-monitoring-with-detection-engineering-program) |
-| **IBM Security Intelligence** | Practical SIEM use case development methodologies | [Quick Guide to SIEM Use Cases](https://securityintelligence.com/posts/quick-guide-to-siem-use-cases/) |
-| **Betaalvereniging** | Comprehensive security framework structure and governance principles | [MAGMA Safety Framework](https://www.betaalvereniging.nl/en/safety/magma/) |
-| **MITRE Corporation** | Critical insights into cyber adversary behavior and attack characterization | [Characterizing Effects of Cyber Adversary](http://www.mitre.org/sites/default/files/publications/characterizing-effects-cyber-adversary-13-4173.pdf) |
-| **SANS Institute** | Extensive research on security operations and detection capabilities | [SANS White Paper 39685](https://www.sans.org/white-papers/39685/) |
-| **Correlated Security** | SPEED framework methodology for systematic use case development | [Introducing SPEED Use Case Framework v1.0](http://correlatedsecurity.com/introducing-speed-use-case-framework-v1-0/) |
-| **Foren6 Security** | Visual framework representations and structural concepts | [UC11 Framework Diagram](https://foren6.files.wordpress.com/2017/10/uc11.png) |
-
-> **📖 For Further Reading:** We encourage readers to explore these original sources for deeper insights and to contribute back to the community through their own research and implementations.
+| Path | What it is |
+| --- | --- |
+| [`schema/detection.schema.json`](schema/detection.schema.json) | The detection metadata contract |
+| [`schema/use-case.schema.json`](schema/use-case.schema.json) | The planning artifact contract |
+| [`reference-implementation/`](reference-implementation/) | A complete worked detection, validation tooling and tests |
+| [`assessment/`](assessment/) | Conformance instrument and scorer |
+| [`tools-and-templates/`](tools-and-templates/) | Use case request template and codified intake forms |
 
 ---
 
-## 📜 License
+## Conformance in one table
 
-**You are free to:**
-- ✅ **Share** — copy and redistribute the material
-- ✅ **Adapt** — remix, transform, and build upon the material
+| | **L1 Foundational** | **L2 Managed** | **L3 Optimised** |
+| --- | --- | --- | --- |
+| Answers | Do we know what we have and why? | Is it engineered and governed? | Is it measured, validated and self-correcting? |
+| Reachable by | 1-3 people, no budget | A dedicated detection function | Detection function with platform support |
+| Testing | Manual, documented | Fixtures in CI | Fixtures plus continuous adversary emulation |
+| Improvement | Reactive, tracked | Scheduled reviews enforced | Drift detected automatically |
 
-**Under the following terms:**
-- 📝 **Attribution** — You must give appropriate credit and indicate if changes were made
+A conformance claim names the level, the specification version, the assessment
+date and the scope. *"DEF compliant"* is not a claim.
 
 ---
-<img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt="Creative Commons By" width="25" height="25"><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt="Creative Commons By" width="25" height="25"> <br>
-<a href="https://github.com/Ke0xes/Detection-Engineering-Framework">Detection Engineering Framework</a> © 2021 by <a href="https://kunal.hatode.com">Kunal Hatode</a> is licensed under <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International</a>
+
+## One correction worth calling out
+
+Version 2.0 of this framework defined the false positive rate as
+$FPR = FP/(FP+TN)$ and gave a worked example with an assumed true-negative
+count.
+
+That is withdrawn. $TN$ — benign events correctly *not* alerted on — is
+unbounded and unmeasurable in an event stream, so any stated value is
+fabricated. It also always produces a flatteringly small number: a rule
+generating 400 false alerts a day against 50 million events reports an FPR of
+0.0008% while the SOC drowns.
+
+The framework now requires **Precision** ($TP/(TP+FP)$), which is read directly
+from case management data and reflects what analysts actually experience. See
+[Detection Metrics](detection-metrics.md).
+
+Other frameworks still publish the old formula. This one does not, and says why.
+
 ---
 
-[⬆ Back to Top](#detection-engineering-framework)
+## Contributing
+
+**Implementation reports are the most valuable contribution.** If you adopted
+part of this and something did not work, [tell us](https://github.com/Ke0xes/Detection-Engineering-Framework/issues/new?template=implementation-report.yml).
+A requirement that cannot be met in practice is a defect in the specification.
+
+Also wanted: a second worked example on a non-identity surface, platform
+backends for the fixture runner, and compliance mappings.
+
+See [CONTRIBUTING.md](CONTRIBUTING.md), [ROADMAP.md](ROADMAP.md) and
+[GOVERNANCE.md](GOVERNANCE.md).
+
+> **On governance.** This project currently has one maintainer. That is a real
+> limitation for something aiming to be a standard, and the path away from it —
+> additional maintainers from other organizations, then a neutral home — is
+> documented in [GOVERNANCE.md](GOVERNANCE.md). Maintainers from outside the
+> lead maintainer's employer are explicitly prioritized.
+
+---
+
+## Licence
+
+Everything in this repository — prose, specification, schemas, tooling,
+templates and assessment material — is licensed under the
+[Apache License 2.0](https://github.com/Ke0xes/Detection-Engineering-Framework/blob/main/License).
+Attribution requirements are in
+[NOTICE](https://github.com/Ke0xes/Detection-Engineering-Framework/blob/main/NOTICE).
+
+Apache 2.0 includes an explicit patent grant, which matters for a specification
+that vendors may implement, and it is a licence most enterprise legal functions
+already approve for internal use.
+
+## Citing
+
+Machine-readable metadata: [CITATION.cff](https://github.com/Ke0xes/Detection-Engineering-Framework/blob/main/CITATION.cff).
+
+> Hatode, K. et al. *Detection Engineering Framework*, version 2.1.0, 2026.
+> https://github.com/Ke0xes/Detection-Engineering-Framework
+
+## Credits
+
+Created by **[Kunal Hatode](https://kunal.hatode.com)**, developed originally
+during work as a Cyber Operations Security Architect at Cisco and published
+independently.
+
+With thanks to:
+
+- **[Frank Hassenrueck](https://www.linkedin.com/in/frank-hassenr%C3%BCck-371529116/)** — co-wrote technical core elements
+- **[Matrix Chau](https://www.linkedin.com/in/matrixchau/)** — early feedback and co-writing
+
+The ideas here are assembled from the work of the wider security community.
+The framework's contribution is the lifecycle, the conformance model, the
+schemas and the enforcement — not the underlying insights about adversary
+behavior, which belong to MITRE, to SigmaHQ, and to the practitioners who
+publish their methods.
