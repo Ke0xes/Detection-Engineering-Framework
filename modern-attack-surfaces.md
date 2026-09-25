@@ -189,7 +189,7 @@ threats using **MITRE ATLAS** alongside ATT&CK; the detection schema supports
 
 ### Two distinct problems
 
-**1. Attacks on AI systems you operate.**
+**1. Attacks on AI systems the organization operates.**
 
 | Surface | Why |
 | --- | --- |

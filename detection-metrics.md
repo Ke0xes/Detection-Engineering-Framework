@@ -171,7 +171,7 @@ Do not conflate them.
 
 ## On false negatives
 
-False negatives cannot be counted directly. If you could count them, they would
+False negatives cannot be counted directly. If they could be counted, they would
 not be false negatives. Any program claiming a false negative *rate* is either
 measuring something else or guessing.
 

@@ -28,7 +28,8 @@ Each file contains:
 - Sample values/options
 - Instructions for manual creation/import
 
-No external links or dependencies—just copy the file and use in your tool.
+The files have no external links or dependencies and can be copied directly
+into the target tool.
 
 ### Planned Templates
 
@@ -38,9 +39,9 @@ No external links or dependencies—just copy the file and use in your tool.
 
 ## Usage Guidelines
 
-1. Select the appropriate template or codified form for your tool.
-2. Copy the field/section structure into your organizational platform.
-3. Customize as needed for your environment.
+1. Select the template or codified form for the target tool.
+2. Copy the field and section structure into the organization's platform.
+3. Customize as needed for the environment.
 4. Track through lifecycle using the status tracking section.
 
 ## Template Lifecycle

@@ -24,7 +24,7 @@ friction.
 | [`microsoft-forms-use-case-request-form.txt`](templates/use-case-requests/microsoft-forms-use-case-request-form.txt) | Planning | Microsoft Forms question set |
 | [`google-forms-use-case-request-form.txt`](templates/use-case-requests/google-forms-use-case-request-form.txt) | Planning | Google Forms question set |
 
-## The templates you probably want instead
+## Schemas instead of templates
 
 For anything downstream of planning, the **schemas and reference
 implementation** are the templates. They are machine-readable, validated in CI,
@@ -46,10 +46,10 @@ of sync with it, and the copy people actually use will be the stale one.
 
 ## Using the intake forms
 
-The `.txt` files are field definitions for building the request form in your
-existing intake system. Adapt field names to your instance.
+The `.txt` files are field definitions for building the request form in an
+existing intake system. Field names can be adapted to the local instance.
 
-Whichever system you use, the form MUST capture enough to satisfy
+Whichever system is used, the form MUST capture enough to satisfy
 [`schema/use-case.schema.json`](../schema/use-case.schema.json), because the
 submitted request becomes the `UC-` record that every resulting detection
 traces back to (`GOV-1`).
@@ -76,8 +76,8 @@ Self-scoring produces a backlog in which every request is a five.
 ## Contributing templates
 
 New templates are welcome where a machine-readable artifact would not serve
-better. Before contributing, check whether the thing you want to template
-should instead be an extension to the schema. See
+better. Before contributing, check whether the proposed template should
+instead be an extension to the schema. See
 [CONTRIBUTING.md](../CONTRIBUTING.md).
 
 ## What comes next

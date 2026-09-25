@@ -106,8 +106,9 @@ otherwise made badly by default.
 
 ## RACI
 
-**GOV-8** requires a documented RACI. This is the reference model; adapt the
-column headings to your structure, but every row must have exactly one `A`.
+**GOV-8** requires a documented RACI. This is the reference model. The column
+headings can be adapted to the organization's structure, but every row must
+have exactly one `A`.
 
 | Activity | Det. Eng | Content Mgr | Threat Intel | Data Eng | SOC | IR | Council | Business |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |

@@ -39,7 +39,7 @@ and the confidence-weighted coverage metric.
 
 **Integrity is the dimension most often ignored.** Telemetry that an adversary
 with local privileges can delete or disable is telemetry that will not be there
-during the incident you care about. Detections that depend on adversary-writable
+during the incident that matters. Detections that depend on adversary-writable
 sources SHOULD be paired with a detection for the suppression itself.
 
 ---
@@ -57,12 +57,12 @@ changes, which is a single controlled artifact rather than hundreds of rules.
 | **ASIM** | Microsoft Advanced SIEM Information Model | Sentinel-centric estates |
 | **CIM** | Splunk Common Information Model | Splunk-centric estates |
 
-The framework does not mandate one. It mandates that you choose one, document
-it, and write against it (`TEL-7`).
+The framework does not mandate one. It requires that a program choose one,
+document it, and write against it (`TEL-7`).
 
 **A caution.** Normalization is lossy. Fields that do not map are dropped or
 stuffed into an unparsed blob. Before writing a detection against a normalized
-view, confirm the specific field you need survives the mapping. This is a
+view, confirm that each field the detection needs survives the mapping. This is a
 frequent cause of detections that validate in a lab against raw logs and fail
 in production against normalized ones.
 
@@ -107,7 +107,7 @@ that should be asked more often:
 > telemetry it requires?
 
 For most high-volume, low-yield sources the honest answer is no, and the
-framework gives you a defensible way to say so at the planning gate rather than
+framework provides a defensible way to say so at the planning gate rather than
 after the invoice.
 
 ### Cost reduction patterns
@@ -115,11 +115,11 @@ after the invoice.
 | Pattern | Trade-off |
 | --- | --- |
 | **Tiered retention** — hot for 30 days, cold for the remainder | Cheaper; slower for investigation beyond the hot window |
-| **Filtering at the collector** | Cheapest; irreversible, and you cannot detect what you discarded |
+| **Filtering at the collector** | Cheapest; irreversible, and nothing can be detected in what was discarded |
 | **Summarization** — retain aggregates, discard raw | Preserves baselining; loses per-event detail |
 | **Detection at the edge** — evaluate at the agent, forward only signals | Very cheap; removes the ability to hunt retrospectively |
 
-**Record the trade-off you chose.** Every one of these patterns creates a blind
+**Record the trade-off chosen.** Every one of these patterns creates a blind
 spot, and an undocumented blind spot becomes an unexplained false negative
 eighteen months later.
 
@@ -127,8 +127,8 @@ eighteen months later.
 
 ## Telemetry as a first-class dependency
 
-The practical consequence of `TEL-1` and `TEL-5` is that you can answer, in
-seconds, the question every incident eventually produces:
+The practical consequence of `TEL-1` and `TEL-5` is that a program can answer,
+in seconds, the question every incident eventually produces:
 
 > The EDR pipeline was down for six hours yesterday. What were we blind to?
 

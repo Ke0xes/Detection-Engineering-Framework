@@ -44,7 +44,7 @@ optimistically. Apply this test:
 > cause this detection to stop firing while the technique still succeeds.
 
 If the answer is "change a string" it is `indicator`, whatever the metadata
-says. If you cannot construct such a change, it may genuinely be `invariant`.
+says. If no such change can be constructed, it may genuinely be `invariant`.
 
 **DET-7** requires that ephemeral and indicator detections declare their
 curation process. An indicator list that nobody owns decays into pure noise, and

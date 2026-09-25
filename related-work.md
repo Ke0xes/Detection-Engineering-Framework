@@ -70,7 +70,7 @@ This is explicitly **not** a competitor to Sigma. See below.
 | --- | --- | --- | --- |
 | **MITRE ATT&CK** | Knowledge base of adversary behavior | Technique taxonomy | **Consumes it.** ATT&CK is the shared vocabulary for `threat.attack`. This framework does not attempt to replicate or replace it |
 | **MITRE ATLAS** | ATT&CK for AI/ML systems | Technique taxonomy for AI threats | **Consumes it.** See `atlas_techniques` in the schema and [modern attack surfaces](modern-attack-surfaces.md) |
-| **MITRE D3FEND** | Countermeasure knowledge graph | Defensive technique taxonomy | **Complementary.** D3FEND classifies countermeasures; this framework governs how you build and maintain them |
+| **MITRE D3FEND** | Countermeasure knowledge graph | Defensive technique taxonomy | **Complementary.** D3FEND classifies countermeasures; this framework governs how they are built and maintained |
 | **Summiting the Pyramid** (MITRE CTID) | Research on analytic robustness | Robustness tiering | **Builds on it.** [Detection robustness](detection-robustness.md) adapts the robustness concept and connects it to lifecycle controls: review cadence, coverage weighting and improvement targets |
 | **Sigma** | Portable detection rule format | Rule expression, log source taxonomy | **Consumes it.** Sigma is the recommended format for `platform_implementations`. The reference implementation uses Sigma. VAL sits *above* Sigma as the correlation and intent layer, not beside it |
 | **DeTT&CT** | Data source and detection quality scoring | Data quality, coverage scoring | **Strongly aligned.** DeTT&CT's data quality dimensions informed [telemetry and data](telemetry-and-data.md). Use DeTT&CT for the scoring; use this framework for the lifecycle around it |
@@ -78,8 +78,8 @@ This is explicitly **not** a competitor to Sigma. See below.
 | **Detection Engineering Maturity Matrix** | Self-assessment maturity model | Maturity levelling | **Complementary.** The matrix is a broad maturity survey. The [conformance model](conformance-model.md) is a narrower, requirement-by-requirement conformance model with defined evidence |
 | **Atomic Red Team / CALDERA / Stratus Red Team** | Adversary emulation libraries | Validation | **Consumes them.** `DET-11` requires emulation-based validation; these are the recommended sources. The schema records which test validated which detection |
 | **Vendor detection-as-code guides** (Splunk, Elastic, Google SecOps) | Platform-specific pipeline guidance | CI/CD for detections | **Generalises them.** [Detection as code](detection-as-code.md) is platform-neutral and adds conformance gates that vendor guides do not, because vendor guides do not define conformance |
-| **OCSF / ECS / ASIM** | Telemetry normalization schemas | Data modeling | **Consumes them.** `TEL-7` requires you to pick one; the framework does not care which |
-| **NIST CSF 2.0** | Cybersecurity governance framework | Detect and Respond functions | **Implements a slice of it.** CSF says you should detect; this framework says how, and maps back through `compliance_refs` |
+| **OCSF / ECS / ASIM** | Telemetry normalization schemas | Data modeling | **Consumes them.** `TEL-7` requires a program to pick one; the framework does not prescribe which |
+| **NIST CSF 2.0** | Cybersecurity governance framework | Detect and Respond functions | **Implements a slice of it.** CSF says an organization should detect; this framework says how, and maps back through `compliance_refs` |
 
 ---
 
@@ -103,8 +103,8 @@ as a native platform correlation. All three satisfy the same VAL and are
 validated against the same fixtures. That is the portability claim, and it
 operates at a level Sigma's per-rule format does not address.
 
-**If you are choosing between them, you are making a category error.** Use Sigma
-for rule logic. Use this framework to govern the lifecycle those rules live in.
+**Choosing between them is a category error.** Sigma expresses rule logic; this
+framework governs the lifecycle those rules live in.
 
 ---
 

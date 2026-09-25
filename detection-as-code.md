@@ -179,7 +179,7 @@ Do not build this on day one. The order that works:
 | Stage | Do this | Do not yet |
 | --- | --- | --- |
 | **Crawl** | Put metadata and logic in Git. Review changes by pull request, even manually. | Build a pipeline |
-| **Walk** | Add schema validation and conformance checks in CI. Add fixtures for your ten noisiest detections. | Automate deployment |
+| **Walk** | Add schema validation and conformance checks in CI. Add fixtures for the ten noisiest detections. | Automate deployment |
 | **Run** | Automate deployment, add drift reconciliation, add scheduled adversary emulation. | — |
 
 A team that reaches "walk" has most of the benefit. The pipeline is the last

@@ -21,199 +21,135 @@ analysis, and how requests are prioritized and resourced.
 
 ## Overview
 
-The planning phase in detection engineering is a crucial step that sets the foundation for the development and implementation of effective use cases. This phase involves defining the why, when, who, and what aspects necessary to commence the development process. By taking a top-down approach, organizations can gain a comprehensive understanding of the big picture and all its components, leading to more informed decision-making and improved outcomes.
+Planning answers four questions before any engineering begins: why the
+detection is needed, when it is needed by, who has a stake in it, and what must
+be in place to build it. The framework plans from the top down, starting with
+the organization's objectives and working towards individual detections, so
+that each request is judged against the whole picture rather than in isolation.
 
 ### Benefits of Top-Down Planning
 
-```mermaid
-flowchart LR
-    A[Top-Down Planning] --> B[Decreased Risk]
-    A --> C[Organization Goals]
-    A --> D[Faster Change Management]
-    A --> E[Minimized Time Costs]
-    A --> F[Reduced Errors]
-    
-```
-
 #### Key Advantages
 
-**Decreased Risk in Decision-Making**
-
-- By starting with a holistic view of the organization's security requirements and objectives, potential risks and challenges can be identified early on
-- This allows for more informed choices regarding the selection of use cases, technologies, and resources required for implementation
-
-**Organization-wide Goals**
-
-- By involving stakeholders from different departments and levels of the organization, a shared understanding of security priorities and objectives can be established
-- This alignment ensures that the development efforts are focused on addressing the most critical security needs and supporting the overall business strategy
-
-**Faster Change Management**
-
-- By considering the impact of new use cases on existing systems, processes, and workflows, organizations can proactively identify potential conflicts or dependencies
-- This enables them to develop strategies to minimize disruption and optimize the integration of new detection capabilities into the existing security infrastructure
-
-**Minimized Time Costs**
-
-- By investing time upfront to define requirements, gather input from stakeholders, and create a clear roadmap, organizations can streamline the development process
-- This reduces the likelihood of delays, rework, or unnecessary iterations during the implementation phase
-
-**Error Minimization**
-
-- By taking a systematic and structured approach, organizations can identify potential pitfalls, dependencies, and challenges early on
-- This allows for better risk mitigation strategies and the implementation of robust quality assurance measures
+- **Better decisions.** Starting from the organization's security objectives
+  surfaces risks and obstacles early, when the choice of use cases,
+  technologies and resources can still change.
+- **Shared goals.** Involving stakeholders from across the organization builds
+  a common view of priorities, so effort goes to the most important needs.
+- **Smoother change.** Considering the effect of a new detection on existing
+  systems, processes and workflows exposes conflicts and dependencies before
+  they cause disruption.
+- **Less wasted time.** Requirements agreed at the start reduce delay, rework
+  and repeated iterations later.
+- **Fewer errors.** A structured approach finds pitfalls and dependencies while
+  they are still cheap to address.
 
 ## Use Case Development Requirements
 
-To successfully develop and onboard new use cases, specific elements of the use case need to be made concrete:
-
-```mermaid
-flowchart TD
-    A[Use Case Requirements] --> B[Clear Scope & Objectives]
-    A --> C[Stakeholder Involvement]
-    A --> D[Documentation]
-    A --> E[Development Plan]
-    A --> F[High-level Needs Analysis]
-    A --> G[Contextual Feasibility]
-    
-```
+Before a use case can be developed, several of its elements need to be made
+concrete.
 
 ### Essential Elements
 
-- **Scope & Objectives**: Clearly defining the scope, objectives, and expected outcomes of the use case
-- **Stakeholder Input**: Stakeholders who provide input into the use case development process should be actively involved to ensure proper alignment with their needs and requirements
-- **Documentation**: The use case request should be documented to serve as a crucial reference point throughout the development and implementation process
-- **Development Plan**: Developing a plan is essential to guide the use case development process, outlining steps, milestones, and resources needed
-- **High-level Needs**: Determined through formulating questions that channel the need for information into discrete requirements for developing the logic or detection capabilities
-- **Contextual Feasibility**: Analysis conducted to ensure that the use case aligns with the business objectives and requirements
+- **Scope and objectives.** What the use case covers, what it is for, and what
+  outcome is expected.
+- **Stakeholder input.** The people who depend on the use case are involved
+  from the start, so that it meets their needs.
+- **Documentation.** The request is recorded, and serves as the reference point
+  for development and delivery.
+- **Development plan.** The steps, milestones and resources needed to build it.
+- **High-level needs.** The questions the detection must answer, turned into
+  discrete requirements for its logic.
+- **Contextual feasibility.** An analysis confirming that the use case fits the
+  organization's objectives and circumstances, described in the next section.
 
 ---
 
 ## Contextual Feasibility Analysis
 
-> Without the planning phase the development of the use cases could be **delayed**, **inaccurate** and could cause extended amount of **confusion** during the development phase.
-
-It is important to understand the organization's drivers or context behind the need for the use case as much as when the use cases are needed by and what resources would it need to build the use case. Such feasibility exercise is usually gathered in the form of an internal form which is then kept on record for historical record keeping and traceability purposes.
+Without planning, detection development tends to be late, inaccurate and
+confused. The contextual feasibility analysis prevents this by establishing
+the context of a request before technical work begins: the drivers behind it,
+when it is needed, and what it will take to build. The analysis is normally
+captured on an intake form and kept as a record, which preserves the
+traceability of the eventual detection back to its reasons.
 
 ### Components Analysis
 
-```mermaid
-mindmap
-  root((Contextual<br/>Feasibility<br/>Analysis))
-    Objective
-      Technical Goals
-      Organizational Goals
-    Drivers
-      Motivations
-      Context
-    Scope
-      Assets
-      Systems
-      Data
-    Purpose
-      Value Description
-      Justification
-    Value
-      Impact Assessment
-      Asset Priority
-    Priority
-      Urgency
-      Timeframe
-    Stakeholders
-      Departments
-      Interest Groups
-    Alignment
-      Organization-wide
-      Process Integration
-    Outputs
-      Metrics
-      Deliverables
-    Resourcing
-      Personnel
-      Tools
-      Technologies
-    Backlog
-      Prioritized List
-      Strategic Planning
-```
+The analysis covers eleven components. Each is described below with the
+question it answers and what goes wrong without it.
 
 ### Component Details
 
 #### **Objective**
->
-> *Clearly defining the technical and organizational objectives of the use case*
 
-Without well-defined objectives, the use case may lack focus and fail to address the organization's specific security needs. It is akin to embarking on a journey without a destination in mind. Without clear objectives, the development team may wander aimlessly, resulting in wasted time and resources, and potentially missing critical security threats.
+What the use case must achieve, technically and for the organization. Without
+a clear objective, development drifts and may miss the threat that mattered.
 
 #### **Drivers**
->
-> *Identifying the reasons and motivations behind developing the use case*
 
-This helps provide context and ensure alignment with the organization's goals and priorities. Without a clear understanding of the drivers, the use case may not effectively address the organization's security challenges. An analogy could be driving a car without knowing the destination or purpose.
+The risk, threat or compliance reasons for the request. Drivers connect the
+use case to the organization's priorities; without them it is impossible to
+judge whether the detection addresses a real need.
 
 #### **Scope**
->
-> *Defining the assets (systems, data, applications, people, etc.) that need to be protected*
 
-This is crucial for focusing development efforts and ensuring comprehensive coverage. Without a well-defined scope, the use case may either overlook critical assets or try to protect too many irrelevant elements. Imagine building a fence around a property without defining its boundaries.
+The systems, data, applications and people the use case protects, and those it
+deliberately does not. Without a defined scope, a use case either misses
+critical assets or tries to cover everything.
 
 #### **Purpose**
->
-> *Describing the scope and value of the use case*
 
-This helps establish its importance and justification. It provides a clear understanding of why the use case is needed and what benefits it brings to the organization. Without a clear purpose, the development team may struggle to prioritize the use case or communicate its value to stakeholders.
+Why the use case is worth building and what it will deliver. A stated purpose
+makes the request possible to prioritize and to explain to stakeholders.
 
 #### **Value**
->
-> *Assessing the potential impacts of losing the identified assets or interrupting critical processes*
 
-This helps prioritize use cases based on their potential impact. Understanding the value of protecting these assets is crucial for making informed decisions about resource allocation and risk management. Without assessing value, the development team may invest resources in less critical use cases while neglecting higher-priority ones.
+The impact of losing the protected assets or interrupting the processes they
+support. Value guides prioritization, so that effort goes to what matters most.
 
 #### **Priority**
->
-> *Determining the urgency and timeframe within which the use case needs to be developed*
 
-This ensures that critical security needs are addressed promptly. It helps prevent delays and ensures that the most pressing risks are mitigated in a timely manner. Without prioritization, the development team may focus on low-impact use cases while neglecting those with higher urgency.
+How urgent the use case is and by when it is needed. Priority ensures that the
+most pressing risks are addressed first.
 
 #### **Stakeholders**
->
-> *Identifying the departments and stakeholders who have an interest in the use case*
 
-This is vital for gathering input, ensuring alignment, and fostering collaboration. Involving relevant stakeholders promotes a sense of ownership and helps capture diverse perspectives. Without stakeholder involvement, the use case may lack input from critical areas, resulting in a solution that fails to meet their needs or gain their support.
+The departments and people with an interest in the use case. Their involvement
+brings in the knowledge the detection depends on, and the support it needs to
+succeed.
 
 #### **Alignment**
->
-> *Ensuring alignment with every relevant part of the organization*
 
-This helps minimize conflicts, streamline integration, and optimize effectiveness. It allows for the smooth coordination of security operations with other business processes and ensures that the use case does not inadvertently disrupt existing workflows or systems.
+How the use case fits with other parts of the organization and their
+processes. Alignment prevents a new detection from disrupting existing
+workflows or systems.
 
 #### **Outputs**
->
-> *Defining the required outputs to measure and monitor the effectiveness of the use case*
 
-This is essential for evaluating its performance and making informed decisions. It helps establish metrics, alerts, reports, or other deliverables that provide insights into the use case's efficacy. Without clear outputs, it becomes challenging to assess the impact and value of the use case.
+The alerts, reports and measures by which the use case's effectiveness will be
+judged. Without defined outputs, its value cannot be assessed.
 
 #### **Resourcing**
->
-> *Identifying the internal and extended resources required for the development phase*
 
-This ensures that the necessary personnel, tools, and technologies are available to successfully implement the use case. It helps allocate resources effectively, preventing resource shortages or inadequate support. Without proper resourcing, the development team may lack the necessary expertise, tools, or infrastructure.
+The people, tools and technology needed to build the use case, inside and
+outside the team. Resourcing identified early prevents development stalling
+for lack of skills or infrastructure.
 
 #### **Backlog**
->
-> *Maintaining a list of prioritized use cases that need to be developed*
 
-This allows for strategic planning and effective backlog management. It ensures that development efforts align with the organization's priorities and helps avoid ad-hoc decision-making or resource allocation. Without a backlog, the development team may struggle to prioritize and manage the development of multiple use cases.
+The prioritized list of use cases waiting to be built. A maintained backlog
+keeps development aligned with the organization's priorities rather than with
+whichever request arrived last.
 
 ---
 
 ## Preparing for Development
 
-The planning phase of detection engineering involves several crucial considerations to ensure a successful development process.
+Once a request is understood, two further decisions prepare it for
+development: where it ranks against other requests, and who will build it.
 
 ### Priority Management
-
-> **Normative status.** Requirement identifiers of the form `PLN-n` are testable
-> conformance criteria. See [Conformance Model](conformance-model.md).
 
 Unanchored scoring is not reproducible. Asking two engineers to rate a request
 "0 to 10 for urgency" produces two different backlogs, because nothing defines
@@ -242,8 +178,8 @@ How credible is this threat against *this* organization?
 
 | Score | Descriptor |
 | --- | --- |
-| 5 | Observed in our environment, or a confirmed campaign against our organization in the last 90 days |
-| 4 | Confirmed active against our sector, named in a current CISA/NCSC/ISAC advisory |
+| 5 | Observed in the organization's environment, or a confirmed campaign against the organization in the last 90 days |
+| 4 | Confirmed active against the organization's sector, named in a current CISA/NCSC/ISAC advisory |
 | 3 | Actively exploited in the wild generally; no sector-specific reporting |
 | 2 | Published technique with proof-of-concept tooling; no observed exploitation |
 | 1 | Theoretical or research-stage technique |
@@ -262,7 +198,7 @@ What does this detection protect?
 
 #### Dimension 3: Coverage gap (G), 1-5
 
-How exposed are we today?
+How exposed is the organization today?
 
 | Score | Descriptor |
 | --- | --- |
@@ -301,11 +237,9 @@ How exposed are we today?
 | Detect credential dumping via LSASS access | 4 | 5 | 2 | 3 | 3 | `(12+15+4)/6` = **5.17** | 3 |
 | Detect anomalous data egress volume | 3 | 4 | 5 | 4 | 5 | `(9+12+10)/9` = **3.44** | 4 |
 
-The fourth request has the largest coverage gap but the worst cost profile; the
-rubric correctly ranks it last without anyone needing to argue the point. That
-is the purpose of an anchored rubric: it moves the debate from *what score do we
-give this* to *do we agree with the descriptor*, which is a far more tractable
-conversation.
+The fourth request has the largest coverage gap but the worst cost profile, and
+the rubric ranks it last. An anchored rubric changes the discussion from which
+number to assign to whether the descriptor fits, which is easier to settle.
 
 #### Rules of use
 
@@ -325,95 +259,56 @@ decays; a score from twelve months ago is not evidence.
 
 #### Key Considerations
 
-**Priority Determination**
-
-- Not all use cases have the same level of urgency or importance
-- Some use cases may have impending deadlines, while others are critical to the organization's security posture or address imminent threats
-- Balancing benefit against build and maintenance cost is essential
-
-**Backlog Management**
-
-- Maintain a use case development backlog that is reviewed on a published cadence
-- Begin development with the highest-scoring use cases and progressively move down the list
-- Where Priority Scores tie, order by build cost ascending so that capacity delivers the most detections per sprint
+- The backlog is reviewed on a published cadence, and development starts from
+  the highest-scoring request.
+- Where Priority Scores tie, the request with the lower build cost goes first,
+  so that available capacity delivers the most detections.
 
 ### Resource Planning
 
-```mermaid
-flowchart LR
-    A[Internal Resources] --> D[Resource Pool]
-    B[External Resources] --> D
-    C[Alignment & Agreements] --> E[Ready for Development]
-    D --> C
-    
-    A1[SOC Team] --> A
-    A2[IT Team] --> A
-    A3[Infrastructure] --> A
-    A4[Security Engineering] --> A
-    A5[Networks] --> A
-    
-    B1[MSSPs] --> B
-    B2[Contractors] --> B
-    B3[Use Case Marketplaces] --> B
-    
-```
-
 #### Resource Identification
 
-**Internal Resources**
+A use case is usually built by the SOC or a dedicated content team, with help
+from other functions:
 
-- **SOC team** or dedicated content development team as primary resources
-- Additional personnel from various domains:
-- **IT**: Infrastructure support
-- **Infrastructure**: System maintenance
-- **Security Engineering**: Technical expertise
-- **Networks**: Connectivity and transport
+- **Internal:** IT and infrastructure teams for system access and changes,
+  security engineering for technical expertise, and network teams for
+  connectivity and log transport.
+- **External:** managed security service providers, contractors with
+  specialist skills, and online marketplaces of prebuilt detection content.
 
-**External Resources**
-
-- **Managed Security Service Providers (MSSPs)**: Professional services
-- **Contractors**: Specialized skills and temporary support
-- **Online use case marketplaces**: Pre-built solutions and templates
-
-**Formal Alignment**
-
-- Ensure identified resources are willing and formally aligned to participate
-- Establish through **Operational Level Agreements (OLAs)** or **Service Level Agreements (SLAs)**
-- Define expectations, responsibilities, and commitments of all parties involved
-- Formalize collaboration between teams and stakeholders
-- Establish clear communication channels, timelines, and deliverables
+**Formal alignment.** The people identified must be available and committed.
+An operational or service level agreement records what each party will
+provide, by when, and through which communication channels.
 
 ---
 
 ## Example Process Steps for Planning Phase
+
+The flow below shows how a request moves from its drivers to the development
+backlog, including the decisions at which it can be revised or parked.
 
 ```mermaid
 flowchart TD
     A[Risk Drivers] --> D[Use Case Demand]
     B[Threat Drivers] --> D
     C[Compliance Drivers] --> D
-    
+
     D --> E[Use case request]
     E --> F[Contextual Feasibility Analysis]
     F --> G[Stakeholder Discussion]
-    
+
     E --> H{Request Validated}
     H -->|Yes| I[Prep for Dev backlog]
     H -->|No| J{Request revised}
     J -->|No| K[Park UC Request]
     J -->|Yes| E
-    
+
     I --> L[UC Candidate Selection]
     L --> M[Resource Planning]
     M --> N[Resource Assignment]
-    
+
     I --> O[UC technical feasibility Backlog]
-    
-    
-    %% Apply classes
-    class A,B,C,E,F,G,I,L,M,N processBox
-    class H,J decisionBox
-    class D,K,O endpointBox
 ```
 
 ---
