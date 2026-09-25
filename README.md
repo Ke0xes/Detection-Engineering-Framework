@@ -4,7 +4,11 @@
 [![Conformance](https://img.shields.io/badge/conformance-L1%20%7C%20L2%20%7C%20L3-1f6feb)](conformance-model.md)
 [![Validate](https://github.com/Ke0xes/Detection-Engineering-Framework/actions/workflows/validate.yml/badge.svg)](https://github.com/Ke0xes/Detection-Engineering-Framework/actions/workflows/validate.yml)
 [![License: Apache 2.0](https://img.shields.io/badge/license-Apache%202.0-blue)](https://github.com/Ke0xes/Detection-Engineering-Framework/blob/main/License)
-[![Stars](https://img.shields.io/github/stars/Ke0xes/Detection-Engineering-Framework?style=flat&color=555)](https://github.com/Ke0xes/Detection-Engineering-Framework/stargazers)
+[![Author](https://img.shields.io/badge/Author-Kunal_Hatode-blue)](https://github.com/Ke0xes)
+[![GitHub Last Commit](https://img.shields.io/github/last-commit/Ke0xes/Detection-Engineering-Framework)](https://github.com/Ke0xes/Detection-Engineering-Framework/commits/main)
+![Visitors](https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2FKe0xes%2FDetection-Engineering-Framework&countColor=%231b4d3ea&style=flat)
+[![GitHub Forks](https://img.shields.io/github/forks/Ke0xes/Detection-Engineering-Framework?style=social)](https://github.com/Ke0xes/Detection-Engineering-Framework/network/members)
+[![GitHub Stars](https://img.shields.io/github/stars/Ke0xes/Detection-Engineering-Framework?style=social)](https://github.com/Ke0xes/Detection-Engineering-Framework/stargazers)
 
 The Detection Engineering Framework is an open, vendor-neutral method for
 building, running and retiring security detections. It follows each detection
