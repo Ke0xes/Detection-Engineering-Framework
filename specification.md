@@ -16,10 +16,10 @@ requirement is listed in section 14.
 
 | | |
 | --- | --- |
-| **Specification version** | 2.1.0 |
+| **Specification version** | 2.1.1 |
 | **Status** | Active |
-| **Date** | 2026-09-23 |
-| **Supersedes** | 2.0 (prose-only, non-normative) |
+| **Date** | 2026-09-26 |
+| **Supersedes** | 2.1.0 (editorial changes only; see the changelog) |
 
 ---
 

@@ -8,7 +8,7 @@ repo_name: Ke0xes/Detection-Engineering-Framework
 edit_uri: edit/main/
 
 copyright: >
-  Licensed under Apache-2.0 &middot; Detection Engineering Framework v2.1.0
+  Licensed under Apache-2.0 &middot; Detection Engineering Framework v2.1.1
 
 # Chapters live at the repository root so that every URL published before v2.1
 # still resolves. mkdocs-same-dir permits docs_dir and site_dir to coexist.
@@ -31,6 +31,8 @@ exclude_docs: |
   assessment/
   schema/
   reference-implementation/
+  skills/*/SKILL.md
+  skills/*/references/
   CITATION.cff
   requirements-docs.txt
 
@@ -97,6 +99,7 @@ nav:
       - Tools and templates: tools-and-templates/README.md
       - Use case request forms: tools-and-templates/templates/use-case-requests/README.md
       - Use case request template: tools-and-templates/templates/use-case-requests/use-case-request-template.md
+      - AI assistant skill: skills/senior-detection-engineer/README.md
   - Reference:
       - The specification: specification.md
       - Related work: related-work.md

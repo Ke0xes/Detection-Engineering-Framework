@@ -121,7 +121,7 @@
         "robustness_tier": {
           "type": "string",
           "enum": ["ephemeral", "indicator", "tool-artifact", "behavior", "invariant"],
-          "description": "How hard this is for an adversary to evade. See docs/13-detection-robustness.md."
+          "description": "How hard this is for an adversary to evade. See detection-robustness.md."
         },
         "alert_disposition": {
           "type": "string",

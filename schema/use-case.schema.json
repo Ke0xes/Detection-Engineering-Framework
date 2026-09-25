@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/Ke0xes/Detection-Engineering-Framework/schema/use-case.schema.json",
   "title": "Detection Engineering Framework - Use Case Request",
-  "description": "Planning-phase artifact. Captures the business driver, the contextual feasibility analysis and the anchored priority score defined in docs/03-planning-phase.md.",
+  "description": "Planning-phase artifact. Captures the business driver, the contextual feasibility analysis and the anchored priority score defined in planning-phase.md.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -97,7 +97,7 @@
     },
 
     "priority": {
-      "description": "Anchored rubric from docs/03-planning-phase.md. Score = ((T*3)+(A*3)+(G*2)) / (C+M).",
+      "description": "Anchored rubric from planning-phase.md. Score = ((T*3)+(A*3)+(G*2)) / (C+M).",
       "type": "object",
       "additionalProperties": false,
       "required": ["threat_relevance", "asset_criticality", "coverage_gap", "build_cost", "maintenance_burden", "scored_on"],

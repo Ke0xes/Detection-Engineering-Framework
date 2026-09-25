@@ -34,9 +34,11 @@ READING_PARTS = (
     "Reference",
 )
 
-# Fill-in templates are copied by readers; navigation text would be noise in them.
+# Fill-in templates and portable packages are copied by readers; navigation
+# text would be noise in them.
 SKIP_FILES = {
     "tools-and-templates/templates/use-case-requests/use-case-request-template.md",
+    "skills/senior-detection-engineer/README.md",
 }
 
 DEEP_DIVE_PREFIX = "Going deeper: "

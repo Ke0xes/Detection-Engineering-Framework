@@ -73,6 +73,15 @@ criticality, coverage gap, build cost and maintenance burden.
 detection engineering and threat intelligence apply the anchored descriptors.
 Self-scoring produces a backlog in which every request is a five.
 
+## AI assistant skill
+
+The [senior detection engineer skill](../skills/senior-detection-engineer/README.md)
+packages the rubric, schema, review checklist, metrics and conformance
+requirements for use by an AI assistant. It can score requests, review and
+write rules, produce detection records, fixtures and playbooks, and run a
+conformance gap assessment. Its outputs are drafts, to be verified against
+real telemetry and passed through the program's normal review.
+
 ## Contributing templates
 
 New templates are welcome where a machine-readable artifact would not serve

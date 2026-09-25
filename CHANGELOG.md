@@ -7,40 +7,126 @@ conformance claim names a version; tagged versions are immutable.
 
 ---
 
-## [Unreleased]
+## [2.1.1] — 2026-09-26
 
-Editorial restructuring of the guide into a single reading journey. No
-normative requirement has changed.
+### Why this release
 
-### Changed
+Version 2.1.0 made the framework something a program can be assessed against.
+It did not yet make it easy to read. Feedback on 2.1.0 was that the guide felt
+like a set of project notes rather than a guide: it jumped between topics, changed
+voice from one chapter to the next, and repeated the same point in a diagram,
+a list and several paragraphs. Some chapters still carried text from before
+2.0 that contradicted the rules added later.
 
-- **Reading order.** The guide is organized in four parts: *Understand the
-  framework*, *Walk the lifecycle*, *Put it into practice* and *Reference*.
-  Chapters that go deeper into one lifecycle stage now sit under that stage
-  rather than in a separate section.
-- **The worked example** moves from the end of the guide to the fourth chapter,
-  titled *A detection's journey*, and serves as the running example that the
-  phase chapters return to.
-- **Home page** rewritten to introduce the framework, the problem it addresses
-  and how it works before presenting the reference implementation.
-- **Chapter openings and closings.** Every chapter now opens by placing itself
-  in the lifecycle and closes with an *In brief* summary, the requirements it
-  covers, and a bridge to the next chapter. Requirement lists previously at the
-  top of the telemetry and detection-as-code chapters move to their end.
-- **Chapter numbers** are no longer used. Cross-references name the chapter,
-  and reading order is defined solely by the site navigation.
-- **Position markers** under each chapter title and previous/next links at its
-  end are generated from the navigation by `reading_order.py`, and CI fails if
-  they drift.
-- **Voice.** The guide is written in the neutral third person. Style rules are
-  recorded in `CONTRIBUTING.md`.
+This release is for the reader. It gives the guide one path from start to
+finish, one example that runs through it and one voice, and it corrects the
+places where the explanation and the rules disagreed. It also adds an AI
+assistant skill, so that the framework can be applied directly to real rules
+and use cases.
 
-### Fixed
+**No requirement has been added, removed or changed.** A program that
+conforms to 2.1.0 conforms to 2.1.1 at the same level. The schemas remain at
+`schema_version: "2.1"`, and every published page URL still works. This is a
+PATCH release under section 15 of the specification.
 
-- The adoption guide and advanced practices chapters still recommended the
-  false positive rate as a target. Both now use Precision, consistent with
-  `MET-1`.
+### What changes for readers
+
+- **One path through the guide.** The guide now has four parts: *Understand
+  the framework*, *Walk the lifecycle*, *Put it into practice* and
+  *Reference*. Chapters that go deeper into one stage, such as telemetry or
+  detection robustness, sit with that stage, so readers meet them at the
+  point they become relevant.
+- **One story throughout.** The worked example, a detection for OAuth consent
+  phishing, moves from the end of the guide to the fourth chapter as *A
+  detection's journey*. Each phase chapter returns to it, so every idea is
+  shown working on the same detection.
+- **Chapters that start and end the same way.** Each chapter says where it
+  sits in the lifecycle and what it covers, and closes with an *In brief*
+  summary, the requirements it contains, and a link to what comes next.
+  Readers who need conclusions rather than method can read the summaries
+  alone.
+- **One voice.** The guide is written in the neutral third person
+  throughout. Chapters no longer address the reader as "you" in one place and
+  "we" in another. The style rules are in `CONTRIBUTING.md`.
+- **Shorter, plainer chapters.** The planning, development, delivery, adoption
+  and advanced practices chapters have been rewritten. Diagrams that only
+  repeated the list beside them, generic explanations of IT concepts, and
+  paragraphs that restated the same point have been removed. The substance of
+  every section is kept, and so is almost every heading readers may have
+  linked to (see *Compatibility*).
+- **Chapter numbers** are no longer used. Cross-references name the chapter.
+- **Home page** rewritten to explain what the framework is, the problem it
+  addresses and how it works, before showing the reference implementation.
+- **Navigation markers** under each chapter title, and previous and next links
+  at its foot, are generated from the site navigation by `reading_order.py`.
+  CI fails if they fall out of date.
+
+### What changes for practitioners
+
+These corrections change how parts of the guide read in practice, although
+none changes a requirement.
+
+- **False positive rate removed everywhere.** The adoption guide, the advanced
+  practices chapter and the use case request template still set targets as a
+  false positive rate, which `MET-1` forbids. All now use Precision, with the
+  thresholds from the detection metrics chapter.
+- **VAL examples corrected.** The four example VALs in the detection
+  engineering chapter are rewritten as readable logic, each with the
+  confidence it represents. One referred to "file encryption" that was not
+  part of the scenario, and another had ambiguous logic.
+- **Minimum Viable Detection aligned with the specification.** The adoption
+  guide now defines the MVD exactly as `GOV-13` does, including the 30-day
+  review date.
+- **Development structure corrected.** The technical feasibility chapter
+  described development as two stages; it now matches the three-stage model
+  used everywhere else.
+- **Testing order made consistent.** The detection engineering chapter now
+  describes functional testing, attack emulation, non-functional testing and
+  acceptance testing in one order, matching the rest of the chapter.
+- **Response automation** moves from the delivery chapter to the response
+  engineering chapter, where it is built, and now states the `RSP-5` rule that
+  automation must not fail silently.
+- **Release benchmark table completed.** The table showing which elements are
+  complete at each release stage was empty. It is now filled in from the
+  stage descriptions.
+- **Catalog and ATT&CK details corrected.** Two catalog field descriptions
+  were wrong (rule description and decommissioning date). The ATT&CK section
+  no longer presents PRE-ATT&CK as a separate matrix; its tactics have been
+  part of ATT&CK Enterprise since 2020. Example log strings no longer use real
+  domain names.
+- **Lifecycle chapter.** Phase headings no longer carry stray numbers
+  ("1Planning Phase"), the delivery phase is correctly labeled steps 11 to 13,
+  and step 14, refinement, has its own heading.
+- **Schema descriptions** no longer refer to chapter file paths from before
+  2.1.
 - Two headings in the advanced practices chapter were at the wrong level.
+
+### Added
+
+- **AI assistant skill** (`skills/senior-detection-engineer/`). A
+  self-contained agent skill that makes an assistant such as GitHub Copilot or
+  Claude act as a senior detection engineer working to this framework. It
+  scores use case requests, checks feasibility, designs and reviews rules,
+  writes detection records, fixtures and playbooks, tunes noisy detections and
+  runs conformance gap assessments. The rubric, schema, review checklist,
+  metrics and conformance requirements are packaged with it, so it works
+  outside this repository. Its outputs are drafts for review, not production
+  artifacts.
+
+### Compatibility
+
+- Page URLs are unchanged. These in-page anchors changed:
+  - *The detection engineering lifecycle*: the four phase headings under
+    *Lifecycle phases* (for example, `#1planning-phase` is now
+    `#planning-phase`), and the delivery steps heading
+    (`#delivery-phase-steps-11-12-deployment-operations` is now
+    `#delivery-phase-steps-11-13-deployment-operations`).
+  - *The delivery phase*: `#response-automation` and its subsections now
+    live in *The response engineering phase*.
+  - *Tools and templates*: `#the-templates-you-probably-want-instead` is now
+    `#schemas-instead-of-templates`.
+- New conformance claims should name 2.1.1. Claims made against 2.1.0 remain
+  valid.
 
 ---
 

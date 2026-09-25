@@ -1,6 +1,6 @@
 # Detection Engineering Framework
 
-[![Specification](https://img.shields.io/badge/specification-v2.1.0-0d419d)](specification.md)
+[![Specification](https://img.shields.io/badge/specification-v2.1.1-0d419d)](specification.md)
 [![Conformance](https://img.shields.io/badge/conformance-L1%20%7C%20L2%20%7C%20L3-1f6feb)](conformance-model.md)
 [![Validate](https://github.com/Ke0xes/Detection-Engineering-Framework/actions/workflows/validate.yml/badge.svg)](https://github.com/Ke0xes/Detection-Engineering-Framework/actions/workflows/validate.yml)
 [![License: Apache 2.0](https://img.shields.io/badge/license-Apache%202.0-blue)](https://github.com/Ke0xes/Detection-Engineering-Framework/blob/main/License)
@@ -148,6 +148,15 @@ repository, and can be adopted in any detection repository. The
 [reference implementation guide](reference-implementation/README.md) explains
 how.
 
+### Use it with an AI assistant
+
+The repository also includes an
+[AI agent skill](skills/senior-detection-engineer/README.md) that makes an
+assistant such as GitHub Copilot or Claude act as a senior detection engineer
+working to this framework. It scores requests, designs and reviews rules,
+writes detection records, fixtures and playbooks, and assesses conformance.
+The skill is self-contained and can be copied into any project.
+
 ---
 
 ## How it relates to other work
@@ -196,7 +205,7 @@ Attribution requirements are in
 
 ## Citing
 
-> Hatode, K. et al. *Detection Engineering Framework*, version 2.1.0, 2026.
+> Hatode, K. et al. *Detection Engineering Framework*, version 2.1.1, 2026.
 > https://github.com/Ke0xes/Detection-Engineering-Framework
 
 Machine-readable citation metadata is in
