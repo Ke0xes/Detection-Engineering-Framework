@@ -15,6 +15,9 @@ copyright: >
 docs_dir: .
 site_dir: site
 
+# Matches the page.html URLs the earlier Jekyll-built Pages site published.
+use_directory_urls: false
+
 plugins:
   - same-dir
   - search
@@ -28,7 +31,6 @@ exclude_docs: |
   assessment/
   schema/
   reference-implementation/
-  tools-and-templates/
   CITATION.cff
   requirements-docs.txt
 
@@ -85,6 +87,10 @@ nav:
       - Advanced Best Practices: best-practices.md
       - Related Work: related-work.md
       - Worked Example: worked-example.md
+  - Templates:
+      - Overview: tools-and-templates/README.md
+      - Use case requests: tools-and-templates/templates/use-case-requests/README.md
+      - Use case request template: tools-and-templates/templates/use-case-requests/use-case-request-template.md
   - Project:
       - Contributing: CONTRIBUTING.md
       - Governance: GOVERNANCE.md

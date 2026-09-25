@@ -41,6 +41,9 @@ jobs:
 
       - run: mkdocs build --strict
 
+      # MkDocs skips extensionless files; the earlier Jekyll site served these.
+      - run: cp License NOTICE site/
+
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site
