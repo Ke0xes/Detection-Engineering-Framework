@@ -18,7 +18,7 @@
     "outcomes"
   ],
   "properties": {
-    "schema_version": { "const": "3.0" },
+    "schema_version": { "const": "2.1" },
     "id": {
       "type": "string",
       "pattern": "^UC-[0-9]{4}-[0-9]{4}$",

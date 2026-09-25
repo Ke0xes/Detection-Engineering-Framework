@@ -1,7 +1,7 @@
 # Conformance Assessment Instrument
 
 This directory contains the self-assessment instrument for the Detection
-Engineering Framework v3.0.0.
+Engineering Framework v2.1.0.
 
 ## Files
 
@@ -41,7 +41,7 @@ python assessment/score.py assessment/self-assessment.csv
 A valid conformance claim states level, specification version, assessment date
 and scope (`CNF-1`):
 
-> Conforms to Detection Engineering Framework v3.0.0 at Level 2, assessed
+> Conforms to Detection Engineering Framework v2.1.0 at Level 2, assessed
 > 2026-09-01, scope: corporate IT estate and Microsoft 365 tenant. Excludes OT
 > networks and the acquired subsidiary environment.
 

@@ -20,7 +20,7 @@ from collections import defaultdict
 from datetime import date
 from pathlib import Path
 
-SPEC_VERSION = "3.0.0"
+SPEC_VERSION = "2.1.0"
 LEVELS = ["L1", "L2", "L3"]
 VALID_SCORES = {"met", "partial", "not-met", "n/a", ""}
 

@@ -1,4 +1,4 @@
-schema_version: "3.0"
+schema_version: "2.1"
 id: DET-2026-0001
 version: 1.2.0
 title: OAuth application consent granted to unverified publisher by privileged identity

@@ -1,4 +1,4 @@
-schema_version: "3.0"
+schema_version: "2.1"
 id: UC-2026-0001
 title: Detect malicious OAuth application consent granted by privileged users
 status: delivered

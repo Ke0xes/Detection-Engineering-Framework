@@ -1,6 +1,6 @@
 # Detection Engineering Framework
 
-[![Specification](https://img.shields.io/badge/specification-v3.0.0-0d419d)](specification.md)
+[![Specification](https://img.shields.io/badge/specification-v2.1.0-0d419d)](specification.md)
 [![Conformance](https://img.shields.io/badge/conformance-L1%20%7C%20L2%20%7C%20L3-1f6feb)](conformance-model.md)
 [![Validate](https://github.com/Ke0xes/Detection-Engineering-Framework/actions/workflows/validate.yml/badge.svg)](https://github.com/Ke0xes/Detection-Engineering-Framework/actions/workflows/validate.yml)
 [![License: Apache 2.0](https://img.shields.io/badge/license-Apache%202.0-blue)](https://github.com/Ke0xes/Detection-Engineering-Framework/blob/main/License)
@@ -223,7 +223,7 @@ already approve for internal use.
 
 Machine-readable metadata: [CITATION.cff](https://github.com/Ke0xes/Detection-Engineering-Framework/blob/main/CITATION.cff).
 
-> Hatode, K. et al. *Detection Engineering Framework*, version 3.0.0, 2026.
+> Hatode, K. et al. *Detection Engineering Framework*, version 2.1.0, 2026.
 > https://github.com/Ke0xes/Detection-Engineering-Framework
 
 ## Credits

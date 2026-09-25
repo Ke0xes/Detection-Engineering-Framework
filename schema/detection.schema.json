@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/Ke0xes/Detection-Engineering-Framework/schema/detection.schema.json",
   "title": "Detection Engineering Framework - Detection Metadata",
-  "description": "Canonical metadata contract for a single detection under the Detection Engineering Framework v3.0. Platform-agnostic: the detection logic itself lives in platform_implementations, this document describes everything else.",
+  "description": "Canonical metadata contract for a single detection under the Detection Engineering Framework v2.1. Platform-agnostic: the detection logic itself lives in platform_implementations, this document describes everything else.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -25,7 +25,7 @@
   "properties": {
     "schema_version": {
       "description": "Version of this schema the document conforms to.",
-      "const": "3.0"
+      "const": "2.1"
     },
     "id": {
       "description": "Immutable detection identifier. Never reused, never renumbered.",

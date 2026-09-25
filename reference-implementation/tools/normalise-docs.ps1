@@ -1,4 +1,4 @@
-# Repo-wide mechanical normalisation for the v3.0 restructure.
+# Repo-wide mechanical normalisation for the v2.1 restructure.
 # Removes emoji, strips hardcoded Mermaid theming, normalises spelling and whitespace.
 # Run from the repository root:  pwsh ./reference-implementation/tools/normalise-docs.ps1
 

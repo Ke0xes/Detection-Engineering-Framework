@@ -57,7 +57,7 @@ maintainer's employer, then open an OWASP project proposal. See
 
 ### Citability
 
-Register a Zenodo DOI against the v3.0.0 tag so the framework can be cited in
+Register a Zenodo DOI against the v2.1.0 tag so the framework can be cited in
 academic work and audit documentation.
 
 ### Compliance mappings

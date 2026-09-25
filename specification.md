@@ -4,7 +4,7 @@
 
 | | |
 | --- | --- |
-| **Specification version** | 3.0.0 |
+| **Specification version** | 2.1.0 |
 | **Status** | Active |
 | **Date** | 2026-09-23 |
 | **Supersedes** | 2.0 (prose-only, non-normative) |
@@ -409,8 +409,12 @@ This specification follows semantic versioning.
 | New SHOULD or MAY, or clarification that does not change conformance | MINOR |
 | Editorial correction | PATCH |
 
+These rules apply from 2.1.0 onward. Version 2.1.0 introduced the first
+normative requirements as a MINOR release because no earlier version defined
+conformance, so no existing conformance claim could be invalidated.
+
 **Conformance claims MUST name the specification version.** A program
-conforming to 3.0.0 does not automatically conform to 4.0.0.
+conforming to 2.1.0 does not automatically conform to 3.0.0.
 
 Deprecated requirements are retained in the document marked `WITHDRAWN` with
 the version in which they were withdrawn, so that historical conformance claims

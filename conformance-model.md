@@ -125,7 +125,7 @@ environment.
 
 A valid claim:
 
-> Conforms to Detection Engineering Framework v3.0.0 at Level 2, assessed
+> Conforms to Detection Engineering Framework v2.1.0 at Level 2, assessed
 > 2026-09-01, scope: corporate IT estate and Microsoft 365 tenant. Excludes
 > OT networks and the acquired subsidiary environment.
 

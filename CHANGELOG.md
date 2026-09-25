@@ -7,10 +7,12 @@ conformance claim names a version; tagged versions are immutable.
 
 ---
 
-## [3.0.0] — 2026-09-23
+## [2.1.0] — 2026-09-23
 
 The framework moves from a prose guide to a specification with enforceable
-conformance criteria and executable artifacts.
+conformance criteria and executable artifacts. Released as a minor version:
+every chapter, filename and published URL from 2.0 is preserved, and 2.0 defined
+no conformance criteria that this release could break.
 
 ### Added — normative
 
@@ -126,7 +128,7 @@ New directories added: `schema/`, `reference-implementation/`, `assessment/`,
 ### Changed — licensing
 
 **Relicensed to Apache License 2.0 in full.** Versions up to and including 2.0
-were licensed CC BY 4.0. From 3.0.0, the whole repository — prose,
+were licensed CC BY 4.0. From 2.1.0, the whole repository — prose,
 specification, schemas, tooling, templates and assessment material — is
 Apache-2.0.
 

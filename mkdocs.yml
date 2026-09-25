@@ -8,9 +8,9 @@ repo_name: Ke0xes/Detection-Engineering-Framework
 edit_uri: edit/main/
 
 copyright: >
-  Licensed under Apache-2.0 &middot; Detection Engineering Framework v3.0.0
+  Licensed under Apache-2.0 &middot; Detection Engineering Framework v2.1.0
 
-# Chapters live at the repository root so that every URL published before v3.0
+# Chapters live at the repository root so that every URL published before v2.1
 # still resolves. mkdocs-same-dir permits docs_dir and site_dir to coexist.
 docs_dir: .
 site_dir: site
