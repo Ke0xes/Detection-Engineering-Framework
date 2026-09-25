@@ -10,8 +10,8 @@
 *.ps1      text eol=crlf
 *.sh       text eol=lf
 
-LICENSE      text eol=lf
-LICENSE-CODE text eol=lf
+License      text eol=lf
+NOTICE       text eol=lf
 
 # Keep generated site output and lockfiles out of diffs.
 site/**      linguist-generated=true

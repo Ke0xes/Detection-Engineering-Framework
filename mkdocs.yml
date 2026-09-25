@@ -8,8 +8,7 @@ repo_name: Ke0xes/Detection-Engineering-Framework
 edit_uri: edit/main/
 
 copyright: >
-  Prose CC BY 4.0 &middot; Schemas and code Apache-2.0 &middot;
-  Detection Engineering Framework v3.0.0
+  Licensed under Apache-2.0 &middot; Detection Engineering Framework v3.0.0
 
 # Chapters live at the repository root so that every URL published before v3.0
 # still resolves. mkdocs-same-dir permits docs_dir and site_dir to coexist.
@@ -30,8 +29,6 @@ exclude_docs: |
   schema/
   reference-implementation/
   tools-and-templates/
-  LICENSE
-  LICENSE-CODE
   CITATION.cff
   requirements-docs.txt
 
@@ -93,7 +90,6 @@ nav:
       - Governance: GOVERNANCE.md
       - Roadmap: ROADMAP.md
       - Changelog: CHANGELOG.md
-      - Licensing: LICENSING.md
       - Code of Conduct: CODE_OF_CONDUCT.md
       - Security Policy: SECURITY.md
 

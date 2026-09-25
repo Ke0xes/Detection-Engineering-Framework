@@ -3,8 +3,7 @@
 [![Specification](https://img.shields.io/badge/specification-v3.0.0-0d419d)](specification.md)
 [![Conformance](https://img.shields.io/badge/conformance-L1%20%7C%20L2%20%7C%20L3-1f6feb)](conformance-model.md)
 [![Validate](https://github.com/Ke0xes/Detection-Engineering-Framework/actions/workflows/validate.yml/badge.svg)](https://github.com/Ke0xes/Detection-Engineering-Framework/actions/workflows/validate.yml)
-[![Docs CC BY 4.0](https://img.shields.io/badge/docs-CC%20BY%204.0-lightgrey)](LICENSE)
-[![Code Apache 2.0](https://img.shields.io/badge/code-Apache%202.0-lightgrey)](LICENSE-CODE)
+[![License: Apache 2.0](https://img.shields.io/badge/license-Apache%202.0-blue)](https://github.com/Ke0xes/Detection-Engineering-Framework/blob/main/License)
 [![Stars](https://img.shields.io/github/stars/Ke0xes/Detection-Engineering-Framework?style=flat&color=555)](https://github.com/Ke0xes/Detection-Engineering-Framework/stargazers)
 
 **A lifecycle standard for building, governing and retiring security
@@ -210,14 +209,15 @@ See [CONTRIBUTING.md](CONTRIBUTING.md), [ROADMAP.md](ROADMAP.md) and
 
 ## Licence
 
-Dual-licensed, because prose and code have different needs.
+Everything in this repository — prose, specification, schemas, tooling,
+templates and assessment material — is licensed under the
+[Apache License 2.0](https://github.com/Ke0xes/Detection-Engineering-Framework/blob/main/License).
+Attribution requirements are in
+[NOTICE](https://github.com/Ke0xes/Detection-Engineering-Framework/blob/main/NOTICE).
 
-| Content | Licence |
-| --- | --- |
-| Documentation, specification text | [CC BY 4.0](LICENSE) |
-| Schemas, tooling, templates, assessment | [Apache-2.0](LICENSE-CODE) |
-
-Details and attribution requirements: [LICENSING.md](LICENSING.md).
+Apache 2.0 includes an explicit patent grant, which matters for a specification
+that vendors may implement, and it is a licence most enterprise legal functions
+already approve for internal use.
 
 ## Citing
 

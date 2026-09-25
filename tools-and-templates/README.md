@@ -1,8 +1,8 @@
 # Templates
 
-Fill-in artifacts for implementing the framework. Licensed Apache-2.0 so they
-can be copied into your own repositories and internal systems without licence
-friction.
+Fill-in artifacts for implementing the framework. Licensed Apache-2.0, like the
+rest of the repository, so they can be copied into your own repositories and
+internal systems without licence friction.
 
 ## What is here
 

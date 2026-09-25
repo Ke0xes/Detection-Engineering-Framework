@@ -75,7 +75,8 @@ defects in the specification, not failures of the adopters.
 
 ### Translations — **help wanted**
 
-The prose is CC BY 4.0 specifically to enable this.
+The Apache 2.0 licence permits translation and redistribution, provided the
+`NOTICE` file is retained.
 
 ---
 

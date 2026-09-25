@@ -98,8 +98,9 @@ discussion. Adopter demand is the strongest argument for accelerating this.
 ## Trademark and attribution
 
 The name "Detection Engineering Framework" is not trademarked. Forks and
-derivatives are permitted under the licences and are encouraged where the
-project is not moving fast enough for an adopter's needs.
+derivatives are permitted under the Apache 2.0 licence, which requires the
+`NOTICE` file to be retained, and are encouraged where the project is not
+moving fast enough for an adopter's needs.
 
 Derivative works MUST NOT represent themselves as the upstream specification.
 Conformance claims reference a version of *this* specification; a fork that
@@ -109,7 +110,7 @@ that conformance claims remain interpretable.
 ## Origin and independence
 
 The framework originated in work conducted at Cisco and is published
-independently under open licences. Cisco does not control the project, does not
+independently under the Apache 2.0 licence. Cisco does not control the project, does not
 review contributions, and holds no special status in its governance. Adopters
 should treat it as an independent community project with a stated intent to
 move to neutral governance.

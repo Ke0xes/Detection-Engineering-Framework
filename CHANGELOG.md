@@ -125,19 +125,31 @@ New directories added: `schema/`, `reference-implementation/`, `assessment/`,
 
 ### Changed — licensing
 
-Dual-licensed. Prose remains CC BY 4.0. Schemas, tooling, templates and
-assessment material are now Apache-2.0, because CC licences are unsuitable for
-software and most enterprise legal functions will not permit CC-licensed
-material in a codebase. Apache-2.0 additionally provides a patent grant, which
-matters for a specification vendors may implement. See `LICENSING.md`.
+**Relicensed to Apache License 2.0 in full.** Versions up to and including 2.0
+were licensed CC BY 4.0. From 3.0.0, the whole repository — prose,
+specification, schemas, tooling, templates and assessment material — is
+Apache-2.0.
 
-The licence file was renamed from `License` to `LICENSE`, fixing a
-case-sensitivity 404 in the README badge.
+Reasons: CC licences are not designed for software, and most enterprise legal
+functions will not permit CC-licensed material to be vendored into a codebase;
+a single licence removes any ambiguity about which terms apply to which file;
+and Apache-2.0 provides an explicit patent grant, which matters for a
+specification vendors may implement.
+
+Attribution previously required by CC BY is now carried by the `NOTICE` file,
+which Apache-2.0 section 4(d) requires redistributors to retain.
+
+The licence file keeps its published name, `License`, so existing links to it
+continue to resolve.
+
+Copies obtained under CC BY 4.0 before this change remain available under
+those terms; CC grants are irrevocable.
 
 ### Added — project infrastructure
 
 `CONTRIBUTING.md`, `GOVERNANCE.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md`,
-`ROADMAP.md`, `CITATION.cff`, issue and pull request templates, `.gitattributes`,
+`ROADMAP.md`, `CITATION.cff`, `NOTICE`, issue and pull request templates,
+`.gitattributes`,
 `.gitignore`, markdownlint configuration, and a MkDocs Material site published
 to GitHub Pages.
 

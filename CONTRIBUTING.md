@@ -18,7 +18,8 @@ Ranked by how much it helps the project right now:
    Backends for Splunk, Elastic, Google SecOps or a pySigma integration would
    make the fixture contract portable.
 5. **Corrections.** Technical errors, broken links, unclear wording.
-6. **Translations.** The prose is CC BY 4.0 specifically to enable this.
+6. **Translations.** The Apache 2.0 licence permits translation and
+   redistribution, provided the `NOTICE` file is retained.
 
 ## What is out of scope
 
@@ -32,9 +33,10 @@ Ranked by how much it helps the project right now:
 
 ### Everything
 
-- Read [`LICENSING.md`](LICENSING.md). Prose is CC BY 4.0; code, schemas and
-  templates are Apache-2.0. Contributions are accepted under the licence
-  applicable to the path you modify.
+- Everything in this repository is licensed under the
+  [Apache License 2.0](https://github.com/Ke0xes/Detection-Engineering-Framework/blob/main/License).
+  Under section 5 of that licence, contributions
+  you submit are accepted under the same terms.
 - One logical change per pull request.
 - Run the checks locally. They are the same ones CI runs.
 
